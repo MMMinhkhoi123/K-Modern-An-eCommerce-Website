@@ -4,8 +4,11 @@ KModern is a fully responsive ecommerce website, maximum compatiblities in all m
 [Link My Website](http://14.225.254.77/)
 
 # Install with docker
-Download file docker-compose [Here](http://14.225.254.77/)
+Download file docker-compose [Here](https://drive.google.com/file/d/1zwVUBhvAcCVbqMRL-luUfHLAynmXnoPB/view?usp=sharing)
+Run the command
 
+    docker-compose up --build
+    
 # Features 
 * User
   + View List Product
