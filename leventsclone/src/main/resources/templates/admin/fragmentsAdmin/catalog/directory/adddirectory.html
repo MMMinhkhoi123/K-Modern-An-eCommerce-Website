@@ -1,0 +1,49 @@
+<div class="add-directory" th:fragment="adddirectory">
+    <form
+            th:data-id="${directory.id}"
+            th:data-type="${type}"
+            onsubmit="controlFrom(event, this.getAttribute('data-type'))"
+            class="add-directory__from">
+        <div class="add-directory__title">
+            <h3 th:text="${type != 'update'} ? 'Thêm danh mục sản phẩm' : 'Cập nhật danh mục sản phẩm' "></h3>
+        </div>
+        <div class="add-directory__state" th:if="${state == 'success'}">
+            <span class="err__success">
+                 <span th:text="${type == 'add'} ? 'Thêm sản phẩm thành công' : 'Cập nhật sản phẩm thành công' "></span>
+                <i class="fa-solid fa-xmark" onclick="hiddenError('success')"></i>
+            </span>
+        </div>
+        <div th:if="${errorCode != null}" class="add-directory__error">
+            <span class="err__code">
+                <span th:text="${errorCode}"></span>
+                 <i class="fa-solid fa-xmark" onclick="hiddenError('code')"></i>
+            </span>
+        </div>
+        <div class="add-directory__option">
+            <div class="add-directory__name">
+                <label>Tên danh mục</label>
+                <input
+                        name="name"
+                        th:value="${directory.name}"
+                        type="text" placeholder="Nhập tên danh mục tai đây" required/>
+            </div>
+            <div class="add-directory__key">
+                <label>Đường dẫn (Không bắt buộc)</label>
+                <input
+                        oninput="inputPath(event)"
+                        name="key"
+                        th:value="${directory.key}"
+                        type="text" placeholder="Nhập tên đường dẫn tại đây" />
+            </div>
+        </div>
+        <div class="add-directory__button">
+            <div class="directory__button--frame">
+                <div class="loader-background">
+                    <div class="loader-form"></div>
+                </div>
+                <button th:if="${type == 'add'}" type="submit" >Tạo mới</button>
+                <button th:if="${type == 'update'}" type="submit">Cập nhật</button>
+            </div>
+        </div>
+    </form>
+</div>

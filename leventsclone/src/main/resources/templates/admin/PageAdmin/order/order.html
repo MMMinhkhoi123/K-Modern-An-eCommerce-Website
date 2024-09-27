@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đơn hàng</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link th:href="@{/fontawesome/css/all.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin/common/menu.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin/common/loader.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin/common.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin/common/intitForm.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin/order/order.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin/order/alert.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin/common/loader.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="admin" id=order_pag>
+    <div class="admin__menu">
+        <div th:replace="admin/fragmentsAdmin/common/menu :: menu"></div>
+    </div>
+    <div class="admin__screen">
+        <div class="admin__screen-child" id="admin__screen">
+
+            <div class="admin__screen--title  screen__tile">
+                <h2>Đơn hàng</h2>
+            </div>
+            <div class="admin__screen--folder screen__folder">
+                <div class="screen__root">
+                    <a href="/admin/order" class="link">Danh sách</a>
+                    <i th:if="${type != 'view'}" class="fa-solid fa-chevron-right"></i>
+                </div>
+                <div class="screen__current" th:switch="${type}">
+                    <span th:case="'detail'">Chi tiết</span>
+                </div>
+            </div>
+
+            <div class="parent__color-section  screen__case" id="admin__color-section">
+                <div th:if="${type == 'view'}">
+                    <div th:replace="admin/fragmentsAdmin/order/filterOrder :: filter"></div>
+                    <div class="parent__color-section--list">
+                        <div th:replace="admin/fragmentsAdmin/order/order :: order"></div>
+                    </div>
+                </div>
+                <div th:if="${type == 'detail'}">
+                    <div th:replace="admin/fragmentsAdmin/order/orderDetail :: order-detail"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="admin/fragmentsAdmin/common/loader"></div>
+    <div th:replace="admin/fragmentsAdmin/order/alert/warningConfirm :: alert"></div>
+</div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"  type="text/javascript"></script>
+<script th:src="@{/js/admin/common/menu.js}"></script>
+<script th:src="@{/js/admin/common/socket.js}"></script>
+<script th:src="@{/js/admin/order/control.js}"></script>
+<script th:src="@{/js/admin/order/api.js}"></script>
+<script th:src="@{/js/admin/order/alert.js}"></script>
+</html>

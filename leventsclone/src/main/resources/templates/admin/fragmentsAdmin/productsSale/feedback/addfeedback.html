@@ -1,0 +1,65 @@
+<div class="add_feedback" th:fragment="addfeedback">
+  <form
+          th:data-id="${feedback.id}"
+          th:data-type="${type}"
+        onsubmit="controlFrom(event, this.getAttribute('data-type'))"
+        class="add_feedback__add">
+      <div class="add_feedback__title">
+      <h3 th:text="${type == 'add'} ? 'Tạo ảnh khách hàng' : 'Cập nhật ảnh khách hàng'"></h3>
+    </div>
+      <div class="add_feedback__success" th:if="${success != null}">
+          <span class="err__success">
+              <span th:text="${success}"></span>
+              <i class="fa-solid fa-xmark" onclick="hiddenError('success')"></i>
+          </span>
+      </div>
+      <div class="add_feedback__error">
+          <span class="err__img disable">
+              <span> Bạn chưa chọn hình ảnh </span>
+              <i class="fa-solid fa-xmark" onclick="hiddenErrors()"></i>
+          </span>
+      </div>
+     <div class="add_feedback__img-product">
+       <div class="add_feedback__img">
+         <label>Hình ảnh</label>
+         <label>
+           <input class="file" type="file" hidden="hidden" onchange=" choiceImg(event)" />
+             <div class="uploadImg disable">
+                 <img alt="">
+             </div>
+           <div class="add_feedback__img--empty">
+               <div class="empty__content">
+                 <i class="fa-regular fa-image"></i>
+                 <span>Click Chọn ảnh</span>
+                 <span>hổ trợ định dạng : jpg, png</span>
+               </div>
+           </div>
+         </label>
+       </div>
+       <div class="add_feedback__product">
+           <div class="add_feedback__product-form">
+             <label>Sản phẩm</label>
+             <select onchange="handleChange(event)" required>
+                <option value="" selected hidden="hidden">--Chọn sản phẩm--</option>
+                <option th:each="item : ${options}"
+                        th:value="${item.idOpt}"
+                        th:text="${item.productUse.name} + ' - ' + ${item.colorUse.name} "></option>
+             </select>
+           </div>
+         <div class="add_feedback__product-selected">
+           <label>Sản phẩm được chọn </label>
+           <div class="add_feedback__product-selected--frame">
+           </div>
+         </div>
+       </div>
+     </div>
+     <div class="add_feedback__button">
+       <button th:text="${type == 'add'} ? 'Tạo mới' : 'Cập nhật'"></button>
+     </div>
+  </form>
+    <script th:inline="javascript" hidden="hidden">
+        feedback =  [[${feedback}]];
+        product_color_size = [[${options}]];
+        type = [[${type}]];
+    </script>
+</div>

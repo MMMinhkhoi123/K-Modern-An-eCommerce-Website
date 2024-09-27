@@ -1,0 +1,45 @@
+<div class="show-feedback" th:fragment="feedback(feedbacks)">
+    <div class="show-feedback-parent"
+         onmousedown="handleMouseDownFeedback(event, this)"
+         th:data-color = "${item.optionUse.colorUse.name}"
+         th:data-name = "${item.optionUse.productUse.name}"
+         th:data-index = "${itemStat.index}"
+         th:classappend="'feedback' + ${itemStat.index}" th:each="item : ${feedbacks}">
+        <div class="show-feedback--close" onclick="offShowFeedback()">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+        <div class="show-feedback__from">
+            <div class="show-feedback__from--left">
+                <img th:src="${item.imageUse.linkImage}"/>
+                <div class="from__pre" onclick="preFeedback(event)" onmouseover="manageAction = true">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </div>
+                <div class="from__next" onclick="nextFeedback(event)" onmouseover="manageAction = true">
+                    <i class="fa-solid fa-chevron-right" ></i>
+                </div>
+            </div>
+            <div class="show-feedback__from--right">
+                <div class="right__trademark">
+                    <span>@levent.official</span>
+                    <div class="right__trademark--button">
+                        <a href="/">Truy cập</a>
+                    </div>
+                </div>
+                <div class="right__card">
+                    <div th:replace="user/fragments/common/Card :: cardtest (object=${item.optionUse}, type='feedbacks')"></div>
+                </div>
+                    <div class="right__button">
+                        <a>Xem sản phẩm</a>
+                    </div>
+                    <div class="right__social">
+                        <span>Social media</span>
+                        <div class="right__social--icon">
+                            <i class="fa-brands fa-facebook"></i>
+                            <i class="fa-brands fa-tiktok"></i>
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,107 @@
+* {
+    font-family: Futura, Trebuchet MS, Arial, arial, sans-serif
+}
+.admin__screen {
+    width: 100%;
+}
+.loader-common {
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 5px solid #ffffff;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+::-webkit-scrollbar {
+    width: var(--heightScroll);
+}
+::-webkit-scrollbar-thumb {
+background: black;
+}
+::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+:root {
+    --colorBackground: #c7cfe1;
+    --colorHoverItem: #abbfe8;
+    --colorExtra: rgba(234, 233, 233, 0.51);
+    --colorBorders: rgba(213, 209, 209, 0.4);
+    --colorCreate: blue;
+    --colorUpdate: #0b2e59;
+    --colorDetail: #5fe17c;
+    --colorBackgroundHiden: rgba(0, 0, 0, 0.5);
+
+
+    /*scroll*/
+    --heightScroll: 5px;
+    --stateNone: none;
+    --stateFlex: flex;
+
+}
+
+
+.skeleton {
+    position: relative;
+}
+.skeleton::before {
+    content:"";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: linear-gradient(90deg , #eee , #d3d0d0 , #eee);
+    background-size: 200%;
+    animation: identifierx 2s infinite linear;
+}
+
+@keyframes identifierx {
+    0% {
+        background-position: -100%;
+    }
+    100% {
+        background-position-x: 100%;
+    }
+}
+
+.container {
+    height: 100vh;
+    position: relative;
+    overflow-y: scroll;
+}
+.activeBack  {
+    transform: translateY(0px) !important;
+    opacity: 1 !important;
+    pointer-events: visible !important;
+}
+
+.back__scroll {
+    transition: 0.2s;
+    position: fixed;
+    bottom: 50px;
+    z-index: 20;
+    right: 5px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--theme);
+    color: white;
+    transform: translateY(50px);
+    opacity: 0;
+    pointer-events: none;
+}

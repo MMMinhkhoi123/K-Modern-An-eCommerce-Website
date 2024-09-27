@@ -1,0 +1,45 @@
+<div class="wishlist" th:fragment="wishlist" >
+    <div class="wishlist__list">
+        <div class="wishlist__list--item" th:each="item : ${authenticated.wishlist}">
+            <div class="wishlist__img">
+                <img th:src="${item.optionImageUses[0].imageUse.linkImage}">
+            </div>
+            <div class="List__content">
+                <div class="List__content--parentName">
+                    <div class="List__content--name">
+                        <span th:text="${item.productUse.name}">Levents® Sticker Oversize Tee/</span>
+                        / <span th:text="${item.colorUse.name}"> Green</span>
+                    </div>
+                    <div class="List__content--price">
+                        <span class="price__order--item" th:data-price="${item.productUse.price}" th:text="${item.productUse.price}">410000</span>
+                    </div>
+                </div>
+                <div class="List__content--size" >
+                    <span>Size:</span>
+                    <span class="List__content--size-list">
+                        <span th:each="itemSize : ${item.optionSizeUSes}">
+                            <span th:text="${itemSize.sizeUse.name}">Size 1</span>
+                        </span>
+                    </span>
+                </div>
+                <div class="List__content--color" >
+                    <span>colors:</span>
+                    <span class="List__content--size-list">
+                            <span th:text="${item.colorUse.name}">Size 1</span>
+                    </span>
+                </div>
+                <div class="List__content--button">
+                    <button
+                            th:data-idOption="${item.idOpt}"
+                            onclick="deleteItemWishList(this)">Xóa</button>
+                    <div class="List__content--button-link">
+                        <a  th:href="@{'/products?option='+ ${item.idOpt}}">Xem lại</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="empty__wishList" th:if="${authenticated.wishlist.size() == 0}">
+            <img src="/image/empty-box.png">
+        </div>
+    </div>
+</div>

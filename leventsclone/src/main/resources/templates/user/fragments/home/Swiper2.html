@@ -1,0 +1,39 @@
+<div class="our__collection" th:fragment="swiper2(collection)">
+    <div class="our__collection--above">
+        <h3 class="collection__title">OUR COLLECTION</h3>
+        <div class="collection__view">
+            <a th:href="@{'/collections'}">Xem tất cả</a>
+        </div>
+    </div>
+    <div class="our__collection--below">
+        <div class="collection__frame">
+            <div class="collection"
+                 data-key="collection"
+                 onmouseover="SetUp2()"
+                 onmousedown=" handleMouseDownSwiper(event, this)"
+                 onmouseleave=" handleMouseLeaveSwiper(this)"
+            >
+                <a class="collection__item"
+                     th:data-url="${item.name}"
+                     id="1" th:each="item : ${collection}">
+                    <div class="collection__item-open">
+                        <img class="collection__item--img"
+                             alt="link"
+                             th:src="${item.img}" />
+                    </div>
+                    <strong  class="collection__item--title" th:text="${item.name}">LEVENTS® 4TH ANNIVERSARY 1</strong>
+                </a>
+            </div>
+            <div class="collection__direction--pre collection__pre direction">
+                <i class="fa-solid fa-chevron-left" onclick="handlePreSwiper()"></i>
+            </div>
+            <div class="collection__direction--next collection__next direction">
+                <i  class="fa-solid fa-chevron-right" onclick="handleNextSwiper()"></i>
+            </div>
+        </div>
+        <div class="move__collection">
+            <div class="move__collection--step">
+            </div>
+        </div>
+    </div>
+</div>

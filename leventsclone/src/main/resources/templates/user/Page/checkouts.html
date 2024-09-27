@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/fontawesome/css/all.css}" rel="stylesheet" >
+    <link th:href="@{/css/user/common/all.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/checkouts/checkouts.css}" rel="stylesheet" >
+    <link th:href="@{/css/css/app.css}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"  type="text/javascript"></script>
+    <title>Thanh toán</title>
+
+    <script th:inline="javascript">
+        let dataCarts = [[${dataCartCheckout.size()}]];
+        if(dataCarts == 0) {
+            window.location.assign('/');
+        }
+    </script>
+</head>
+<body>
+    <div class="payment">
+        <div class="checkout" id="checkout">
+            <div class="checkout__logo">
+                <div class="checkout__logo--container">
+                    <a href="/#cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </a>
+                    <BUTTON>
+                        KMODERN
+                    </BUTTON>
+                </div>
+            </div>
+            <div class="checkout__from">
+                <div class="checkout__from--left">
+                    <div class="checkout__from--detail-small">
+                        <div class="checkout__from--detail-small-frame">
+                            <div class="detail-small-text" >
+                                <span onclick="infoDetailMobile('open', this)">Hiển thị tổng quan đơn hàng <i class="fa-solid fa-chevron-down"></i></span>
+                                <span onclick="infoDetailMobile('close', this)" class="disable">Ẩn tổng quan đơn hàng <i class="fa-solid fa-chevron-up"></i></span>
+                            </div>
+                            <div class="detail-small-price total" th:data-price="${total}" th:text="${total}">990.000</div>
+                            <div class="detail-small-text__info checkout__from--right">
+                                <div th:replace="user/fragments/checkout/detailProduct :: detailProduct(key = 1)"></div>
+                            </div>
+                        </div>
+                    </div>
+                   <div class="from__authenticated" th:data-phone="${authenticated.getPhone()}" th:if="${authenticated != null}" onclick="showLogout(this)">
+                       <div class="from__authenticated__above">
+                           <span>Tài khoản</span>
+                           <span class="icon__view-logout">
+                               <i class="fa-solid fa-angle-up disable"></i>
+                               <i class="fa-solid fa-angle-down"></i>
+                           </span>
+                       </div>
+                       <div class="from__authenticated__below">
+                           <span th:text="${authenticated.getEmail()}"></span>
+                           <a href="*" onclick="logout(event)">Log out</a>
+                       </div>
+                   </div>
+                  <div th:replace="user/fragments/checkout/InfoResult :: result"></div>
+                  <div th:replace="user/fragments/checkout/InfoCheckIn :: info"></div>
+                </div>
+                <div class="checkout__from--right  getView">
+                    <div th:replace="user/fragments/checkout/detailProduct :: detailProduct(key = 2)"></div>
+                </div>
+                <div class="checkout__from--extra"  th:if="${result == null}">
+                    <div class="success__pay--button">
+                        <button onclick="handleSubmit()">Hoàn thành thanh toán</button>
+                    </div>
+                    <div class="logo__right">
+                        <span>Mọi quyền được bảo lưu Levents</span>
+                    </div>
+                </div>
+                <div class="result__confirm active" th:if="${result != null}">
+                    <span>Bạn cần trợ giúp? <strong>Liên hệ với chúng tôi</strong></span>
+                    <a href="/collections/all-products">
+                        Tiếp tục mua sắm
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"  type="text/javascript"></script>
+<script th:src="@{/js/user/checkout/checkouts.js}"></script>
+<script th:src="@{/js/user/common/authenticated.js}"></script>
+</html>

@@ -1,0 +1,14 @@
+<div class="information__site--city-parent" th:fragment="city">
+    <div class="information__site--city">
+        <label class="label__city">
+            Thành phố/ Tỉnh
+        </label>
+        <select class="select__city" onchange="handleChangeSiteCitys(this.value,'city')">
+            <option selected value="null">Thành phố/ Tỉnh</option>
+            <option th:each="dataCity : ${array_city}"
+                    th:value="${dataCity.id}"
+                    th:text="${dataCity.name}">Chay Thanh</option>
+        </select>
+    </div>
+    <span class="err__city">Bạn chưa nhập Thành phố / Tỉnh</span>
+</div>

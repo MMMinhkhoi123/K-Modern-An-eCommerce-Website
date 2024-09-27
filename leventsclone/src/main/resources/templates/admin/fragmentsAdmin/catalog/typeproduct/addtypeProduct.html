@@ -1,0 +1,54 @@
+<div class="add-type-product"
+     onsubmit="controlFrom(event, this.getAttribute('data-type'))"
+     th:data-id="${typeProductc.id}"
+     th:data-type="${type}"
+     th:fragment="addTypeProduct">
+  <form class="add-type-product__from">
+    <div class="add-type-product__title">
+      <h3 th:text="${type == 'add'} ? 'Thêm loại sản phẩm' : 'Cập nhật loại sản phẩm'"></h3>
+    </div>
+    <div class="add-type-product__success" th:if="${state != null}">
+      <span style="background: #a2f8a2" class="err__success">
+            <span th:text="${state}">Thêm loại sản phẩm</span>
+               <i class="fa-solid fa-xmark" onclick="hiddenError('success')"></i>
+      </span>
+    </div>
+    <div class="add-type-product__error" th:if="${errorUrl != null}">
+      <span style="background: #f88181" class="err__url" >
+          <span th:text="${errorUrl}">Thêm loại sản phẩm</span>
+         <i class="fa-solid fa-xmark" onclick="hiddenError('url')"></i>
+      </span>
+    </div>
+    <div class="add-type-product__option">
+      <div class="add-type-product__name">
+        <label>Tên loại sản phẩm</label>
+        <input th:value="${typeProductc.name}" required type="text" placeholder="Nhập tên loại sản phẩm tại đây" />
+      </div>
+      <div class="add-type-product__url">
+        <label>Tên đường dẫn</label>
+        <input th:value="${typeProductc.key}" oninput="inputPath(event)" required type="text" placeholder="Nhập tên đường dẫn tại đây" />
+      </div>
+    </div>
+    <div class="add-type-product__option">
+      <div class="add-type-product__directory">
+        <label>Tên danh mục</label>
+        <select>
+          <option
+                  th:selected="${typeProductc.idDirectory == item.id}"
+                  th:each="item : ${directorys}"
+                  th:value="${item.id}" th:text="${item.name}"></option>
+        </select>
+      </div>
+    </div>
+    <div class="add-type-product__button">
+      <div class="product__button--frame">
+        <div class="loader-background">
+          <div class="loader-form"></div>
+        </div>
+        <button type="submit" th:text="${type == 'add'} ? 'Tạo mới' : 'Cập nhật'">
+          Tạo mới
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

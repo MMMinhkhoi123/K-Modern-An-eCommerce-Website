@@ -1,0 +1,15 @@
+<div class="information__site--commune-parent" th:fragment="commune">
+    <div class="information__site--commune">
+        <label class="label__commune">
+            Phường/ Xã
+        </label>
+        <select class="select__commune" onchange="handleSiteChange('commune',this.value)">
+            <option selected value="null" >Phường/ Xã</option>
+            <option th:each="dataCity : ${array_commune}"
+                    th:value="${dataCity.id}"
+                    th:text="${dataCity.name}">
+            </option>
+        </select>
+    </div>
+    <span class="err__commune">Bạn chưa nhập Thành phố / Tỉnh</span>
+</div>

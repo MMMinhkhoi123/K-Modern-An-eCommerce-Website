@@ -1,0 +1,71 @@
+<div class="header__search" th:fragment="search">
+    <div class="header__search--content">
+        <div class="header__search--content--child">
+            <div class="content__input">
+                <div class="content__input-child">
+                    <div class="header__search--icon-hidden">
+                        <i onclick="closeSearch()"  class="fa-solid fa-arrow-left"></i>
+                    </div>
+                    <input type="text" name="q" oninput="handleInputData(event)" placeholder="Tìm kiếm" />
+                    <a class="content__input-submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </a>
+                </div>
+                <div class="content__input--menu-suggest-parent">
+                    <div id="content--search" class="content__input--menu-suggest template_load" th:if="${dataResult != null || noFund != null}">
+                        <div class="triangle-up"></div>
+                        <div class="suggest__content">
+                            <div class="suggest__content--hasData" th:if="${dataResult != null}">
+                                <div class="content__menu-suggest">
+
+                                    <!--suggest Keyword-->
+
+                                    <!--                                          <div class="content__suggest" th:if="${dataResult.ListTextSuggest.size() > 0}">-->
+                                    <!--                                              <h4>Đề xuất phổ biến</h4>-->
+                                    <!--                                              <span th:each="item : ${dataResult.ListTextSuggest}" th:text="${item}"></span>-->
+                                    <!--                                          </div>-->
+
+                                    <!--suggest Collection-->
+
+                                    <div class="content__collection" th:if="${dataResult.typeProductUses.size() > 0}">
+                                        <h4>Bộ siêu tập </h4>
+                                        <a
+                                                th:href="@{'/collections/' + ${item.key}}"
+                                                th:each="item : ${dataResult.typeProductUses}"
+                                                th:text="${item.name}"></a>
+                                    </div>
+                                </div>
+
+                                <!--suggest 6 item-->
+                                <div class="content__product">
+                                    <h4 class="text-title">Các sản phẩm</h4>
+                                    <div class="content__product--list">
+                                        <a class="product-suggest__item" th:data-url="${item.idOpt}" th:each="item : ${dataResult.optionUses}">
+                                            <div class="product-suggest__item--img">
+                                                <img th:src="${item.optionImageUses[0].imageUse.linkImage}">
+                                            </div>
+                                            <div class="product-suggest__item--content">
+                                                <span  th:text="${item.productUse.name} + '/' + ${item.colorUse.name}">pro duct 1 / white</span>
+                                                <span class="product-suggest--price" th:data-price="${item.productUse.price}" th:text="${item.productUse.price}">380.000  </span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="content__product--view">
+                                        <a>Xem tất cả <span th:text="${dataResult.count}"></span> sản phẩm</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--display not fund-->
+                            <div class="noFund template_load" th:if="${noFund != null}">
+                                <span>Xin lỗi không tìm thấy gì cho </span>" <strong th:text="${noFund}"></strong>"
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <i onclick="closeSearch()"  class="fa-solid fa-x closeSearch"></i>
+        </div>
+    </div>
+    <div  onclick="closeSearch()" class="header__search--hidden">
+    </div>
+</div>

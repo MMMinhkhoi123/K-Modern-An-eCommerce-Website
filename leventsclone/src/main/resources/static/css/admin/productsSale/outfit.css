@@ -1,0 +1,220 @@
+.disable {
+    display: none !important;
+}
+.outfit__table {
+     font-family: arial, sans-serif;
+     border-collapse: collapse;
+     width: 100%;
+     overflow-y: scroll;
+ }
+.row__product-size-color--color > span {
+    display: block;
+    width: 30px;
+    height: 30px;
+}
+.row__product-size-color {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+tr > td {
+    padding: 10px;
+}
+.outfit__option > button {
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+}
+.form__info-size {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.outfit__option > .outfit__option--update {
+    background: var(--colorUpdate);
+    color: white;
+}
+.outfit__option > .outfit__option--detail {
+    background: var(--colorDetail);
+}
+.add-outfit__form--info--product-main,
+.form__info{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+.form__size ,
+.add-outfit__form--product-extra,
+.form__product-main,
+.add-outfit__form--product-selected,
+.form__info > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.form__size > select,
+.add-outfit__form--product-selected > div,
+.add-outfit__form--product-extra > select,
+.form__product-main > select,
+.form__info > div > input {
+    padding: 15px;
+}
+.add-outfit__form--product-extra {
+    width: 50%;
+}
+.add-outfit__form {
+    background: white;
+    padding: 20px;
+    border: 1px solid var(--colorBorders);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.add-outfit__form--product-selected > div {
+  border: 1px solid black;
+ }
+
+.product-selected__list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr) ;
+}
+.item__select {
+    position: relative;
+    margin: 10px;
+    box-sizing: border-box;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--colorBorders);
+}
+.item__select > div {
+    margin-top: auto;
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.item__select > img{
+    width: 100%;
+    height: 80%;
+    object-fit: contain;
+}
+.item__select > input {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+}
+.item__select > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    background: white;
+}
+.option__selected > button:nth-child(1) {
+    background: #7373ec;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+}
+.option__selected > button {
+    padding: 10px 20px;
+    border: none;
+}
+.product-selected__option--option {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: end;
+}
+.option__key--checkbox {
+    display: block;
+    position: relative;
+    height: 20px;
+    width: 50px;
+    background: #cec8c8;
+    border: 1px solid var(--colorBorders);
+    border-radius: 20px;
+}
+.option__key {
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.option__key > input:checked ~ span > span {
+    left: calc(100% - 20px);
+}
+.option__key--bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    transition: 0.2s;
+    display: block;
+    width: 20px;
+    border-radius: 50%;
+    height: 20px;
+    background: #7373ec;
+}
+.key-active {
+    border: 1px solid #7373ec;
+    padding: 10px;
+}
+.even_non {
+    pointer-events: none !important;
+    opacity: 0.4;
+}
+.add-outfit__form--title > h3 {
+    margin: 0;
+}
+.add-outfit__form--success,
+.add-outfit__form--error {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.add-outfit__form--success > span,
+.add-outfit__form--error > span {
+    display: block;
+    padding: 15px;
+    background: #f37883;
+    position: relative;
+}
+.add-outfit__form--success > span {
+    background: #95fd95;
+}
+.add-outfit__form--success > span > i,
+.add-outfit__form--error > span > i {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.show > img {
+    opacity: 1 !important;
+}
+.show > div  {
+    display: none !important;
+}
+.row__img > img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+.screen__add {
+    gap: 10px;
+}

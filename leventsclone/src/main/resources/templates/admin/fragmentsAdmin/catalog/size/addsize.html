@@ -1,0 +1,47 @@
+<div class="add-size__fra" th:fragment="addsize">
+    <form
+            class="add-size"
+            th:data-id = "${size.id}"
+            th:data-type = "${type}"
+            onsubmit="controlFrom(event, this.getAttribute('data-type'))"
+    >
+        <div class="add-size__title">
+            <h3 th:text="${type == 'add'} ? 'Thêm kích thước' : 'Cập nhật kích thước'"></h3>
+        </div>
+        <div class="add-size__success"  th:if="${success != null}">
+            <span style="background: #b2f1b2" class="err__success">
+                    <span  th:text="${success}">Thêm size</span>
+                  <i class="fa-solid fa-xmark" onclick="hiddenError('success')"></i>
+            </span>
+        </div>
+        <div class="add-size__err" th:if="${errName != null}">
+            <span style="background: #ea8383" class="err__name">
+                <span th:text="${errName}">Thêm kích thước</span>
+                  <i class="fa-solid fa-xmark" onclick="hiddenError('name')"></i>
+            </span>
+        </div>
+        <div class="add-size__option">
+            <div class="add-size__name">
+                <label>Tên size</label>
+                <input type="text" th:value="${size.name}" placeholder="Nhập tên kích thước tại đây" required/>
+            </div>
+            <div class="add-size__type">
+                <label>Tên loại kích thước</label>
+                <select required>
+                    <option
+                            th:selected="${size.idType == item.id}"
+                            th:each="item : ${typeSizes}"
+                            th:value="${item.id}" th:text="${item.name}">Phụ kiện</option>
+                </select>
+            </div>
+        </div>
+        <div class="add-size__button">
+            <div class="add-size__button--frame">
+                <div class="loader-background">
+                    <div class="loader-form"></div>
+                </div>
+                <button type="submit" th:text="${type == 'add'} ? 'Tạo mới' : 'Cập nhật'"></button>
+            </div>
+        </div>
+    </form>
+</div>

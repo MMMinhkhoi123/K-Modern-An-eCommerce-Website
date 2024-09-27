@@ -1,0 +1,60 @@
+.view-size__background {
+    background: rgba(0, 0, 0, 0.43);
+    position: fixed;
+    inset: 0;
+    cursor: pointer;
+    pointer-events: none;
+    transition: 0.2s;
+    opacity: 0;
+    z-index: 88;
+}
+.view-size__main {
+    position: fixed;
+    right: -100%;
+    bottom: 0;
+    top: 0;
+    background: white;
+    width: 560px;
+    transition: 0.2s;
+    z-index: 89;
+    display: flex;
+    flex-direction: column;
+}
+
+.view-size__main--above {
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-size: 19px;
+    border-bottom: 1px solid rgba(204, 202, 202, 0.38);
+}
+
+.view-size__main--above > i {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.view-size__main--below {
+    padding: 10px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.view-size__main--below > a {
+    padding: 15px;
+}
+.view-size__main--below > div {
+    width: 60%;
+    height: 100%;
+}
+.view-size__main--below > div > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}

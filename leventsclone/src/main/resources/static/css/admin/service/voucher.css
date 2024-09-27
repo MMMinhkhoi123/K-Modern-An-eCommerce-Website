@@ -1,0 +1,149 @@
+.add__voucher--form {
+    background: white;
+    border-radius: 5px;
+    padding: 20px;
+    border: 1px solid var(--colorBorders);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.screen__add {
+    gap: 10px;
+    overflow-y: scroll;
+}
+.voucher__content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+.voucher__content--right,
+.voucher__content--left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.voucher__content--right > div,
+.voucher__content--left > div {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+}
+.voucher__content--right > div > input,
+.voucher__content--left > div > select,
+.voucher__content--left > div > input {
+    padding: 15px;
+}
+
+.voucher__button {
+    display: flex;
+    justify-content: start;
+}
+.voucher__button-frame {
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+.voucher__button-frame > button {
+    padding: 10px 20px;
+    background: #0b2e59;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+.disable {
+    display: none !important;
+}
+.voucher__title > h2 {
+    margin: 0;
+}
+.voucher__title {
+    padding-bottom: 20px;
+}
+
+.voucher__sale--table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    overflow-y: scroll;
+}
+tr > td {
+    padding: 10px;
+}
+.voucher__setting > button {
+    border: none;
+    width: 35px;
+    height: 35px;
+    background: #7373ec;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.voucher__success,
+.voucher__error {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.voucher__success > span,
+.voucher__error > span {
+    padding: 15px;
+    position: relative;
+    background: #f68888;
+}
+.voucher__success > span {
+    background: #95fd95 !important;
+}
+.voucher__success > span > i,
+.voucher__error > span  > i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

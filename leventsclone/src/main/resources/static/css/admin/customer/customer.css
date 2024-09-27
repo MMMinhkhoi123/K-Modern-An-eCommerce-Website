@@ -1,0 +1,119 @@
+.customer__sale--table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    overflow-y: scroll;
+}
+.table__row > td {
+    padding: 10px;
+}
+.parent__customer-section {
+    display: flex;
+    flex-direction: column;
+}
+.parent__color-section--list {
+    flex: 1;
+    position: relative;
+}
+.customer_frame {
+    position: absolute;
+    inset: 0;
+    overflow-y: scroll;
+}
+/*filter*/
+.filter__customer {
+    background: white;
+}
+.filter__customer--search {
+    display: flex;
+    padding: 10px;
+    gap: 20px;
+}
+.filter__customer--search-main  {
+    width: 100%;
+    display: flex;
+    flex-grow: 1;
+    border: 1px solid var(--colorBorders);
+    border-radius: 5px;
+    overflow: hidden;
+}
+.filter__customer--search-main > input {
+    flex-grow: 1;
+    padding: 15px;
+    border: none;
+    outline: none;
+}
+.filter__customer--search-main > button {
+    padding: 10px;
+    background: white;
+    border: none;
+    cursor: pointer;
+}
+.filter__customer--button {
+    display: flex;
+    border: 1px solid var(--colorBorders);
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 5px;
+    min-width: 100px;
+    position: relative;
+    cursor: pointer;
+}
+.menu__filter {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #fffdfd;
+    z-index: 11;
+}
+.menu__filter {
+    min-width: 200px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    margin-top: 5px;
+}
+.menu__filter > li {
+    padding: 10px;
+    cursor: pointer;
+}
+.menu__filter > li:hover {
+    background: #ccc9c9;
+}
+.disable {
+    display: none;
+}
+.filter__customer--option {
+    display: flex;
+    gap: 10px;
+    border-bottom: 1px solid var(--colorBorders);
+}
+.option__item {
+    padding: 15px 10px;
+    cursor: pointer;
+    position: relative;
+}
+.select  {
+    color: #7373ec;
+}
+.select > span:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #7373ec;
+}
+
+.success {
+    color: #2ea12e;
+}
+.wait {
+    color: #eea01a;
+}
+.disagree {
+    color: red;
+}

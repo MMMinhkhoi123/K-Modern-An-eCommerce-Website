@@ -1,0 +1,31 @@
+version: '4.24.2'
+networks:
+  backend:
+    name: spring-boot-network-levent
+services:
+  mysql-service:
+    image: mysql:8.0
+    container_name: mysql-container-2
+    ports:
+      - 127.0.0.1:3306:3306
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - mysql-data-config-part:/etc/mysql/conf.d
+    networks:
+      - backend
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_DATABASE: levent
+  springboot-service:
+    image: khoi794/levets:version_2
+    container_name: springboot-container-2
+    ports:
+      - 80:80
+    networks:
+      - backend
+volumes:
+  mysql-data:
+  mysql-data-config-part:
+
+
+#docker-compose up --build

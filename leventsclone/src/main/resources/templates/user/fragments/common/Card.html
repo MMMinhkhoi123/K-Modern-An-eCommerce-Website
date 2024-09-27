@@ -1,0 +1,170 @@
+<div class="card__parent" th:fragment="card (object, type)" >
+    <a class="card"
+       th:classappend = "'card-key' + ${type} + ${object.productUse.id} + ${object.ColorUse.name} "
+       th:data-swiper = '1'
+       th:data-color="${object.colorUse.name}"
+       th:data-name="${object.productUse.name}"
+       th:href="@{'/products/' + ${object.productUse.name}}">
+        <div class="card__slide">
+            <div class="card__slide--background">
+            </div>
+            <div class="card__img card__slide--img"
+                 th:data-index = "${target.index}"
+                 th:id="${type} + ${object.productUse.id} + ${object.ColorUse.name}"
+                 th:classappend="${object.productUse.id}  + 'key'+ ${type} + ${target.index} + ${object.ColorUse.name}"
+                 th:each="imageItem, target : ${object.imagesUses}">
+                <img alt="image" th:src="${imageItem.name}" >
+            </div>
+        </div>
+        <div class="card__content">
+            <div class="card__content--color">
+                <div class="content__color" th:if="${object.productUse.permission == false}"  th:each="colorItem : ${object.colorUses}" th:style="${'background: ' + colorItem.name}"></div>
+                <div class="content__color" th:if="${object.productUse.permission == true}" >
+                    <img loading="lazy" th:src="${object.imagesUses[0].name}" />
+                </div>
+            </div>
+            <div  class="card__content--name" th:text = "${object.productUse.name + '/ ' + object.colorUse.name }" >
+                Levents Puffer Toto/ Red
+            </div>
+
+            <div  class="card__content--assess">
+                <div class="card-assess__item" th:classappend="${object.sumCountAssess >= 1} ? 'active-star-crad' : null">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+                <div class="card-assess__item" th:classappend="${object.sumCountAssess >= 2} ? 'active-star-crad' : null">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+                <div class="card-assess__item" th:classappend="${object.sumCountAssess >= 3} ? 'active-star-crad' : null">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+                <div class="card-assess__item" th:classappend="${object.sumCountAssess >= 4} ? 'active-star-crad' : null">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+                <div class="card-assess__item" th:classappend="${object.sumCountAssess >= 5} ? 'active-star-crad' : null">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+            </div>
+            <div class="card__content--price-parent">
+                <div th:if="${object.productUse.percent != 0}" class="card__content--price"
+                     th:classappend="${object.productUse.percent != 0} ? 'rate' :  null"  th:text = "${object.productUse.priceDiscount}" >
+                    450.000 VND
+                </div>
+                <div class="card__content--price"  th:text="${object.productUse.price}" >
+                    450.000 VND
+                </div>
+            </div>
+        </div>
+    </a>
+    <span th:if="${object.productUse.percent != 0}" class="tag-discount" th:text="'-' + ${object.productUse.percent} + '%'"></span>
+    <div class="slide__back"
+         th:classappend="'back' + ${object.productUse.id} + ${type} + ${object.ColorUse.name}"
+         th:data-type="${type}"
+         th:data-id="${object.productUse.id}"
+         th:data-color="${object.colorUse.name}"
+         onmousedown="event.stopPropagation()"
+         onclick="pre(event ,this.getAttribute('data-id') , this.getAttribute('data-type'),  this.getAttribute('data-color'))" >
+        <i class="fa-solid fa-chevron-left"></i>
+    </div>
+    <div  class="slide__next"
+          th:classappend="'next' + ${object.productUse.id} + ${type} + ${object.ColorUse.name}"
+          th:data-type="${type}"
+          th:data-id="${object.productUse.id}"
+          th:data-color="${object.colorUse.name}"
+          onmousedown="event.stopPropagation()"
+          onclick="next(event ,this.getAttribute('data-id') , this.getAttribute('data-type'), this.getAttribute('data-color') )" >
+        <i class="fa-solid fa-chevron-right" ></i>
+    </div>
+</div>
+
+
+<div class="card__parent" th:fragment="cardtest (object, type)" >
+    <a class="card"
+
+       th:classappend = "${type} + ${object.idOpt} "
+
+       th:data-swiper = '0'
+       th:id = "'key' + ${type} + ${object.idOpt}"
+
+       th:data-type="${type}"
+       th:data-idOpt="${object.idOpt}"
+
+       th:href="@{'/products?option=' + ${object.idOpt}}">
+        <div class="card__slide">
+            <div class="card__slide--background">
+            </div>
+            <div class="card__img card__slide--img"
+                 th:data-index = "${target.index}"
+                 th:id="${type} + ${imageItem.ImageUse.idImage}"
+                 th:classappend="${type} + ${target.index} + ${object.idOpt}"
+                 th:each="imageItem, target : ${object.optionImageUses}">
+                <img alt="image" th:src="${imageItem.ImageUse.linkImage}" >
+            </div>
+        </div>
+        <div class="card__content">
+            <div class="card__content--color">
+                <div class="content__color" th:if="${object.productUse.colorUses.size() > 1}" th:each="colorItem : ${object.productUse.colorUses}" th:style="${'background: ' + colorItem.name}"></div>
+                <div class="content__color" th:if="${object.productUse.colorUses.size() == 1}" >
+                    <img loading="lazy" th:src="${object.optionImageUses[0].ImageUse.linkImage}" />
+                </div>
+            </div>
+            <div  class="card__content--name" th:text = "${object.productUse.name + '/ ' + object.colorUse.name }" >
+                nothing
+            </div>
+
+            <div  class="card__content--assess">
+                <div class="card-assess__item" th:classappend="${object.countRating >= 1} ? 'active-star-crad' : null">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+                <div class="card-assess__item" th:classappend="${object.countRating >= 2} ? 'active-star-crad' : null">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+                <div class="card-assess__item" th:classappend="${object.countRating >= 3} ? 'active-star-crad' : null">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+                <div class="card-assess__item" th:classappend="${object.countRating >= 4} ? 'active-star-crad' : null">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+                <div class="card-assess__item" th:classappend="${object.countRating >= 5} ? 'active-star-crad' : null">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+            </div>
+            <div class="card__content--price-parent">
+                <div th:if="${object.productUse.percent != 0}" class="card__content--price"
+                     th:classappend="${object.productUse.percent != 0} ? 'rate' :  null"  th:text = "${object.getPriceDiscount()}" >
+                    450.000 VND
+                </div>
+                <div class="card__content--price"  th:text="${object.getPriceNormal()}" >
+                    450.000 VND
+                </div>
+            </div>
+        </div>
+    </a>
+    <span th:if="${object.productUse.percent != 0}" class="tag-discount" th:text="'-' + ${object.productUse.percent} + '%'"></span>
+
+    <div class="slide__back"
+         th:classappend="'back' + ${type} + ${object.idOpt}"
+         th:data-type="${type}"
+         th:data-id="${object.idOpt}"
+         onmousedown="event.stopPropagation()"
+         onclick="pre2(event ,this.getAttribute('data-type'),  this.getAttribute('data-id'))" >
+        <i class="fa-solid fa-chevron-left"></i>
+    </div>
+    <div  class="slide__next"
+          th:classappend="'next' + ${type} + ${object.idOpt}"
+          th:data-type="${type}"
+          th:data-id="${object.idOpt}"
+          onmousedown="event.stopPropagation()"
+          onclick="next2(event , this.getAttribute('data-type'), this.getAttribute('data-id'))" >
+        <i class="fa-solid fa-chevron-right" ></i>
+    </div>
+</div>

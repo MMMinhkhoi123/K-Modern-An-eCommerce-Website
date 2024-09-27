@@ -1,0 +1,24 @@
+ <div class="swiper" th:fragment="detailCollection(products, title)" >
+     <div class="swiper__frame">
+         <h3 th:text="${title}"></h3>
+         <div class="swiper__frame--List"
+           onmouseover="handleMouOver()"
+           onmouseleave="handleMouseOut()"
+           onmousedown="handleMouseDownDetail(event, this)"
+         >
+             <div class="List__card" th:each="item : ${products}">
+                 <div th:replace="user/fragments/common/Card :: cardtest (object = ${item}, type = 'ourcollection')"></div>
+             </div>
+         </div>
+         <div class="swiper__thumb">
+             <div class="swiper__thumb--scroll">
+             </div>
+         </div>
+         <div class="swiper__pre" onclick="handlePreItem()">
+             <i class="fa-solid fa-chevron-left"></i>
+         </div>
+         <div class="swiper__next" onclick="handleNextItem()">
+             <i class="fa-solid fa-chevron-right"></i>
+         </div>
+     </div>
+ </div>

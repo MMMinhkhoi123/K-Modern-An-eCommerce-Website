@@ -1,0 +1,39 @@
+<div class="type-product" th:fragment="typeProduct">
+ <table class="type-product__table">
+  <thead>
+  <tr>
+   <th th:if="${action == 'screen' && authenticated.role == 'admin'}"></th>
+   <th>ID</th>
+   <th>Tên loai sản phẩm</th>
+   <th>Đường dẫn đọc quyền</th>
+   <th>Tên danh mục</th>
+   <th th:if="${authenticated.role == 'admin'}"><i class="fa-solid fa-gear"></i></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="item : ${typeProduct}" th:data-id="${item.id}" ondblclick="checked(this.getAttribute('data-id'))">
+   <td class="table__check" th:if="${action == 'screen' && authenticated.role == 'admin' }">
+    <input
+            th:data-id="${item.id}"
+            th:id="'input' + ${item.id}"
+            onchange="handleDelete()"
+            th:disabled="${item.isUsing == true}" type="checkbox" />
+   </td>
+   <td th:text="${item.id}">Alfreds Futterkiste</td>
+   <td th:text="${item.name}">Maria Anders</td>
+   <td th:text="${item.key}">Germany</td>
+   <td th:text="${item.nameDirectory}">Germany</td>
+   <td class="type-product__setting" th:if="${authenticated.role == 'admin'}">
+    <div class="type-product__setting-fra">
+     <button class="type-product__setting--update"
+             th:data-id="${item.id}"
+             onclick="OpenFromUpdate(this.getAttribute('data-id'))">
+       <i class="fa-solid fa-pen-to-square"></i>
+     </button>
+    </div>
+   </td>
+   </td>
+  </tr>
+  </tbody>
+ </table>
+</div>

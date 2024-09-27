@@ -1,0 +1,199 @@
+<div class="filter" th:fragment="filter">
+    <div class="selected">
+    </div>
+    <div class="collection">
+        <div class="collection__select">
+            <div class="collection__select--parent"
+                 id="collection__select--parent" th:fragment="filter-list">
+                <div class="collection__select--title" th:if="${filterPrice.size() > 0 || filterColor.size() > 0 || filterSize.size() > 0}">
+                    <span>Lọc bởi</span>
+                    <span onclick="clean()" class="clear"> | Bỏ chọn tất cả |</span>
+                </div>
+                <div class="collection__select--list">
+                    <div class="select__price"
+                         th:data-price="${item}"
+                         onclick="choicePrice(event,this.getAttribute('data-price'))"
+                         th:each="item : ${filterPrice}">
+                        <div class="select__price--left">
+                            <span>Price:</span> <span th:text="${item}"></span>
+                        </div>
+                        <div class="select__price--right">
+                            | <i class="fa-solid fa-xmark"></i>
+                        </div>
+                    </div>
+                    <div class="select__color"
+                         th:data-color="${item}"
+                         onclick="choiceColor(this.getAttribute('data-color'))"
+                         th:each="item : ${filterColor}">
+                        <div class="select__color--left">
+                            <span>Color:</span> <span th:text="${item}"></span>
+                        </div>
+                        <div class="select__color--right">
+                            | <i class="fa-solid fa-xmark"></i>
+                        </div>
+                    </div>
+                    <div class="select__size"
+                         th:data-size="${item}"
+                         onclick="choiceSize(event,this.getAttribute('data-size'))"
+                         th:each="item : ${filterSize}">
+                        <div class="select__size--left">
+                            <span>Size:</span> <span th:text="${item}"></span>
+                        </div>
+                        <div class="select__size--right">
+                            | <i class="fa-solid fa-xmark"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+<!--        <div class="collection__title" onclick="showCollection()">-->
+<!--            <div class="collection__title&#45;&#45;icon">-->
+<!--                <i class="fa-solid fa-chevron-down active&#45;&#45;filter-icon"></i>-->
+<!--                <i class="fa-solid fa-chevron-up"></i>-->
+<!--            </div>-->
+<!--            <span>Collection</span>-->
+<!--        </div>-->
+<!--        <div class="collection__dropdown">-->
+<!--            <ul class="collection__dropdown&#45;&#45;menu">-->
+<!--                <li class="dropdown__item active-collection-item">-->
+<!--                    <a href="">All</a>-->
+<!--                </li>-->
+<!--                <li class="dropdown__item">-->
+<!--                    <a href="">LEVENTS® COLLECTION SPRING/ SUMMER 2022</a>-->
+<!--                </li>-->
+<!--                <li class="dropdown__item">-->
+<!--                    <a href="">LEVENTS® 3RD ANNIVERSARY “ONE WORLD ONE LOVE”</a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--            </ul>-->
+<!--        </div>-->
+    </div>
+    <div class="color" th:if="${colorFilter != null}">
+        <div class="color__title" onclick="showColor()">
+            <div class="color__title--icon">
+                <i class="fa-solid fa-chevron-down active--filter-icon"></i>
+                <i class="fa-solid fa-chevron-up"></i>
+            </div>
+            <span>Color</span>
+        </div>
+        <div class="color__dropdown" >
+            <ul class="color__dropdown--menu">
+                <li class="dropdown__item"
+                    th:classappend="'dropdown__item' + ${color.name}"
+                    th:each="color : ${colorFilter}"
+                    th:data-color="${color.name}"
+                    onclick="choiceColor(this.getAttribute('data-color'))">
+                    <div th:style="'background:' + ${color.name}">
+                        <span></span>
+                    </div> <span th:text="${color.name}">Baby Blue</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="size"  th:if="${sizeFilter != null}">
+        <div class="size__title" onclick="showSize()">
+            <div class="size__title--icon">
+                <i class="fa-solid fa-chevron-down active--filter-icon"></i>
+                <i class="fa-solid fa-chevron-up"></i>
+            </div>
+            <span>Size</span>
+        </div>
+        <div class="size__dropdown">
+            <ul class="size__dropdown--menu">
+                <li class="dropdown__item"  th:each="size : ${sizeFilter}">
+                    <label
+                            th:data-size="${size.name}"
+                           th:data-id="${size.id}"
+                           onclick="choiceSize(event,this.getAttribute('data-size'))">
+                        <span th:text="${size.name}">6US</span>
+                        <input  th:data-size="${size.name}" type="checkbox"
+                                th:class="'sizeInput' + ${size.name.replace(' ', '-')} " />
+                        <span>
+                            <i class="fa-solid fa-check"></i>
+                        </span>
+                    </label>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="price" th:if="${priceFilter != null}">
+        <div class="price__title" onclick="showPrice()">
+            <div class="price__title--icon">
+                <i class="fa-solid fa-chevron-down active--filter-icon"></i>
+                <i class="fa-solid fa-chevron-up"></i>
+            </div>
+            <span>Price</span>
+        </div>
+        <div class="price__dropdown">
+            <ul class="price__dropdown--menu">
+                <li class="dropdown__item"
+                    th:data-price="A100000"
+                    th:if="${priceFilter.minPrice <= 100000 }"
+                onclick="choicePrice(event,this.getAttribute('data-price'))"
+                >
+                    <label>
+                        <span>Dưới 100.000 </span>
+                        <input class="priceInputA100000"  th:data-price="A100000" type="checkbox" />
+                        <span>
+                            <i class="fa-solid fa-check"></i>
+                        </span>
+                    </label>
+                </li>
+                <li class="dropdown__item"
+                    th:data-price="100000A300000"
+                    th:if="${priceFilter.maxPrice >= 3000000  || priceFilter.maxPrice >= 100000 && priceFilter.maxPrice <=300000 } "
+                    onclick="choicePrice(event,this.getAttribute('data-price'))"
+                >
+                    <label>
+                        <span>100.000 - 300.000 </span>
+                        <input  class="priceInput100000A300000"   th:data-price="100000A300000" type="checkbox" />
+                        <span>
+                            <i class="fa-solid fa-check"></i>
+                        </span>
+                    </label>
+                </li>
+                <li class="dropdown__item"
+                    th:data-price="300000A600000"
+                    th:if=" ${priceFilter.maxPrice >= 600000  ||  priceFilter.maxPrice >= 300000 && priceFilter.maxPrice <=600000 }"
+                    onclick="choicePrice(event,this.getAttribute('data-price'))"
+                >
+                    <label>
+                        <span>300.000 - 600.000 </span>
+                        <input   class="priceInput300000A600000"   th:data-price="300000A600000" type="checkbox" />
+                        <span>
+                            <i class="fa-solid fa-check"></i>
+                        </span>
+                    </label>
+                </li>
+                <li class="dropdown__item"
+                    th:data-price="600000A1000000"
+                    th:if="${priceFilter.maxPrice >= 1000000  || priceFilter.maxPrice >= 600000 && priceFilter.maxPrice <=1000000 } "
+                    onclick="choicePrice(event,this.getAttribute('data-price'))"
+                >
+                    <label>
+                        <span>600.000 - 1.000.000 </span>
+                        <input class="priceInput600000A1000000"  th:data-price="600000A1000000" type="checkbox" />
+                        <span>
+                            <i class="fa-solid fa-check"></i>
+                        </span>
+                    </label>
+                </li>
+                <li class="dropdown__item"
+                    th:data-price="1000000A"
+                    th:if="${priceFilter.maxPrice > 1000000 }"
+                    onclick="choicePrice(event,this.getAttribute('data-price'))"
+                >
+                    <label>
+                        <span>Tren 1.000.000 </span>
+                        <input class="priceInput1000000A"  th:data-price="1000000A" type="checkbox" />
+                        <span>
+                            <i class="fa-solid fa-check"></i>
+                        </span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

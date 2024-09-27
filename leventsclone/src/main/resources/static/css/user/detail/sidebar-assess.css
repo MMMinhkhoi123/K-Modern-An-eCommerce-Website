@@ -1,0 +1,611 @@
+
+
+
+
+.load_assess {
+    display: block;
+    width: 22px;
+    padding: 8px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #ffffff;
+    --_m:
+            conic-gradient(#0000 10%,#000),
+            linear-gradient(#000 0 0) content-box;
+    -webkit-mask: var(--_m);
+    mask: var(--_m);
+    -webkit-mask-composite: source-out;
+    mask-composite: subtract;
+    animation: l3 1s infinite linear;
+}
+@keyframes l3 {to{transform: rotate(1turn)}}
+
+
+.detail__assess {
+    display: flex;
+    justify-content: center;
+}
+.assess__main {
+    background: white;
+    width: 700px;
+    padding: 20px 0;
+}
+
+.form__load {
+    position: absolute;
+    inset: 0;
+    background: var(--theme);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.addAssess__form-button {
+    position: relative;
+}
+.assess__main--above > i {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+.assess__main--above {
+    gap: 10px;
+    position: relative;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /*border-bottom: 1px solid rgba(204, 202, 202, 0.38);*/
+    font-size: 19px;
+}
+.main__option {
+    display: grid;
+    grid-template-columns: repeat(6, calc(100% / 6));
+    border-bottom: 1px solid rgba(204, 202, 202, 0.38);
+    align-items: center;
+    height: 80px;
+}
+.main__option > div {
+    font-size: 17px;
+   justify-content: center;
+    color: gray;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+.main__option > div > span {
+ pointer-events: none;
+}
+.main__option > div:hover {
+    color: black;
+}
+.assess__main--below {
+    height: calc(100% - 100px);
+}
+
+.main__viewOption {
+    position: relative;
+}
+
+.viewOption__item {
+    opacity: 1;
+    inset: 0;
+}
+.viewOption__item > div > .empty > img {
+    width: 150px;
+    height: 150px;
+}
+
+
+.main__link {
+    padding: 20px;
+    border-bottom: 1px solid var(--colorBorders);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+.addAssess__form-content > label {
+    display: flex;
+}
+.addAssess__form-content > label > textarea {
+    resize: none;
+    width: 100%;
+}
+.main__link--button-auth > button {
+    padding: 10px 30px;
+    background: var(--theme);
+    color: white;
+    position: relative;
+    display: block;
+    border: none;
+    cursor: pointer;
+}
+
+.main__link--button-auth:hover > button:after {
+    position: absolute;
+    inset: -1px;
+    background: var(--theme);
+    color: white;
+    display: flex;
+    content: attr(data-key);
+    justify-content: center;
+    align-items: center;
+}
+
+.main__link--button {
+    margin: 10px;
+    background: transparent;
+    border: none;
+    font-size: 19px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.active-star {
+    color: black !important;
+}
+
+.active-star  > span:nth-child(3) {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--theme);
+}
+.active-view-star {
+    opacity: 1 !important;
+}
+.assess__star-title {
+    color: #f1ab54;
+}
+
+.main__link-filter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.main__link-filter > input:checked ~ .main__link-filter--case {
+    background: var(--theme);
+}
+.main__link-filter--case {
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    background: transparent;
+    width: 15px;
+    height: 15px;
+}
+
+.viewOption__1--empty {
+    padding: 20px;
+    text-align: center;
+}
+
+.disable-item-img {
+    display: none !important;
+}
+
+
+
+.main__viewOption--add {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.addAssess__object {
+    width: 300px;
+    display: flex;
+    gap: 10px;
+}
+.addAssess__item--img {
+    width: 150px;
+    height: 150px;
+}
+.addAssess__item--img > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.addAssess__item--content {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+.addAssess__choice-star > h2 {
+    font-size: 20px;
+    font-weight: 400;
+}
+.addAssess__choice-star--select {
+    justify-content: center;
+    display: flex;
+    gap: 20px;
+    font-size: 30px;
+    height: 50px;
+}
+.addAssess__choice-star {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+}
+.choice-star__select-item > .fa-solid {
+    display: none;
+}
+.RatingSelect {
+    padding-top: 30px;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    flex-direction: column
+}
+.addAssess__form {
+    padding-top: 30px;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+.addAssess__form > div > .addAssess__form-img--input,
+.addAssess__form > div > label > textarea,
+.addAssess__form > div > input {
+    padding: 15px;
+    border: 1px solid var(--colorBorders);
+}
+.addAssess__form-img--input {
+    text-align: center;
+}
+.addAssess__form > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.choice-star__select-item > i {
+    color: #f1ab54;
+}
+
+.addAssess__form-button:hover > button:after {
+    position: absolute;
+    background: var(--theme);
+    color: white;
+    content: "Xác nhận đánh giá";
+    inset: -1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addAssess__form-button > button {
+    padding: 15px;
+    position: relative;
+    background: var(--theme);
+    border: none;
+    color: white;
+    font-size: 20px;
+}
+.addAssess__form-img--input {
+    cursor: pointer;
+}
+
+.active > .fa-solid {
+    display: block !important;
+}
+.active > .fa-regular {
+    display: none !important;
+}
+
+.lock {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.img-upload__assess-item {
+    position: relative;
+    width: 130px;
+    height: 130px;
+}
+
+.img-upload__assess-item > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.img-upload__assess-item > i {
+    position: absolute;
+    left: calc(100% + 10px);
+    top: 0;
+    font-size: 30px;
+    cursor: pointer;
+}
+.img-upload__assess {
+    display: flex;
+}
+.order_selected {
+    padding: 15px;
+    border: 1px solid  var(--colorBorders);
+}
+
+.none-hidden {
+    display: none !important;
+}
+
+
+.disable--option {
+    display: none !important;
+}
+.viewOption__all--item,
+.content__assess{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.content__assess > div > img {
+    width: 200px;
+    height: 150px;
+    object-fit: contain;
+}
+.viewOption__all--list {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.content__assess > strong {
+    font-size: 25px;
+}
+.content__assess > span {
+    font-size: 14px;
+    color: gray;
+}
+
+.viewOption__all--item > .date {
+    color: gray;
+}
+
+.assess__star-title,
+.viewOption__all--item > .star {
+    display: flex;
+    gap: 5px;
+}
+
+
+.pagination {
+    justify-content: center;
+    display: flex;
+    gap: 10px;
+}
+.pagination > div {
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.pagination >.active {
+    background: var(--theme);
+    color: white;
+}
+
+.main__option-select {
+    display: none;
+    padding: 0 15px;
+}
+.main__option-select > select{
+    width: 100%;
+    padding: 15px;
+    border: 1px solid var(--colorBorders);
+}
+.main__link--button-auth {
+    display: flex;
+    gap: 10px;
+}
+.main__link--button-auth > button {
+    display: none;
+}
+.activeBtn {
+    display: block !important;
+}
+
+
+@media only screen and (max-width : 500px) {
+    .addAssess__item--img {
+        width: 100px;
+    }
+    .choice-star__select-title,
+    .addAssess__object {
+        font-size: 14px;
+    }
+    .addAssess__choice-star > h2 {
+        font-size: 16px;
+    }
+    .main__option-select {
+        display: flex !important;
+    }
+    .addAssess__form {
+        padding-left: 15px;
+        padding-right: 15px;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+    .addAssess__form-button > button {
+        font-size: 14px;
+    }
+    /* Styles */
+    .assess__main {
+        width: 100%;
+    }
+    .main__option {
+        display: none;
+    }
+    .main__link--button {
+        margin: 0;
+        padding: 0;
+    }
+    .main__link--button > strong  {
+        font-size: 16px;
+    }
+    .main__link {
+        padding: 15px;
+    }
+    .viewOption__all--list {
+        box-sizing: border-box;
+        padding: 15px;
+    }
+    .pagination > div {
+        width: 30px;
+        height: 30px;
+    }
+    .main__link--button {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width : 800px) {
+}
+
+/* iPads (portrait and landscape) ———– */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    /* Styles */
+}
+
+/* iPads (landscape) ———– */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+    /* Styles */
+}
+
+/* iPads (portrait) ———– */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+    /* Styles */
+}
+/**********
+iPad 3
+**********/
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+    /* Styles */
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+    /* Styles */
+}
+/* Desktops and laptops ———– */
+@media only screen and (min-width : 1224px) {
+    /* Styles */
+}
+
+/* Large screens ———– */
+@media only screen and (min-width : 1824px) {
+    /* Styles */
+}
+
+/* iPhone 4 ———– */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+    /* Styles */
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+    /* Styles */
+}
+
+/* iPhone 5 ———– */
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+}
+
+/* iPhone 6, 7, 8 ———– */
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+}
+
+/* iPhone 6+, 7+, 8+ ———– */
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+}
+
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+}
+
+/* iPhone X ———– */
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}
+
+/* iPhone XS Max, XR ———– */
+@media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}
+
+@media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}
+
+/* Samsung Galaxy S3 ———– */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+}
+
+/* Samsung Galaxy S4 ———– */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}
+
+/* Samsung Galaxy S5 ———– */
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}
+
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

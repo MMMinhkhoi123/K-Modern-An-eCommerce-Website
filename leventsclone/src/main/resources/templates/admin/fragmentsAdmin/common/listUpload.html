@@ -1,0 +1,91 @@
+<div class="upload__collection" th:fragment="upload">
+    <div class="upload__collection--background">
+    </div>
+    <div class="upload__collection--content-frame">
+        <div class="upload__collection--content" id="upload__collection--content">
+            <i id="close__upload" class="fa-solid fa-circle-xmark" onclick="OpenUpload('close')"></i>
+            <div class="collection__option-left">
+                <h3>Tải ảnh lên</h3>
+                <div class="collection__option-alert" th:if="${success != null}">
+                <span class="alert__success">
+                   <span th:text="${success}">Tải hình ảnh thành công</span>
+                    <i class="fa-solid fa-xmark" onclick="hiddeAlert()"></i>
+                </span>
+                </div>
+                <label class="collection__option--upload">
+                    <div class="collection__option--list">
+                        <!--                    <div class="img0 imgUpload">-->
+                        <!--                        <img src="https://th.bing.com/th/id/R.2dd6c3d3897a323db95d52e64db217f1?rik=cfCpsO55vcAWmg&pid=ImgRaw&r=0">-->
+                        <!--                        <i class="fa-solid fa-xmark"></i>-->
+                        <!--                        <div class="process">-->
+                        <!--                            <div class="process__bar"></div>-->
+                        <!--                        </div>-->
+                        <!--                    </div>-->
+                    </div>
+                    <span class="option__upload--empty">
+                    <i class="fa-regular fa-images"></i>
+                    <h4>Chọn ảnh ở đây</h4>
+                    <span>Hỗ trợ định dạng : jpg, png.</span>
+                </span>
+                    <input hidden="hidden" onchange="upLoadImg(event)" type="file" multiple>
+                </label>
+                <button onclick="handleUploadSubmit()" >Xác nhận</button>
+            </div>
+            <div class="collection__content" >
+                <div class="collection__content-option">
+                    <div>
+                        <span class="show__init-select disable">
+                            Đã chọn
+                            <span>0</span>
+                        </span>
+                        <span class="show__init-original">
+                            Hiện có
+                            <span th:text="${imagesUpload.size()}"></span>
+                        </span>
+                    </div>
+                    <div class="content-option__setting">
+                        <button onclick="deleteSubmit()"
+                                class="selected__remove disable">
+                            <i class="fa-solid fa-trash"></i> <span>Xóa bỏ </span></button>
+                        <label class="content-option__setting--select">
+                            <strong>Lựa chọn : </strong>
+                            <input  type="checkbox" hidden="hidden" onchange=" handleChangeSelect(event)">
+                            <span>
+                                <span></span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                <div class="collection__content-attend">
+                    <div class="collection__content--list" id="collection__content">
+                        <label onmouseout=" mouseOut(event, this.getAttribute('data-img'))"
+                               th:data-img="${item.name}" class="collection__content--item"
+                               th:each="item : ${imagesUpload}">
+                            <img loading="lazy" th:src="${item.name}" />
+                            <input onchange=" handleChangeAlone(event)" disabled type="checkbox" />
+                            <div class="copy" th:id="'show'+${item.name}"
+                                 th:data-img="${item.name}" onclick="copy(event, this.getAttribute('data-img'))">
+                                <i class="fa-solid fa-clipboard"></i>
+                                <i class="fa-solid fa-check disable"></i>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="collection__content--background disable">
+                <div class="collection__content--alert">
+                    <div class="content__alert--title">
+                        <h3>Trùng tên hình ảnh</h3>
+                    </div>
+                    <div class="content__alert--content">
+                        <span>Bạn có muốn ghi đè hình ảnh cũ không ?</span>
+                    </div>
+                    <div class="content__alert--button">
+                        <button onclick="openAlert('close')">Hủy bỏ</button>
+                        <button onclick=" handleOverride()">Ghi đè</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,104 @@
+<div class="add-outfit" th:fragment="addoutfit">
+    <form
+            th:data-id= "${ outfit != null ? outfit.id : null}"
+            th:data-type="${type}"
+            onsubmit="controlFor(event, this.getAttribute('data-type'))"
+            class="add-outfit__form">
+        <div class="add-outfit__form--title">
+            <h3 th:text="${type == 'add'} ? 'Tạo bộ phối' : 'Cập nhật bộ phối'"></h3>
+        </div>
+        <div class="add-outfit__form--success"  th:if="${success != null}" >
+            <span class="err__success">
+                <span th:text="${success}">fewfewfew</span>
+                <i class="fa-solid fa-xmark" onclick="hiddenError('success')"></i>
+            </span>
+        </div>
+        <div class="add-outfit__form--error" th:if="${errorImg != null ||  errorProduct != null}">
+            <span class="err__img" th:if="${errorImg != null}">
+                <span th:text="${errorImg}">fewfewfew</span>
+                <i class="fa-solid fa-xmark" onclick="hiddenError('img')"></i>
+            </span>
+            <span class="err__product" th:if="${errorProduct != null}">
+                <span th:text="${errorProduct}">fewfewfew</span>
+                <i class="fa-solid fa-xmark" onclick="hiddenError('product')"></i>
+            </span>
+        </div>
+        <div class="add-outfit__form--info--product-main">
+            <div class="form__product-main--info">
+                <div class="form__product-main">
+                    <label>Sản phẩm chính</label>
+                    <select
+                            th:disabled="${outfit != null}" onchange="ChangeProductMain(event)">
+                        <option value="" hidden="hidden" selected>--Chọn sản phẩm</option>
+                        <option th:if="${outfit == null}" th:value="${item.idOpt}" th:each="item : ${options}"
+                                th:text="${item.productUse.name + '   ' + item.colorUse.name}"></option>
+                        <option th:if="${outfit != null}"
+                                th:selected="${outfit.optionUse.idOpt == item.idOpt}"
+                                th:value="${item.idOpt}" th:each="item : ${options}"
+                                th:text="${item.productUse.name + '   ' + item.colorUse.name}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="form__info-size">
+                <div class="form__size-frame">
+                    <div id="form__size" class="form__size">
+                        <label>Size sản phẩm chính</label>
+                        <select
+                                th:disabled="${outfit != null}" required>
+                            <option hidden="hidden">--Chọn Size--</option>
+                            <option th:if="${outfit == null}"
+                                    th:each="item : ${sizes}" th:text="${item.sizeUse.name}" th:value="${item.id}">--Chọn Size--</option>
+                            <option th:if="${outfit != null}"
+                                    th:selected="${outfit.optionSizeUSe.sizeUse.id == item.sizeUse.id}"
+                                    th:each="item : ${sizes}" th:text="${item.sizeUse.name}" th:value="${item.id}">--Chọn Size--</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form__info">
+                    <div class="form__info--height">
+                        <label>Chiều cao</label>
+                        <input th:value="${outfit != null ? outfit.height : null }" required type="text" placeholder="Nhập chiều cao tại đây" />
+                    </div>
+                    <div class="form__info--weight">
+                        <label>Cân nặng</label>
+                        <input th:value="${outfit != null ? outfit.weight : null}"  required type="text" placeholder="Nhập cân nặng tại đây"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--        <div class="add-outfit__form&#45;&#45;product-selected">-->
+<!--            <label>Sản phẩm phối đã chọn ( * viền xanh là sản phẩm chính)</label>-->
+<!--            <div class="product-selected__list&#45;&#45;frame">-->
+<!--                <div class="product-selected__option">-->
+<!--                    <div class="product-selected__option&#45;&#45;view">-->
+<!--                    </div>-->
+<!--                    <div class="product-selected__option&#45;&#45;option">-->
+<!--                        <div class="option__selected disable">-->
+<!--                            <button type="button" onclick="confirmChangeKey()">Xác nhận</button>-->
+<!--                        </div>-->
+<!--                        <label class="option__key">-->
+<!--                            <i class="fa-solid fa-key"></i>-->
+<!--                            Chọn sản phầm chính-->
+<!--                            <input type="checkbox" onchange="choiceKey(event)" hidden="hidden" />-->
+<!--                            <span class="option__key&#45;&#45;checkbox">-->
+<!--                                <span class="option__key&#45;&#45;bar"></span>-->
+<!--                            </span>-->
+<!--                        </label>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="product-selected__list">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+       <div th:replace="/admin/fragmentsAdmin/common/uploadImg :: upload(data = ${outfit})"></div>
+        <div class="add-outfit__form--button">
+            <button th:text="${type == 'add'} ? 'Tạo mới' : 'Cập nhật'"></button>
+        </div>
+    </form>
+    <script th:inline="javascript">
+        product_color_size = [[${options}]];
+        outfit = [[${outfit}]];
+        state = [[${success}]];
+        type =  [[${type}]];
+    </script>
+</div>

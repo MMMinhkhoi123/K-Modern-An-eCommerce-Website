@@ -1,0 +1,47 @@
+<div class="address" th:fragment="address">
+    <div class="address__empty" th:if="${authenticated.addressUses.size() == 0}">
+        <img src="/image/location.png">
+        <span>Bạn chưa có bất kỳ địa chỉ nào</span>
+        <div class="address__empty--button">
+            <button onclick="FormAddAddress('open')">Thêm địa chỉ mới</button>
+        </div>
+    </div>
+    <div class="address__hasData" th:if="${authenticated.addressUses.size() > 0}">
+        <div class="address__hasData--list" id="address__hasData--list">
+            <div class="address__item" th:each="item : ${authenticated.addressUses}">
+                <div class="address__item--above">
+                    <div class="address-above__left">
+                        <span>Người nhận</span>
+                        <span>
+                            <span th:text="${item.lastName}"></span>
+                            <span th:text="${item.firstName}"></span>
+                            - <span th:text="${item.phone}"></span></span>
+                    </div>
+                    <div th:data-id="${item.id}" class="address-above__right" onclick="openUpdateAddress(this.getAttribute('data-id'))">
+                        <span>Chỉnh sửa</span>
+                    </div>
+                </div>
+                <div class="address__item--below">
+                    <div class="address-below__top">
+                        <span>Địa chỉ giao hàng</span>
+                        <span class="address--content"  th:text="${item.detail}  + ' ' +  ${item.commune} + ' , ' + ${item.district} +  ' , ' + ${item.city}">An cu cai be tien giang, Xã Mỹ Phong, Thành phố Mỹ Tho , Tiền Giang</span>
+                    </div>
+                    <div class="address-below__bottom">
+                        <div>
+                            <label th:if="${item.usingAddress == true}">
+                                <input checked type="radio" />
+                                <span>Địa chỉ mặc định</span>
+                            </label>
+                        </div>
+                        <div class="address-above__right" th:if="${item.usingAddress != true}">
+                            <span th:data-id="${item.id}" onclick="deleteAddress(this.getAttribute('data-id'))">Xóa</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="address__hasData--button">
+            <button onclick="FormAddAddress('open')">Thêm địa chỉ mới</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,93 @@
+ <div class="oderUse" th:fragment="oder(dataCart)">
+     <div class="oder__List--parent">
+         <div class="oder__List">
+             <a class="oder__List--item"
+                th:data-price="${item.optionUse.getPriceCorrect()}"
+                th:data-option="${item.optionUse.idOpt}"
+                th:data-quantity = "${item.quantity}"
+                th:each="item : ${dataCart}">
+                 <div class="List__img">
+                     <img th:src="${item.optionUse.optionImageUses[0].imageUse.linkImage}" />
+                 </div>
+                 <div class="List__content">
+                     <div class="List__content--parentName">
+                         <div class="List__content--name">
+                             <span th:text="${item.optionUse.productUse.name}">Levents® Sticker Oversize Tee/</span>
+                             / <span th:text="${item.optionUse.colorUse.name}"> Green</span>
+                         </div>
+                         <div class="List__content--price">
+                             <span th:data-price="${item.optionUse.getPriceCorrect()}" th:text="${item.optionUse.getPriceCorrect()}">loading</span>
+                         </div>
+                     </div>
+                     <div class="List__content--size">
+                         <span>Size:</span>
+                         <span th:text="${item.optionSizeUSe.sizeUse.name}">Size 1</span>
+                     </div>
+                     <div class="List__content--color" >
+                         <span>Color:</span>
+                         <div class="content__color" th:style="'background:' +  ${item.optionUse.colorUse.name}">
+                         </div>
+                     </div>
+
+
+
+                     <div class="List__content--quantity">
+                         <span>Số lượng:</span>
+                         <div class="content__quantity">
+                             <i class="fa-solid fa-minus"
+                                onmouseout="overSetPre()"
+                                onmouseover="overSet()"
+                                th:data-size="${item.optionSizeUSe.sizeUse.id}"
+                                th:data-option="${item.optionUse.idOpt}"
+                                onclick="handleQuantity(event,'decrease',
+
+                              this.getAttribute('data-option'),
+                                 this.getAttribute('data-size')
+                              )"
+                             >
+                             </i>
+
+                                 <input disabled th:id="${item.optionUse.idOpt} + 'quantity' + ${item.optionSizeUSe.sizeUse.id}"  type="number" min="1" th:value="${item.quantity}" max="10" />
+
+                             <i class="fa-solid fa-plus"
+                                onmouseout="overSetPre()"
+                                onmouseover="overSet()"
+                                th:data-size="${item.optionSizeUSe.sizeUse.id}"
+                                th:data-option="${item.optionUse.idOpt}"
+                                onclick="handleQuantity(event,'increase',
+
+                                  this.getAttribute('data-option'),
+                                  this.getAttribute('data-size')
+                               )"
+                             ></i>
+                         </div>
+                     </div>
+                     <div class="List__content--submit">
+                         <button
+                                 onmouseout="overSetPre()"
+                                 onmouseover="overSet()"
+                                 th:data-optionSize="${item.optionSizeUSe.id}"
+                                 onclick="handleRemove(event,this.getAttribute('data-optionSize'))"
+                         >
+                             Xoá
+                         </button>
+                     </div>
+                 </div>
+             </a>
+             <div class="display__cart--empty" th:if="${dataCart.size() == 0}">
+                 <img th:src="@{/image/cart.png}" width="200" height="200" />
+                 <span>Giỏ hàng của bạn đang trống</span>
+                 <div class="empty__button">
+                     <button onclick="CloseBar()">Tiếp tục mua sắm</button>
+                 </div>
+             </div>
+
+         </div>
+     </div>
+       <div class="oder__pay" th:if="${dataCart.size() != 0}">
+           <a th:href="@{'/pages/shipping'}">
+               <span>Thanh toán</span>
+               <span>( <strong class="total"></strong>)</span>
+           </a>
+       </div>
+   </div>

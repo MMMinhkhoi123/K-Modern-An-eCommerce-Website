@@ -1,0 +1,27 @@
+<div class="outfit" th:fragment="outfitdetail">
+    <table class="outfit__table">
+        <thead>
+        <tr>
+            <th th:if="${action == 'detail' && authenticated.role == 'admin'}"></th>
+            <th>Hình ảnh</th>
+            <th>Thông tin</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${options}" th:data-id="${item.idOpt}" ondblclick="checked(this.getAttribute('data-id'))">
+            <td th:if="${action == 'detail' && authenticated.role == 'admin'}" class="table__check">
+                <input
+                        onchange="handleDelete()"
+                        th:data-id="${item.idOpt}"
+                        th:id="'input' + ${item.idOpt}"   type="checkbox">
+         </td>
+            <td>
+                <img width="50" height="50" th:src="${item.optionImageUses[0].imageUse.linkImage}">
+            </td>
+            <td>
+                <span th:text="${item.productUse.name + ' ' + item.colorUse.name}"></span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

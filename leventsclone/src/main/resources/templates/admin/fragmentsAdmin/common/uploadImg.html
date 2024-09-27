@@ -1,0 +1,28 @@
+<label class="add-products__form--images" th:fragment="upload(data)">
+    <label>Hình ảnh sản phẩm</label>
+    <div class="form__drop">
+        <div class="form__drop--selected disable">
+        </div>
+        <div class="form__drop--content" >
+            <i class="fa-solid fa-image" onclick="deleteImage(event)"></i>
+            <span style="font-size: 20px">kéo & thả</span>
+            <span> <span>hoặc</span> <span style="color:#3e3ec0; font-size: 20px">chọn</span></span>
+            <span>
+                        Hổ trợ định dạng: png, jpg
+            </span>
+        </div>
+    </div>
+    <input  name="img" type="file" onchange="changeImage(event)" hidden="hidden" multiple/>
+
+    <div class="add-products__form--imagesExist disable">
+        <div class="imagesExist__form">
+            <div class="imagesExist__content">
+                <h4>Trùng hình ảnh, bạn có muốn ghi đè hình ảnh này không ? </h4>
+            </div>
+            <div class="imagesExist__button">
+                <button type="button" onclick="destroyImage()">Hủy bõ</button>
+                <button type="button" onclick="overrideImage()">Ghi đè</button>
+            </div>
+        </div>
+    </div>
+</label>

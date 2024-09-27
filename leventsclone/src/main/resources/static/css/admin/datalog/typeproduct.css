@@ -1,0 +1,110 @@
+
+.type-product__table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+.color {
+    height: 100vh;
+    overflow-y: scroll;
+}
+.type-product__setting-fra >  button {
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.type-product__setting--update {
+    background: #0b2e59;
+    color: white;
+}
+
+
+.add-type-product__background {
+    position: fixed;
+    inset: 0;
+    background: rgba(21, 21, 21, 0.66);
+    z-index: 2;
+}
+.add-type-product__title > h3{
+    margin: 0;
+    margin-bottom: 10px;
+}
+.add-type-product__option > div,
+.add-type-product__from > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.add-type-product__option  {
+    display: grid !important;
+    gap: 10px !important;
+    grid-template-columns: repeat(2, 1fr);
+}
+.add-type-product__option > div > select,
+.add-type-product__option > div > input {
+    padding: 15px;
+}
+.add-type-product__from {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.add-type-product__success,
+.add-type-product__error {
+    position: relative;
+}
+.add-type-product__error > span,
+.add-type-product__success > span {
+    display: block;
+    padding: 15px;
+}
+.add-type-product__success > span > i,
+.add-type-product__error > span > i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    cursor: pointer;
+}
+
+
+.add-type-product__button {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+.product__button--frame  {
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.product__button--frame > button {
+    padding: 15px 30px;
+    border: none;
+    background: #0b2e59;
+    color: white;
+    cursor: pointer;
+}
+.active {
+    display: block !important;
+}
+
+.admin__add-type-product--back > a > i {
+    transform: rotate(-90deg);
+}
+.disable {
+    display: none;
+}
+.admin__add-type-product--create {
+    padding: 20px;
+    border-radius: 5px;
+    background: white;
+    border: 1px solid var(--colorBorders);
+}
+#admin__add-type-product
+{
+    gap: 10px;
+}

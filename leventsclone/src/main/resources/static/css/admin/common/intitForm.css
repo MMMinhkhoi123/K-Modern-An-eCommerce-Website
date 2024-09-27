@@ -1,0 +1,158 @@
+.screen__tile {
+    padding: 20px;
+    border-bottom: 1px solid var(--colorBorders);
+}
+.screen__tile > h2 {
+    margin: 0;
+}
+.screen__folder {
+    padding: 15px 20px;
+    display: flex;
+    gap: 10px;
+    border-bottom: 1px solid var(--colorBorders);
+}
+.screen__root > a {
+    text-decoration: none;
+    color: black;
+}
+.screen__root > i {
+    font-size: 12px;
+}
+
+.screen__case {
+    flex-grow: 1;
+    position: relative;
+    padding: 10px;
+    background: var(--colorExtra);
+}
+.screen__case > div {
+    border: 1px solid var(--colorBorders);
+}
+
+.screen__case--child {
+    position: absolute;
+    inset: 0;
+    background: var(--colorExtra);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.case__option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.loader-form {
+    width: 25px;
+    height: 25px;
+    border: 5px solid #FFF;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+.loader-background {
+    position: absolute;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: #0b2e59;
+}
+.active_load_form {
+    display: flex !important;
+}
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+.case__option--setting > button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+.case__option--setting > button:nth-child(1) {
+    background: transparent;
+    color: red;
+}
+.case__option--setting > button:nth-child(1):hover {
+    background: #ea8c95;
+}
+.case__option--setting > button:nth-child(2) {
+    background: var(--colorCreate);
+    color: white;
+}
+
+/*table*/
+tr > th {
+    top: 0;
+    position: sticky;
+    background: white;
+    padding: 15px;
+    color: #5d5a5a;
+}
+td,
+th {
+    border-top: 1px solid #dddddd;
+    text-align: center;
+    vertical-align: middle;
+    background: white;
+}
+
+tr:hover  > td{
+    background: var(--colorHoverItem) !important;
+    cursor: pointer;
+}
+
+/*from*/
+
+.screen__list {
+    flex-grow: 1;
+    overflow-y: scroll;
+}
+.show__selected > button:hover {
+background: rgba(113, 113, 239, 0.69);
+}
+
+.show__selected > button {
+    color: blue;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.link {
+    text-decoration: underline !important;
+    color: black !important;
+}
+.admin__screen {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin__screen-child {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.table__check > input {
+    width: 15px;
+    height: 15px;
+}

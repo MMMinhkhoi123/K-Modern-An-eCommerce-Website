@@ -1,0 +1,25 @@
+<form onsubmit="NewPassWord(event)" class="resetPass"
+      th:data-token="${tokenFrom}"
+      th:data-time="${time}"
+      th:data-verify="${verify}"
+     th:if="${account == 'reset'}">
+    <div class="resetPass__title">
+        <h2>Đặt lại mật khẩu tài khoản</h2>
+        <span>Nhập mật khẩu mới</span>
+    </div>
+    <div class="resetPass__error">
+        <span class="error_confirm">Mật khẩu xác thực không chính xác</span>
+        <span class="error_valid">Mật khẩu từ 8 ký tự và có ít nhất một số và một chữ</span>
+    </div>
+    <div class="resetPass__password">
+        <label>Mật khẩu</label>
+        <input type="password"  required placeholder="Mật khẩu" />
+    </div>
+    <div class="resetPass__password-confirm">
+        <label>Xác nhận mật khẩu</label>
+        <input type="password"  required  placeholder="Xác nhận mật khẩu"/>
+    </div>
+    <div class="resetPass__submit">
+        <button>Đặt lại mật khẩu </button>
+    </div>
+</form>

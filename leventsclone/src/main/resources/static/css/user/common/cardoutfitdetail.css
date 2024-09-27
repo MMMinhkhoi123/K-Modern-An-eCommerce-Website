@@ -1,0 +1,50 @@
+.collect__item {
+    display: flex;
+    text-decoration: none;
+    color: black;
+}
+.collect__item > div {
+    pointer-events: none;
+}
+.collect__item--left > img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    pointer-events: none;
+}
+.collect__item--right > h4 {
+    margin: 0;
+    margin-bottom: 10px;
+}
+.collect__item--right > span {
+    display: block ;
+    margin-bottom: 10px;
+}
+.collect__item--right > a {
+    cursor: pointer;
+}
+.item__colors--detail {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid gray;
+}
+.swiper__thumb {
+    height: 5px;
+    background: red;
+    position: relative;
+    opacity: 0;
+}
+
+.swiper__thumb--scroll {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: green;
+    opacity: 0;
+}
+.item__colors {
+    display: flex;
+    margin-bottom: 10px;
+}

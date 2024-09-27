@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+:root {
+    --purple: #64498d;
+    --green: #74c056;
+    /*--theme: #161a39;*/
+    --theme: black;
+}
+
+/** {*/
+/*    font-family: "Inter", sans-serif;*/
+/*    padding: 0;*/
+/*    margin: 0;*/
+/*    box-sizing: border-box;*/
+/*    line-height: 1.5;*/
+/*}*/
+
+/*html::-webkit-scrollbar {*/
+/*    display: none;*/
+/*}*/
+/*.container {*/
+/*    width: 1620px;*/
+/*    max-width: 100vw;*/
+/*    margin: auto;*/
+/*    overflow: hidden;*/
+/*}*/
+/*.container-fluid {*/
+/*    width: 100%;*/
+/*    max-width: 100vw;*/
+/*    margin: auto;*/
+/*    overflow: hidden;*/
+/*}*/
+
+/*button,*/
+/*input {*/
+/*    outline: none;*/
+/*    border: none;*/
+/*}*/
+
+/*button {*/
+/*    cursor: pointer;*/
+/*}*/
+/*a {*/
+/*    text-decoration: none;*/
+/*}*/
+/*li {*/
+/*    list-style: none;*/
+/*}*/
+
+/*@media only screen and (max-width: 1920px) {*/
+/*    .container {*/
+/*        width: 1440px;*/
+
+/*        overflow: hidden !important;*/
+/*        padding: 0 20px;*/
+/*    }*/
+/*}*/

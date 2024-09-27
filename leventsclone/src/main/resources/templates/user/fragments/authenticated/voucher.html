@@ -1,0 +1,18 @@
+<div class="vouchers" th:fragment="voucher">
+    <div class="voucher__list">
+        <div class="voucher__list--item" th:each="item : ${authenticated.voucherUses}">
+            <div class="voucher__img">
+                <img src="/image/coupon.png"/>
+            </div>
+            <div class="voucher__content">
+                <div class="voucher__content--left">
+                    <strong th:text="${item.code}">USe15k</strong>
+                    <span th:text="${item.name}">voucher 404 wdhdwh dwghudw dwhd w</span>
+                </div>
+                <div class="voucher__content--right">
+                    <button th:data-code="${item.code}" onclick="copyVoucher(this)">Sao chép</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

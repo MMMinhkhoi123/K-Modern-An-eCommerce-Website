@@ -1,0 +1,18 @@
+.admin {
+    display: flex;
+}
+* {
+    font-family: Futura, Trebuchet MS, Arial, sans-serif;
+}
+.admin__screen {
+    width: 100%;
+}
+:root {
+    --colorBackground: #c7cfe1;
+    --colorHoverItem: #abbfe8;
+    --colorExtra: rgba(234, 233, 233, 0.51);
+    --colorBorders: rgba(124, 124, 124, 0.4);
+    --colorCreate: blue;
+    --colorUpdate: #0b2e59;;
+    --colorDetail: #5fe17c;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Detail Outfit</title>
+    <embed th:replace="user/fragments/common/link.html">
+    <link rel="stylesheet" th:href="@{/css/user/detailoutfit/detailoutfit.css}" />
+    <link th:href="@{/css/user/common/cardoutfitdetail.css}" rel="stylesheet" />
+    <link th:href="@{/css/css/app.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <div th:replace="user/fragments/common/generate ::  header"></div>
+    <div th:replace="user/fragments/common/Manage.html"></div>
+    <div class="detail-outfit">
+        <div class="detail-outfit__folder">
+            <a href="/">Home</a> / <a href="/blogs/outfit">Outfit</a> / <a th:href="@{'/products?option=' + ${outfit.getOptionUse().getIdOpt()} }" th:text="${outfit.getOptionUse().getProductUse().getName()}"></a>/ <span th:text="${outfit.getOptionUse().getColorUse().getName()}"></span>
+        </div>
+        <div class="detail-outfit__main">
+            <div class="detail-outfit__main--describer">
+                <span>Model:</span>
+                <span>
+            <span>Height:<span th:text="${outfit.height}"></span></span> ,
+            <span>Weight:<span th:text="${outfit.weight}"></span></span>
+            </span>
+                <span>Wearing:
+                <span th:text="${outfit.getOptionSizeUSe().getSizeUse().name}"></span>
+            </span>
+            </div>
+            <div class="detail-outfit__main--img">
+                <div class="main__img" th:each="item : ${outfit.imagesUses}">
+                    <img th:src="${item.linkImage}" />
+                </div>
+            </div>
+            <div class="detail-outfit__main--swiper">
+                <div th:replace="user/fragments/detailoutfit/swiper :: swiper(array = ${outfit.getOptionUses()}, obj = null)"></div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="user/fragments/common/sidebar.html"></div>
+    <div th:replace="user/fragments/common/generate :: footer"></div>
+    <div th:replace="user/fragments/common/backScrollTop :: scroll"></div>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"  type="text/javascript"></script>
+<script th:src="@{/js/user/detailoutfit/detailoutfit.js}"></script>
+<script th:src="@{/js/user/common/cardoutfitdetail.js}"></script>
+<script th:src="@{/js/user/home/home.js}"></script>
+<script th:src="@{/js/user/common/sidebar.js}" ></script>
+<script th:src="@{/js/user/common/manage.js}"></script>
+<script th:src="@{/js/user/common/authenticated.js}"></script>
+</html>

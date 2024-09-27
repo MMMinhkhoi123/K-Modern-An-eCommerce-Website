@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback</title>
+    <link th:replace="admin/fragmentsAdmin/common/link"></link>
+    <link th:href="@{/css/admin/common/intitForm.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin/productsSale/feedback.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin/common/loader.css}" rel="stylesheet">
+    <link th:href="@{/css/admin/common/warningDelete.css}" rel="stylesheet" />
+    <script th:inline="javascript" hidden="hidden">
+        /*<![CDATA[*/
+        let product_color_size = [[${options}]];
+        let feedback =  [[${feedback}]];
+        let type = [[${type}]];
+        /*]]>*/
+    </script>
+</head>
+<body>
+ <div class="admin">
+     <div class="admin__menu">
+         <div th:replace="admin/fragmentsAdmin/common/menu :: menu"></div>
+     </div>
+     <div class="admin__screen">
+         <div class="admin__screen-child" id="admin__screen">
+
+             <div class="admin__screen--title  screen__tile">
+                 <h2>Hình ảnh khách hàng</h2>
+             </div>
+             <div class="admin__screen--folder screen__folder">
+                 <div class="screen__root">
+                     <a href="/admin/feedbacks" class="link">Danh sách</a>
+                     <i th:if="${type != null}" class="fa-solid fa-chevron-right"></i>
+                 </div>
+                 <div class="screen__current" th:if="${type != null}">
+                     <span th:if="${type == 'add'}" >Tạo</span>
+                     <span th:if="${type == 'update'}" >Cập nhật</span>
+                     <span th:if="${type == 'detail'}" >Xem chi tiết</span>
+                 </div>
+             </div>
+
+             <div  class="admin__screen--section screen__case" id="admin__screen--section">
+                 <!--            section 2  View List Screen -->
+                 <div class="screen__List screen__case--child" th:if="${action == 'screen'}">
+                     <div class="color-section__option  case__option">
+                         <div class="color-section__option--show">
+                            <span class="show__sum">Hiện có
+                                <span th:text="${feedbacks.size()}">7</span>
+                            </span>
+                             <div class="disable show__selected">
+                               <span>
+                                   Đã chọn
+                                    <span class="count__selected">7</span>
+                                </span>
+                                 <button onclick="clearAll()">Dọn dẹp</button>
+                             </div>
+                         </div>
+                         <div class="color-section__option--setting  case__option--setting">
+                             <button class="disable delete"
+                                     th:data-type="${action}"
+                                     onclick="openDelete(this.getAttribute('data-type'),'hình ảnh')"
+                             >
+                                 <i class="fa-solid fa-trash"></i>
+                                 <span>Xóa bỏ</span>
+                             </button >
+
+                             <button th:if="${authenticated.role == 'admin'}" onclick="openFormCreate()" class="create">
+                                 <i class="fa-solid fa-square-plus"></i>
+                                 <span>Tạo mới</span>
+                             </button>
+                         </div>
+                     </div>
+                     <div class="screen__List--content screen__list">
+                         <div th:replace="admin/fragmentsAdmin/productsSale/feedback/feedback  :: feedback "></div>
+                     </div>
+                 </div>
+
+                 <div class="screen__add screen__case--child" id="screen__add" th:if="${action == 'edit'}">
+                     <div class="screen__add--form">
+                         <div th:replace="admin/fragmentsAdmin/productsSale/feedback/addfeedback :: addfeedback"></div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+ <div th:replace="admin/fragmentsAdmin/common/loader :: loader"></div>
+ <div th:replace="admin/fragmentsAdmin/common/warningDelete :: warning"></div>
+ <script th:src="@{/js/admin/common/handleDelete.js}"></script>
+</body>
+<script th:src="@{/js/admin/common/menu.js}"></script>
+<script th:src="@{/js/admin/productsSale/feedback/control.js}"></script>
+<script th:src="@{/js/admin/productsSale/feedback/api.js}"></script>
+</html>

@@ -1,0 +1,93 @@
+<div th:fragment="addcollection">
+   <form
+           th:data-type="${type}"
+           th:data-id="${collection.id}"
+           onsubmit="controlForm(event,this.getAttribute('data-type'))"
+           class="collection__form">
+    <div class="collection__form--title">
+     <h3 th:text="${type == 'add'} ? 'Thêm bộ siêu tập' : 'Cập nhật bộ siêu tập'"></h3>
+    </div>
+    <div class="collection__form--success" th:if="${success != null}">
+            <span class="err__success">
+            <span th:text="${success}">dwdwdw</span>
+            <i class="fa-solid fa-xmark" onclick="hiddenError('success')"></i>
+        </span>
+    </div>
+    <div class="collection__form--errors" th:if="${errorProduct != null || errorImg != null}">
+        <span class="err__product" th:if="${errorProduct != null}">
+            <span th:text="${errorProduct}">dwdwdw</span>
+            <i class="fa-solid fa-xmark" onclick="hiddenError('product')"></i>
+        </span>
+        <span class="err__img" th:if="${errorImg != null}">
+            <span th:text="${errorImg}">dwdwdw</span>
+            <i class="fa-solid fa-xmark"  onclick="hiddenError('img')"></i>
+        </span>
+    </div>
+    <div class="collection__form--portion">
+     <div class="portion__left">
+       <label class="portion__left--avatar">
+         <img th:if="${collection.img != null}" th:src="${collection.img}" />
+           <img th:if="${collection.img == null}"  />
+         <input onchange="renderImg(event)" type="file" hidden="hidden" />
+        <div class="avatar--content">
+          <i class="fa-solid fa-camera"></i>
+          <span>Chọn hình ảnh đại diện</span>
+        </div>
+       </label>
+       <div class="avatar__type">
+          <label>Ảnh tối : </label>
+          <label class="avatar__type-input">
+             <input th:checked="${collection.dark == true}" type="checkbox" hidden="hidden"/>
+             <span>
+                <span></span>
+             </span>
+          </label>
+       </div>
+     </div>
+     <div class="portion__right">
+       <div class="portion__right--name">
+        <label>Tên bộ siêu tập</label>
+        <input th:value="${collection.name}" required placeholder="Nhập tên bộ siêu tại đây" />
+       </div>
+      <div class="portion__right--product">
+       <label>Sản phẩm</label>
+       <select onchange="handleChangeProduct(event)">
+        <option value="" selected hidden="hidden">--Chọn sản phẩm---</option>
+        <option th:value="${item.id} + '-' + ${item.name}" th:each="item : ${products}" th:text="${item.name}"></option>
+       </select>
+      </div>
+      <div class="portion__right--choice">
+       <label>Sản phẩm đã chọn</label>
+       <div class="product-choice__list">
+        <div class="product-choice__list--empty" th:classappend="${collection.products.size() > 0} ? 'disable' : null">
+         Chưa chọn sản phẩm </strong>
+        </div>
+        <div th:data-id="${item.id}" class="item__list" th:id="'item' + ${item.id}" th:each="item : ${collection.products}">
+          <i class="fa-solid fa-xmark" th:data-id="${item.id}"  th:data-name="${item.name}"
+             onclick="hiddenItem(this.getAttribute('data-id'), this.getAttribute('data-name'))"></i>
+          <span th:text="${item.name}">rewuifheruwhfuhwhefhfhe</span>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="collection__form--describe">
+     <div class="describe__title">
+      <label>Mô tả</label>
+      <button type="button" onclick="OpenUpload('open')">Danh sách link ảnh</button>
+     </div>
+     <textarea id="collection_describe"></textarea>
+    </div>
+       <div class="collection__form--button">
+           <button th:text="${type == 'add'} ? 'Tạo mới' : 'Cập nhật'"></button>
+       </div>
+   </form>
+    <script th:inline="javascript">
+        dataHIx = [[${collection}]];
+        if (dataHIx.imgAdd != null) {
+            const img = document.querySelector(".portion__left--avatar > img");
+            img.src = "/admin/products-api/img-upload-common/" + dataHIx.imgAdd;
+        }
+    </script>
+    <div th:replace="admin/fragmentsAdmin/common/listUpload :: upload"></div>
+</div>

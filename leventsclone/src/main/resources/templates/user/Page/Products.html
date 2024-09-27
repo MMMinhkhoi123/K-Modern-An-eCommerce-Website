@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>collections</title>
+    <embed th:replace="user/fragments/common/link.html">
+    <link th:href="@{/css/user/common/header.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/common/sidebar.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/common/manage.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/common/footer.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/common/card.css}" rel="stylesheet" />
+
+    <link th:href="@{/css/user/products/collections.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/products/filter.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/products/listcollections.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/products/pagination.css}" rel="stylesheet" />
+    <link th:href="@{/css/css/app.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <div th:replace="user/fragments/common/generate :: header"></div>
+    <div class="collections">
+        <div class="collections__folder">
+            <a class="collections__folder--root" href="/">Home</a> / <span id="urlPage" th:data-url="${url}" th:text="${namePage}"></span>
+        </div>
+        <div class="collections__main">
+            <div class="collections__main--filter">
+                <div class="collection__back" onclick="setFilter('close')">
+                    <i class="fa-solid fa-chevron-left"></i>
+                    <span>BỘ LỌC NÂNG CAO</span>
+                </div>
+                <div class="collection__list-use">
+                    <embed th:replace="user/fragments/collections/Filter-Products :: filter">
+                </div>
+<!--                <div class="collection__result" onclick="setFilter('close')">-->
+<!--                    <span>Xem kết quả </span> (<span th:text="${products.countProduct}"></span>)-->
+<!--                </div>-->
+            </div>
+            <div id="collection-view" class="collections__main--view">
+                <embed th:replace="user/fragments/collections/View-Products :: list">
+            </div>
+        </div>
+    </div>
+    <embed th:replace="user/fragments/common/sidebar :: sidebar">
+    <embed th:replace="user/fragments/common/Manage :: option">
+    <embed th:replace="user/fragments/common/backScrollTop :: scroll">
+    <embed th:replace="user/fragments/common/generate :: footer">
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script th:src="@{/js/user/common/sidebar.js}"></script>
+<script th:src="@{/js/user/common/manage.js}"></script>
+<script th:src="@{/js/user/collections/filter.js}"></script>
+<script th:src="@{/js/user/common/card.js}" ></script>
+<script th:src="@{/js/user/collections/collections.js}" ></script>
+<script th:src="@{/js/user/home/home.js}"></script>
+<script th:src="@{/js/user/common/authenticated.js}"></script>
+</html>

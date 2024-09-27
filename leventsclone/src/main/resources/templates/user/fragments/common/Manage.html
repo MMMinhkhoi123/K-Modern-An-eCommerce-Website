@@ -1,0 +1,184 @@
+
+   <div class="manage__parent" th:fragment="option">
+       <link th:href="@{/css/user/common/manage.css}" rel="stylesheet" />
+     <div class="background">
+     </div>
+     <div class="manage">
+        <div class="manage__lock disable_lock">
+            <div class="manage__lock--progress">
+                <span></span>
+            </div>
+        </div>
+        <div class="manage__back">
+            <span onclick="CloseBar()">
+            <i class="fa-solid fa-chevron-left"></i>  <span>Back</span>
+            </span>
+        </div>
+       <div class="manage__option">
+         <div  class="manage__option--cart">
+             Giỏ hàng của bạn<br>
+           <i class="fa-solid fa-cart-shopping"></i>
+           <span></span>
+         </div>
+         <div  class="manage__option--account">
+             Tài khoản <br>
+           <i class="fa-solid fa-user"></i>
+           <span></span>
+         </div>
+       </div>
+       <div class="manage__display">
+
+         <div class="manage__display--cart">
+           <div class="display__cart--exist">
+               <div th:replace="user/fragments/common/Oder :: oder(dataCart = ${dataCart}) "></div>
+           </div>
+         </div>
+
+         <div class="manage__display--account">
+           <div class="display__account" th:if="${authenticated == null}">
+              <div class="display__account--option">
+                 <div class="account__login active__select-option">
+                   Đăng nhập
+                   <span></span>
+                 </div>
+                <div class="account__register">
+                  Đăng ký
+                  <span></span>
+                </div>
+              </div>
+              <div class="display__account--view">
+                <div th:replace="user/fragments/account/login :: login"></div>
+                <div th:replace="user/fragments/account/register :: resgister"></div>
+              </div>
+           </div>
+           <div th:replace="user/fragments/authenticated/screen :: authenticated"></div>
+         </div>
+
+       </div>
+         <div class="manage__member" th:if="${authenticated != null}">
+             <div class="manage__member--head">
+                 <i class="fa-solid fa-angle-left" onclick="ListMember('close')"></i>
+                 <span>Các hạng thành viên</span>
+             </div>
+             <div class="manage__member--list">
+                 <div class="manage__member--list-child">
+                     <div class="list-member__item" th:each="item : ${members}">
+                         <div class="list-member__item--section member-list-led">
+                             <div class="list-member__item--section-led">
+                                 <input th:checked="${item.name == authenticated.memberUse.name}" disabled type="radio">
+                                 <span th:text="${item.name}">Nguyen Minh Khoi</span>
+                             </div>
+                             <span th:if="${item.name == authenticated.memberUse.name}">Hạng thành viên hiện tại</span>
+                             <span th:if="${item.name != authenticated.memberUse.name && item.grade - authenticated.grade > 0}">Cần thêm
+
+                                 <span class="price__member"
+                                       th:data-price="${item.grade - authenticated.grade}"
+                                       th:text="${item.grade - authenticated.grade}">
+
+                                 </span> điểm</span>
+                         </div>
+                         <div class="list-member__item--section">
+                             <span>Tổng chi tiêu</span>
+                             <span th:if="${item.gradeMemberUp > 0}">Từ <span class="price__member" th:text="${item.price}" th:data-price="${item.price}"></span> đến <span class="price__member" th:text="${item.priceMemberUp}" th:data-price="${item.priceMemberUp}"></span> vnđ</span>
+                             <span th:if="${item.gradeMemberUp == 0}">Từ <span class="price__member" th:text="${item.price}" th:data-price="${item.price}"></span> vnđ</span>
+                         </div>
+                         <div class="list-member__item--section">
+                             <span>Tương đương</span>
+                             <span th:if="${item.gradeMemberUp > 0}">Từ <span class="price__member" th:text="${item.grade}" th:data-price="${item.grade}"></span> đến <span class="price__member" th:text="${item.gradeMemberUp}" th:data-price="${item.gradeMemberUp}"></span>  điểm</span>
+                             <span th:if="${item.gradeMemberUp == 0}">Từ <span class="price__member" th:text="${item.grade}" th:data-price="${item.grade}"></span> điểm</span>
+                         </div>
+                         <div class="list-member__item--section">
+                             <span>Quyền lợi</span>
+                             <span>Giảm  <span th:text="${item.percent}"></span> % cho tổng giá trị đơn hàng</span>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="manage__myMember">
+                 <span>Điểm thành viên của bạn</span>
+                 <span><span class="price__member" th:text="${authenticated.grade}" th:data-price="${authenticated.grade}"></span> điểm</span>
+             </div>
+         </div>
+          <div class="manage__addAddress" th:if="${authenticated != null}">
+                 <div class="manage__addAddress--head" >
+                     <i class="fa-solid fa-angle-left" onclick="FormAddAddress('close')"></i>
+                     <span class="upload">Thêm địa chỉ mới</span>
+                 </div>
+                 <form class="manage__addAddress--list-parent" onsubmit="submitNewAddress(event)">
+                     <div class="manage__addAddress--list">
+                         <div class="address__last-name">
+                             <label>Họ</label>
+                             <input class="value-get" data-value="lastname" type="text" onchange="handleSiteChange('lastname', this.value)" placeholder="Nhập họ tại đây" required   />
+                             <span class="err__lastname">Bạn chưa nhập Họ</span>
+                         </div>
+                         <div class="address__first-name">
+                             <label>Tên</label>
+                             <input class="value-get" data-value="firstname"  type="text" onchange="handleSiteChange('firstname', this.value)" placeholder="Nhập tên tại đây" required />
+                             <span class="err__firstname">Bạn chưa nhập Tên</span>
+                         </div>
+                         <div class="address__phone">
+                             <label>Nhập số điện thoại tại đây</label>
+                             <input class="value-get"  data-value="phone"  type="text" onchange="handleValidPhone('phone', this.value)"  placeholder="Nhập tên tại đây" required />
+                             <span class="err__phone">Bạn chưa nhập số điện thoại</span>
+                         </div>
+                         <div class="address__city">
+                             <div class="address__city-child" id="address__city">
+                                 <label>Tỉnh / Thành Phố</label>
+                                 <select class="value-get"  data-value="city"  required onchange="handleChangeSiteCity(this.value,'city')">
+                                     <option  value="null" selected>Chọn Tỉnh / Thành Phố</option>
+                                     <option
+                                             th:each="dataCity : ${array_city}"
+                                             th:value="${dataCity.id}"
+                                             th:text="${dataCity.name}"></option>
+                                 </select>
+                                 <span class="err__city" >Bạn chưa nhập Thành phố / Tỉnh</span>
+                             </div>
+                         </div>
+                         <div class="address__district">
+                             <div class="address__district-child" id="address__district" >
+                                 <label>Quận/ Huyện</label>
+                                 <select class="value-get" data-value="district"  required onchange="handleChangeSiteDistrict(this.value, 'district')">
+                                     <option  value="null" selected>Chọn Quận/ Huyện</option>
+                                     <option th:each="dataCity : ${array_district}"
+                                             th:value="${dataCity.id}"
+                                             th:text="${dataCity.name}"></option>
+                                 </select>
+                                 <span class="err__district">Bạn chưa nhập Quận/ Huyện</span>
+                             </div>
+                         </div>
+                         <div class="address__commune">
+                             <div class="address__commune-child" id="address__commune">
+                                 <label>Phường / Xã</label>
+                                 <select class="value-get"  data-value="commune" required onchange="handleChangeSiteCommune(this.value,'commune')">
+                                     <option  value="null" selected>Chọn Phường / Xã</option>
+                                     <option
+                                             th:each="dataCity : ${array_commune}"
+                                             th:value="${dataCity.id}"
+                                             th:text="${dataCity.name}">
+                                     </option>
+                                 </select>
+                                 <span class="err__commune">Bạn chưa nhập Phường / Xã</span>
+                             </div>
+                         </div>
+                         <div class="address__specific">
+                             <label>Địa chỉ nhà, Đường cụ thể</label>
+                             <input class="value-get" data-value="address"  type="text" onchange="handleSiteChange('address', this.value)"  placeholder="Địa chỉ nhà , Đường cụ thể"  required />
+                             <span class="err__address" >Bạn chưa nhập Địa chỉ</span>
+                         </div>
+                         <div class="address__set-init">
+                             <label>
+                                 <input type="checkbox"  />
+                                 <span>
+                                 <span></span>
+                             </span>
+                                 <span>Đặt làm địa chỉ mặc định</span>
+                             </label>
+                         </div>
+                     </div>
+                     <div class="address__button">
+                         <button>Lưu thay đổi</button>
+                     </div>
+                 </form>
+             </div>
+     </div>
+   </div>

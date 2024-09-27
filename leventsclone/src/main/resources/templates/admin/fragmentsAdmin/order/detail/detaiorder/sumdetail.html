@@ -1,0 +1,33 @@
+<div class="sumPay" th:fragment="sumdetail">
+    <div class="sumPay__products">
+        <span>
+            <strong>Tổng tiền các sản phẩm</strong>
+        </span>
+        <span class="info__price-detail" th:text="${sum.feeProducts}"></span>
+    </div>
+    <div class="sumPay__voucher">
+        <span>
+             <i class="fa-solid fa-ticket"></i>
+            <strong>Phí voucher</strong>
+        </span>
+        <span class="info__price-detail" th:text="${-sum.feeVoucher}"></span>
+    </div>
+    <div class="sumPay__voucher">
+        <span>
+             <i class="fa-solid fa-gift"></i>
+            <strong>Phí đóng gói</strong>
+        </span>
+    </div>
+    <div class="sumPay__ship">
+        <div class="sumPay__ship--left">
+            <span>
+                <i class="fa-solid fa-truck-fast"></i> <strong>Phí vận Chuyển</strong>
+            </span>
+            <span th:if="${sum.feeShip > 0}" >(vận chuyển nhanh)</span>
+        </div>
+        <span class="info__price-detail" th:text="${sum.feeShip}"></span>
+    </div>
+    <div class="sumPay__total">
+        Tổng tiền: <strong style="color: red" class="info__price-detail" th:text="${sum.feeTotal}">900.000 VNĐ</strong>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<form action="/logout" class="individual" th:fragment="individual">
+    <div class="individual__fame">
+        <div class="individual__avatar">
+            <img src="/image/user.png" />
+            <span th:text="${authenticated.fullName}">Nguyễn Minh Khoi</span>
+            <span th:text="${authenticated.email}">khoinguyenminh188@gmail.com</span>
+        </div>
+        <div class="individual__info">
+            <div class="individual__info--order">
+                <span>0 Đơn hàng</span>
+                <span>Giao thành công</span>
+            </div>
+            <div class="individual__info--voucher">
+                <span th:text="${authenticated.voucherUses.size()}"></span>
+                <span>Voucher</span>
+            </div>
+            <div class="individual__info--member">
+                <span>Member</span>
+                <span>Member</span>
+            </div>
+        </div>
+        <div class="individual__fullName info-item">
+            <label>Họ và tên</label>
+            <input th:value="${authenticated.fullName}" type="text" disabled />
+        </div>
+        <div class="individual__email info-item">
+            <label>Email</label>
+            <input th:value="${authenticated.email}" type="email" disabled />
+        </div>
+        <div class="individual__phone info-item">
+            <label>Số điện thoại</label>
+            <input th:value="${authenticated.phone}" type="text" disabled />
+        </div>
+        <div class="individual__birthday info-item">
+            <label>Ngày sinh</label>
+            <input th:value="${authenticated.date}" type="text" disabled />
+        </div>
+        <div class="individual__gender info-item">
+            <label>Giới tính</label>
+            <input th:value="${authenticated.gender}" type="text" disabled />
+        </div>
+    </div>
+
+    <div class="individual__bottom">
+        <button>Đăng xuất</button>
+    </div>
+</form>

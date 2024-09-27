@@ -1,0 +1,20 @@
+<div class="alert__confirm" th:fragment="alert">
+    <div class="alert__confirm--background">
+    </div>
+    <div class="alert__confirm--content">
+        <div class="confirm__title">
+            <h2>Bạn có chắn chắn xác nhận đơn này không ?</h2>
+            <i onclick=" outConfirm()" class="fa-solid fa-xmark"></i>
+        </div>
+        <div class="delete__matter">
+            <p>Đơn hàng được xác nhận sẻ được chuyển giao đến công đoạn xử lý hàng,
+                điều này có nghĩa đơn đã đủ số lượng và đạt tiêu chuẩn để bán</p>
+        </div>
+        <div class="confirm__button">
+            <button onclick=" outConfirm()">Hủy bỏ</button>
+            <button onclick="confirmNext()">
+                <span>Xác nhận</span>
+            </button>
+        </div>
+    </div>
+</div>

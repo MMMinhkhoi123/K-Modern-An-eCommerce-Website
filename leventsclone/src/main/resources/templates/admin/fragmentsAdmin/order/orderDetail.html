@@ -1,0 +1,32 @@
+<div class="order__detail" th:fragment="order-detail"
+     th:id="'order' + ${code}"
+     th:data-state="${orderSpecific.state}" th:data-typePay="${orderSpecific.typePay}"  th:data-code="${code}">
+  <div class="order__detail--tab">
+    <div class="tab__item"
+         th:classappend="${optional == 'products'} ? 'select' :  null "
+         id="products"
+         th:data-code="${code}"
+         onclick="goTabDetailLarge(this.getAttribute('data-code'),'products')"
+    >
+      <span>Chi tiết đơn hàng</span>
+    </div>
+    <div class="tab__item"
+         th:classappend="${optional == 'transaction'} ? 'select' :  null "
+         th:data-code="${code}"
+         id="transaction"
+         onclick="goTabDetailLarge(this.getAttribute('data-code'),'transaction')">
+      <span>Chi tiết giao dịch</span>
+    </div>
+<!--    <div class="tab__item"-->
+<!--         th:data-code="${code}"-->
+<!--         id="customer"-->
+<!--         onclick="goTabDetailLarge(this.getAttribute('data-code'),'customer')"-->
+<!--    >-->
+<!--       <span>Chi tiết thông tin khách hàng</span>-->
+<!--    </div>-->
+  </div>
+  <div class="order__detail--views">
+     <div th:replace="admin/fragmentsAdmin/order/detail/detailOrder :: detailOrders"></div>
+     <div th:replace="admin/fragmentsAdmin/order/detail/transactionDetail :: transaction"></div>
+  </div>
+</div>

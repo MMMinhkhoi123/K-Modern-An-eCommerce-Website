@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Product</title>
+    <embed th:replace="user/fragments/common/link.html">
+    <link th:href="@{/css/user/common/header.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/common/sidebar.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/common/manage.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/common/footer.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/common/card.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/detail/detail-moreover.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/detail/suggest-product.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/detail/siderbar-viewsize.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/detail/sidebar-voucher.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/detail/sidebar-assess.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/detail/sidebar-info.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/detail/sidebar-transport.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/detail/sidebar-change.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/detail/look-fullscreen.css}" rel="stylesheet" />
+    <link th:href="@{/css/css/app.css}" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+      <div th:replace="user/fragments/common/generate :: header"></div>
+      <div class="detail">
+          <div class="detail__folder">
+              <a href="/">Home</a> <a th:href="${path}">/ <span th:text="${pathName}"></span>  </a> <span th:text="'/ ' + ${url}"></span>
+          </div>
+          <div class="detail__main">
+              <div th:replace="user/fragments/detail/Detail-Moreover :: detail2(object=${option})"></div>
+          </div>
+          <div class="detail__assess">
+              <div th:replace="user/fragments/detail/SideBar-Assess :: assess"></div>
+          </div>
+          <div class="detail__list-relation">
+              <div th:replace="user/fragments/detail/Catalog-Products-Type :: seller(array = ${bestSeller}, title= 'BEST SELLER', style='seller')"></div>
+              <div th:replace="user/fragments/detail/Catalog-Products-Type :: seller(array = ${newArrive}, title= 'BEST ARRIVAL', style='arrival')"></div>
+          </div>
+      </div>
+      <div th:replace="user/fragments/common/sidebar :: sidebar"></div>
+      <div th:replace="user/fragments/common/Manage :: option"></div>
+      <div th:replace="user/fragments/common/generate :: footer"></div>
+      <div th:replace="user/fragments/detail/SideBar_Voucher :: voucher"></div>
+      <div th:replace="user/fragments/detail/Alert-Error :: error"></div>
+      <div th:replace="user/fragments/detail/SiderBar-ViewSize :: viewsize" ></div>
+<!--      <div th:replace="user/fragments/detail/SideBar-Info :: info" ></div>-->
+      <div th:replace="user/fragments/detail/SideBar-PolicyTransport :: transfer"></div>
+      <div th:replace="user/fragments/detail/SideBar-PolicyExchange :: change"></div>
+      <div th:replace="user/fragments/detail/Look-FullScreen :: zoom(image=${option.getOptionImageUses()})"></div>
+      <div th:replace="user/fragments/common/backScrollTop :: scroll"></div>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"  type="text/javascript"></script>
+<script th:src="@{/js/user/common/card.js}" ></script>
+<script th:src="@{/js/user/detail/detail-moreover.js}"> </script>
+<script th:src="@{/js/user/detail/sidebar-voucher.js}" ></script>
+<script th:src="@{/js/user/detail/sidebar-viewsize.js}" ></script>
+<script th:src="@{/js/user/detail/sidebar-assess.js}" ></script>
+<script th:src="@{/js/user/detail/sidebar-info.js}" ></script>
+<script th:src="@{/js/user/detail/sidebar-transport.js}" ></script>
+<script th:src="@{/js/user/detail/sidebar-exchange.js}" ></script>
+<script th:src="@{/js/user/detail/look-fullscreen.js}" ></script>
+<script th:src="@{/js/user/detail/detail.js}" ></script>
+<script th:src="@{/js/user/common/sidebar.js}"></script>
+<script th:src="@{/js/user/common/manage.js}"></script>
+<script th:src="@{/js/user/common/authenticated.js}"></script>
+</html>

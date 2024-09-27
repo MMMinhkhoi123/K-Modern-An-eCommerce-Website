@@ -1,0 +1,97 @@
+.disable {
+    display: none;
+}
+.member__sale--table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    overflow-y: scroll;
+}
+tr > td {
+    padding: 10px;
+}
+.member__setting > button {
+    border-radius: 5px;
+    border: none;
+    background: #7373ec;
+    color: white;
+    width: 35px;
+    height: 35px;
+}
+
+/*add*/
+.member__title {
+    padding-bottom: 20px;
+}
+.form-add-member {
+    background: white;
+    border-radius: 5px;
+    padding: 20px;
+    border: 1px solid var(--colorBorders);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.member__content {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+}
+.member__content > div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.member__content > div > div{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.member__content > div > div > input {
+    padding: 15px;
+}
+.member__button--submit > button {
+    background: #0b2e59;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+.member__button {
+    display: flex;
+    justify-content: start;
+}
+.member__button--submit {
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.member__success,
+.member__error {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.member__success > span,
+.member__error > span {
+    padding: 15px;
+    position: relative;
+    background: #f68888;
+}
+.member__success > span {
+    background: #95fd95 !important;
+}
+.member__success > span > i,
+.member__error > span  > i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+.screen__add {
+    gap: 10px;
+    overflow-y: scroll;
+}
+

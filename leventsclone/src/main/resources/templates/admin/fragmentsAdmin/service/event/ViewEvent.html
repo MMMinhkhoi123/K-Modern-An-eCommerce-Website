@@ -1,0 +1,35 @@
+<div class="event__view" th:fragment="view">
+  <table class="event__sale--table">
+    <thead>
+    <tr>
+      <th   th:if="${action== 'screen' && authenticated.role == 'admin'}"></th>
+      <th>ID</th>
+      <th>Tên sự kiện</th>
+      <th>Đường dẫn</th>
+      <th>Ngày bắt đầu</th>
+      <th>Ngày kết thúc</th>
+      <th th:if="${authenticated.role == 'admin'}"><i class="fa-solid fa-gear"></i></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="table__row"  th:each="item : ${events}" >
+      <td class="table__check" th:if="${action== 'screen' && authenticated.role == 'admin'}">
+        <input th:data-id="${item.id}" th:id="'input' + ${item.id}" onchange="handleDelete()" type="checkbox">
+      </td>
+      <td th:text="${item.id}">a</td>
+      <td th:text="${item.name}">a</td>
+      <td th:text="${item.path}">a</td>
+      <td class="date-row" th:text="${item.dateStart}">a</td>
+      <td class="date-row" th:text="${item.dateEnd}">a</td>
+      <td class="button-row" th:if="${authenticated.role == 'admin'}">
+        <button th:data-id="${item.id}" onclick="goProductAdd(this.getAttribute('data-id'))">
+           <i class="fa-solid fa-percent"></i>
+        </button>
+        <button th:data-id="${item.id}" class="edit__button" onclick="goUpdate(this.getAttribute('data-id'))">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

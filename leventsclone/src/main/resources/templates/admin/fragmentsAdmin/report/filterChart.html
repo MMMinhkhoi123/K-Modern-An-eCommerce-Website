@@ -1,0 +1,18 @@
+<div class="filter-chart" th:fragment="filter">
+    <form onsubmit="submitFilter(event)" class="filter-chart-connect">
+        <select required class="select_option">
+            <option th:selected="${option == 'PRODUCT'}" value="PRODUCT">Sản phẩm</option>
+            <option th:selected="${option == 'USER'}" value="USER">Người dùng</option>
+            <option th:selected="${option == 'ORDER'}" value="ORDER">Đơn hàng</option>
+            <option th:selected="${option == 'PROFIT'}" value="PROFIT">Thu nhập</option>
+        </select>
+        <label for="year"></label>
+        <input  th:value="${year}" class="select_year" type="number" placeholder="nhập năm" id="year" name="year" min="1900" max="2100" value="2024">
+        <button class="btn-filter" style="background: blue; color: white; border: none; border-radius: 5px">
+            <i class="fa-solid fa-filter"></i>  Lọc
+        </button>
+    </form>
+    <button class="btn-print-pdf" style="background: #ea2e2e; color: white; border: none; border-radius: 5px">
+        <i class="fa-solid fa-file-pdf"></i>  xuất PDF
+    </button>
+</div>

@@ -1,0 +1,62 @@
+<div class="products__sale" th:fragment="products">
+    <table class="products__sale--table">
+        <thead>
+        <tr>
+            <th  th:if="${action== 'screen' && authenticated.role == 'admin'}"></th>
+            <th>Thông tin sản phẩm</th>
+            <th>Hình ảnh</th>
+            <th>Màu sắc</th>
+            <th><i class="fa-solid fa-gear"></i></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  th:each="item : ${options}" th:data-id="${item.idOpt}" ondblclick="checked(this.getAttribute('data-id'))">
+            <td class="table__check" th:if="${action== 'screen' && authenticated.role == 'admin'}">
+                <input
+                        onchange="handleDelete()"
+                        th:data-id="${item.idOpt}"
+                        th:id="'input' +  ${item.idOpt}"
+                        th:disabled="${item.isUsing == true}" type="checkbox">
+            </td>
+            <td>
+                <div class="products__assemble">
+                    <div class="products__assemble--name">
+                        <strong th:text="${item.productUse.name}"></strong>
+                    </div>
+                    <div class="products__assemble--detail">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <img width="50" height="50" th:src="${item.optionImageUses[0].imageUse.linkImage}">
+            </td>
+            <td>
+                <div class="assemble__color">
+                    <div th:style="'background :' + ${item.colorUse.code}" class="model__color">
+                    </div>
+                    <span th:text="${item.colorUse.name}"></span>
+                </div>
+            </td>
+            <td>
+                <div class="products__option">
+                    <button class="products__option--update"
+                            th:data-sum="${item.idOpt}"
+                            th:if="${authenticated.role == 'admin'}"
+                    onclick="openFormUpdate(this.getAttribute('data-sum'))"
+                    >
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+<!--                    <button class="products__option&#45;&#45;img">-->
+<!--                        <i class="fa-solid fa-photo-film"></i>-->
+<!--                    </button>-->
+                    <button th:data-option="${item.idOpt}"
+                            class="products__option--detail"
+                            onclick="OpenDetail(this.getAttribute('data-option'))">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

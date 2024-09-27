@@ -1,0 +1,27 @@
+<div class="order__success">
+    <div class="order__success--item" th:each="item : ${myOrders}">
+        <div class="success__above">
+            <div class="hading__above__info">
+                <span class="date__order--item" th:text="${item.getDate()}"></span>
+                <strong th:text="'#' + ${item.code}"></strong>
+
+                <div class="date__order--state">
+                    <span style="color: #2ea12e" th:if="${item.state == 'THÀNH CÔNG'}">
+                       <span>Hoàn thành</span>  <i class="fa-solid fa-check"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="success__below">
+            <strong class="price__order--item" style="font-size: 18px" th:text="${item.sumPrice}"></strong>
+            <span class="success__above--detail">
+                 <a th:href="'/pages/checkout/rs/' + ${item.code}">
+                    <span>Chi tiết</span>
+                </a>
+            </span>
+        </div>
+    </div>
+    <span class="empty__order-handing" th:if="${myOrders.size() ==0 }">
+        <img src="/image/empty-box.png">
+    </span>
+</div>

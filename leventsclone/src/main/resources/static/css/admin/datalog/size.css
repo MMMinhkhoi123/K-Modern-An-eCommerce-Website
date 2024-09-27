@@ -1,0 +1,119 @@
+
+.size__option--create  {
+    background: #0b2e59;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.size__table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    overflow-y: scroll;
+}
+.size__setting--delete {
+    background: red;
+    color: white;
+}
+
+.size__setting--update {
+    background: #0b2e59;
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+}
+
+.add-size__title > h3 {
+    text-align: start;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.add-size > div {
+    gap: 10px !important;
+}
+.add-size {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    gap: 10px;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid var(--colorBorders);
+}
+.add-size > div,
+.add-size__option > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.add-size__option > div > select,
+.add-size__option > div > input {
+    padding: 15px;
+}
+.add-size > div> button {
+    padding: 15px 30px;
+    border-radius: 5px;
+}
+.add-size__success > span,
+.add-size__err > span {
+    display: block;
+    padding: 15px;
+    position: relative;
+}
+.add-size__success > span > i,
+.add-size__err > span > i {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.add-size__button {
+    align-items: end;
+}
+.add-size__button--frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+}
+.add-size__button--frame > button {
+    border: none;
+    background: #0b2e59;
+    color: white;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+.active {
+    display: block;
+}
+.add-size__option {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.size-section__edit {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.create_title {
+    padding: 20px 0;
+}
+.create_title > a {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    gap: 10px;
+}
+.create_title > a > i {
+    transform: rotate(-90deg);
+}
+.disable {
+    display: none;
+}

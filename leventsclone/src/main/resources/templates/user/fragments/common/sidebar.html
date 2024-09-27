@@ -1,0 +1,37 @@
+
+  <div th:fragment="sidebar" id="directory"  class="sidebar__parent" >
+      <link th:href="@{/css/user/common/sidebar.css}" rel="stylesheet" />
+      <div class="background" onclick="closeSideBar()">
+      </div>
+      <div class="sidebar">
+          <div class="sidebar__title">
+              <i class="fa-solid fa-x" onclick="closeSideBar()"></i>
+              <span>Danh mục</span>
+          </div>
+          <ul class="sidebar__list">
+              <li class="sidebar__list--item"  th:each="directory : ${DataDirectory}">
+                  <a  class="list__link" th:if="${directory.key != 'NULL'}"
+                      th:text="${directory.name}" th:href="@{'/collections/' + ${directory.key}}">
+                  </a>
+                  <a  class="list__link"  onclick="choiceItem(this)" th:if="${directory.key == 'NULL'}" th:text="${directory.name}"></a>
+                  <div class="list__submenu" th:id="${directory.name}" th:if="${directory.typeProductUses.size() > 0}">
+                      <uL class="list__submenu--menu">
+                          <li class="submenu--item" th:data-key="${directory.name}" onclick="closeChoiceItem(this.getAttribute('data-key'))" >
+                              <a class="submenu--item--link sub-active">
+                                  <i class="fa-solid fa-angle-left"></i>  <span th:text="${directory.name}"></span>
+                              </a>
+                          </li>
+                          <li class="submenu--item" th:each="typeProduct : ${directory.typeProductUses}">
+                              <a class="submenu--item--link" th:href="@{'/collections/' + ${typeProduct.key}}">
+                                  <span th:text="${typeProduct.name}" >All Products</span>
+                              </a>
+<!--                              <div class="submenu&#45;&#45;item&#45;&#45;detail">-->
+<!--                              </div>-->
+                          </li>
+                      </uL>
+                  </div>
+              </li>
+          </ul>
+      </div>
+  </div>
+

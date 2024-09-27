@@ -1,0 +1,318 @@
+.upload__collection--background {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 20;
+}
+.upload__collection--content {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    z-index: 21;
+    width: 1200px;
+    display: grid;
+    grid-template-columns: 500px 1fr;
+    grid-template-rows: 700px;
+    border-radius: 5px;
+}
+
+
+.collection__option--upload {
+    width: 100%;
+    height: 500px;
+    border: 1px solid var(--colorBorders);
+    position: relative;
+    cursor: pointer;
+    border-radius: 5px;
+    background: rgba(231, 231, 231, 0.8);
+}
+.option__upload--empty {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+}
+.option__upload--empty > i {
+    font-size: 30px;
+    color: #7373ec;
+}
+.option__upload--empty > span {
+    font-size: 12px;
+    color: gray;
+}
+.option__upload--empty > h4 {
+    margin: 0;
+}
+.collection__option-left {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+    padding: 20px;
+    border-right: 1px solid var(--colorBorders);
+}
+.collection__option-left > h3 {
+    margin: 0;
+    padding: 20px 0;
+}
+
+.collection__option-left > button {
+    padding: 10px 20px;
+    border: none;
+    background: #7373ec;
+    color: white;
+    border-radius: 5px;
+    margin-top: auto;
+}
+.imgUpload {
+    position: relative;
+    width:  calc(100% / 4);
+    height: 120px;
+    padding: 5px;
+    box-sizing: border-box;
+    margin-bottom: 0;
+}
+.imgUpload > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.imgUpload > i {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.collection__option--upload {
+    overflow-y: scroll;
+}
+.process {
+    position: relative;
+    height: 5px;
+    background: gray;
+}
+.process > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 100%;
+    transition: 0.2s;
+    bottom: 0;
+    background: #7373ec;
+}
+
+.upload__loading > img {
+    opacity: 0.5;
+}
+
+.upload__loading > i {
+    opacity: 0;
+}
+.collection__option--list {
+    display: flex;
+    flex-wrap: wrap;
+}
+.disable {
+    display: none !important;
+}
+.collection__content--background {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.collection__content--alert {
+    position: absolute;
+    background: white;
+    padding: 20px;
+    box-shadow: black 0 0 2px;
+    border-radius: 5px;
+}
+.content__alert--content {
+    padding: 30px 0;
+}
+.content__alert--title > h3 {
+    margin: 0;
+}
+.content__alert--button {
+    display: flex;
+    justify-content: space-between;
+}
+.content__alert--button  > button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.content__alert--button > button:nth-child(2) {
+    background: #7373ec;
+    color: white;
+}
+.collection__option-left > button {
+    cursor: pointer;
+}
+.collection__content--pull {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background: white;
+    box-shadow: black 0 0 2px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 300px;
+}
+.collection__content--pull > div {
+    display: flex;
+    justify-content: space-between;
+}
+.collection__content--pull > div> p {
+    margin: 0;
+    margin-bottom: 10px;
+}
+.collection__content--list {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.collection__content--item {
+    width: calc(100% /5) ;
+    height: 150px;
+    padding: 10px;
+    box-sizing: border-box;
+    cursor: copy;
+}
+.collection__content {
+    display: flex;
+    flex-direction: column;
+}
+.collection__content--item > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.collection__content-attend {
+    height: 100%;
+    overflow-y: scroll;
+}
+.collection__content-option {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--colorBorders);
+}
+.content-option__setting > button {
+    padding: 5px 20px;
+    border:  none;
+    background: red;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+.collection__option-alert {
+    width: 100%;
+}
+
+.collection__option-alert > span {
+    display: block;
+    background: #95fd95;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    position: relative;
+}
+.collection__option-alert > span > i {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.content-option__setting--select {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.content-option__setting--select > input:checked ~ span > span {
+    left: calc(100% - 20px);
+}
+.content-option__setting--select > span {
+    display: block;
+    width: 60px;
+    height: 20px;
+    border-radius: 20px;
+    background: #cbc7c7;
+    position: relative;
+    border: 1px solid #857c7c;
+}
+.content-option__setting--select > span > span {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    transition: 0.3s;
+    width: 20px;
+    height: 20px;
+    background: #7373ec;
+    border-radius: 50%;
+}
+.collection__content--item {
+    position: relative;
+}
+.collection__content--item > input {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    opacity: 0;
+}
+
+
+.activeSelect > input {
+    opacity:  1 !important;
+}
+
+.content-option__setting {
+    display: flex;
+    gap: 20px;
+}
+.copy {
+    opacity: 0;
+    transition: 0.3s;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: white;
+}
+.copy:hover {
+    background: rgba(28, 199, 28, 0.64);
+    opacity: 1;
+}
+#close__upload {
+    position: absolute;
+    top: -10px;
+    font-size: 30px;
+    left: -10px;
+    cursor: pointer;
+}
+
+
+.upload__collection {
+}
+.upload__collection {
+    opacity: 0;
+    pointer-events: none ;
+}
+.disableUpload {
+    opacity: 1 !important;
+    pointer-events: visible !important;
+}

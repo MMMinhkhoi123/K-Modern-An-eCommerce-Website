@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Directory</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link th:href="@{/fontawesome/css/all.css}" rel="stylesheet" />
+  <link th:href="@{/css/admin/common/menu.css}" rel="stylesheet" />
+  <link th:href="@{/css/admin/common.css}" rel="stylesheet" />
+  <link th:href="@{/css/admin/common/intitForm.css}" rel="stylesheet" />
+  <link th:href="@{/css/admin/datalog/directory.css}" rel="stylesheet" />
+  <link th:href="@{/css/admin/common/warningDelete.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="admin">
+  <div class="admin__menu">
+    <div th:replace="admin/fragmentsAdmin/common/menu :: menu"></div>
+  </div>
+  <div class="admin__screen">
+    <div class="admin__screen" id="admin__screen">
+        <div class="directory__option">
+          <h2>Danh mục sản phẩm</h2>
+        </div>
+
+        <div class="directory__folder">
+          <div class="directory__folder--root">
+            <a href="/admin/directory">Danh sách</a>
+            <i th:if="${type != null}" class="fa-solid fa-chevron-right"></i>
+          </div>
+          <div class="parent__directory--link" th:if="${type != null}">
+            <span th:text="${type == 'add'} ? 'Tạo' : 'Cập nhật'" ></span>
+          </div>
+        </div>
+
+      <div class="parent__color-section  screen__case" id="admin__color-section">
+        <div id="admin__directory" class="parent__directory"  th:if="${action == 'screen'}">
+          <div class="parent__directory--option">
+            <div class="directory__show">
+              <span class="directory__show--sum">
+                Hiện có
+                <span th:text="${directories.size()}">12</span>
+              </span>
+                <div class="directory__show--selected disable">
+                  <span>Đã chọn
+                  <span class="count__selected"></span>
+                </span>
+                  <button onclick="clearAll()">Dọn dẹp</button>
+                </div>
+            </div>
+            <div class="directory__create">
+              <button
+                      th:data-type="${action}"
+                      onclick="openDelete(this.getAttribute('data-type'))"
+                      class="disable">
+                <i class="fa-solid fa-trash"></i> <span>Xóa bỏ</span></button>
+
+              <a onclick="openFrom()" th:if="${authenticated.role == 'admin'}">
+                <i class="fa-solid fa-square-plus"></i>
+                <span>Tạo mới</span>
+              </a>
+            </div>
+          </div>
+          <div class="parent__directory--list">
+            <div th:replace="admin/fragmentsAdmin/catalog/directory/directory :: directory"></div>
+          </div>
+        </div>
+
+        <div id="admin__directory--from" class="parent__directory--edit"
+             th:if="${action == 'edit'}">
+          <div class="admin__directory--form">
+            <div th:replace="admin/fragmentsAdmin/catalog/directory/adddirectory :: adddirectory "></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ <div th:replace="admin/fragmentsAdmin/common/warningDelete :: warning"></div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"  type="text/javascript"></script>
+<script th:src="@{/js/admin/common/menu.js}"></script>
+<script th:src="@{/js/common.js}"></script>
+<script th:src="@{/js/admin/catalog/directory/api.js}"></script>
+<script th:src="@{/js/admin/catalog/directory/control.js}"></script>
+</html>

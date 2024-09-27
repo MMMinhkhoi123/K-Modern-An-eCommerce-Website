@@ -1,0 +1,25 @@
+ <div class="video" th:fragment="introduce">
+     <div class="video__left">
+         <video  controls>
+             <source th:src="@{/video/video.mp4}" type="video/mp4">
+             <source src="movie.ogg" type="video/ogg">
+             Your browser does not support the video tag.
+         </video>
+     </div>
+     <div class="video__right" >
+         <div class="video__right--content">
+             <h3>KMODERN® S/S24 COLLECTION</h3>
+             <p>Mùa Xuân 2024, K Modern® mang đến bộ sưu tập mới với những items mang đậm tinh thần sáng tạo để khích lệ chất riêng trong phong cách thời trang cũng như tính cách của từng bạn trẻ.
+             </p>
+             <p>
+                 Các items đều được chăm chút tỉ mỉ đến từng chi tiết, thiết kế và chất liệu để mang đến những sản phẩm chất lượng vượt trội, độ bền cao, nổi bật nhưng vẫn thanh lịch và phù hợp với mọi giới tính cũng như dáng người.
+                 Đảm bảo bất kì ai cũng có thể tự tin thể hiện bản thân, lan tỏa năng lượng tích cực khi diện lên mình các sản phẩm đến từ Levents®.
+             </p>
+             <div class="right__button-intro">
+                 <a th:href="@{/collections/new-arrival}">
+                     Xem thêm
+                 </a>
+             </div>
+         </div>
+     </div>
+ </div>

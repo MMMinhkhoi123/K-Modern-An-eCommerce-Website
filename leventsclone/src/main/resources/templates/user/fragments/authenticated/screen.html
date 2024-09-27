@@ -1,0 +1,46 @@
+<div class="display__authenticated" th:if="${authenticated != null}" th:fragment="authenticated">
+
+<!--    this is menu-->
+    <div class="display__authenticated-parent"
+         onmouseleave="handleOutMenu()"
+         onmousedown="handleMouseDownAuth(event, this)">
+        <div class="display__authenticated--menu">
+            <div class="authenticated-content-menu" >
+                <div class="authenticated-content-menu-use">
+                    <div data-key="info" class="authenticated__profile checked__menu"
+                         onclick="selectedMenu(this)">
+                        <span>Thông tin cá nhân</span>
+                        <span></span>
+                    </div>
+                    <div data-key="address" class="authenticated__address" onclick="selectedMenu(this)">
+                        <span>Địa chỉ</span>
+                        <span></span>
+                    </div>
+                    <div data-key="order" class="authenticated__order" onclick="selectedMenu(this)">
+                        <span>Đơn hàng</span>
+                        <span></span>
+                    </div>
+                    <div data-key="voucher" class="authenticated__voucher" onclick="selectedMenu(this)">
+                        <span>Voucher</span>
+                        <span></span>
+                    </div>
+                    <div data-key="member" class="authenticated__membership" onclick="selectedMenu(this)">
+                        <span>Membership</span>
+                        <span></span>
+                    </div>
+                    <div data-key="wishlist" class="authenticated__wishlist" onclick="selectedMenu(this)">
+                        <span>Wishlist</span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="authenticated-content-bar">
+            <div class="authenticated-content-bar__move"></div>
+        </div>
+    </div>
+    <!--    this is screen display -->
+    <div class="display__authenticated-content">
+        <div th:replace="user/fragments/authenticated/individual :: individual"></div>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<div th:fragment="add" class="from-add-color-parent">
+    <form
+            th:data-id="${color.id}"
+            th:object="${color}"
+            th:data-type="${type}"
+            onsubmit="controlForm(event, this.getAttribute('data-type'))"
+            class="from-add-color" >
+        <div class="from-add-color__title">
+            <h3 th:text="${type == 'add'} ? 'Thêm màu sắc' : 'Cập nhật màu sắc'"></h3>
+        </div>
+        <div class="from-add-color__success" th:if="${success != null}">
+            <span class="err__success">
+                <span th:text="${success}"></span>
+                <i class="fa-solid fa-xmark" onclick="hiddenError('success')"></i>
+            </span>
+        </div>
+
+        <div class="from-add-color__error" th:if="${errorName != null || errorCode != null}">
+            <span class="err__name" th:if="${errorName != null}">
+                <span th:text="${errorName}">erro</span>
+                <i class="fa-solid fa-xmark" onclick="hiddenError('name')"></i>
+            </span>
+            <span class="err__code" th:if="${errorCode != null}">
+                <span th:text="${errorCode}">erro</span>
+                <i class="fa-solid fa-xmark" onclick="hiddenError('code')"></i>
+            </span>
+        </div>
+        <div class="from-add-color__option">
+            <div class="from-add-color__name">
+                <label>Tên màu sắc</label>
+                <input
+                        th:errorclass="error"
+                        th:value="${color.name}"
+                        name="name" type="Text" required placeholder="Nhập tên màu sắc tại đây" />
+            </div>
+            <div class="from-add-color__code">
+                <div class="from-add-color__code--left">
+                    <label>Mã màu sắc</label>
+                    <input
+                            th:errorclass="error"
+                            name="code"
+                            required
+                            th:value="${color.code}"
+                            onchange="changeColor(this)"
+                            type="Text" placeholder="Nhập mã màu sắc tại đây"  />
+                </div>
+                <div class="from-add-color__code--right">
+                    <label>Màu hiển thị</label>
+                    <div th:style="'background:' + ${color.code}" class="color__model" >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="from-add-color__button">
+            <div class="color__button--frame">
+                <div class="loader-background">
+                    <div class="loader-form"></div>
+                </div>
+                <button th:text="${type == 'add'} ? 'Thêm vào' : 'Cập nhật'">Thêm vào</button>
+            </div>
+        </div>
+    </form>
+</div>

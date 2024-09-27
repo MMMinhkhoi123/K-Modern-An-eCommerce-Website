@@ -1,0 +1,276 @@
+
+      <div class="assess__main" th:fragment="assess">
+          <div class="assess__main--above">
+              <span>khách hàng đánh giá (<span th:text="${ratings.numberAssess}"></span>)</span>
+              <div class="assess__star-title">
+                  <div class="choice-star__select-item" th:classappend="${ratings.sumCountStar >= 1} ? 'active' : null">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-regular fa-star"></i>
+                  </div>
+                  <div class="choice-star__select-item" th:classappend="${ratings.sumCountStar >= 2} ? 'active' : null">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-regular fa-star"></i>
+                  </div>
+                  <div class="choice-star__select-item" th:classappend="${ratings.sumCountStar >= 3} ? 'active' : null">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-regular fa-star"></i>
+                  </div>
+                  <div class="choice-star__select-item" th:classappend="${ratings.sumCountStar >=4} ? 'active' : null">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-regular fa-star"></i>
+                  </div>
+                  <div class="choice-star__select-item" th:classappend="${ratings.sumCountStar >= 5} ? 'active' : null">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-regular fa-star"></i>
+                  </div>
+              </div>
+              <strong th:if="${ratings.list.size() > 0}" th:text="${ratings.sumCountStar} + '.0 / 5.0'">Chưa có đánh giá</strong>
+              <strong th:if="${ratings.list.size() <= 0}">Chưa có đánh giá</strong>
+          </div>
+          <div class="assess__main--below">
+              <div class="main__option">
+                  <div class="main__option--item active-star"
+                       onclick="handleSelectStarAssess(event, 'all')">
+                      <span>Tất cả</span>
+                      <span>( <span th:text="${ratings.countAll}"></span>)</span>
+                      <span></span>
+                  </div>
+                  <div class="main__option--item"
+                       onclick="handleSelectStarAssess(event, 5)">
+                      <span>5 sao</span>
+                      <span>(<span th:text="${ratings.countFive}"></span>)</span>
+                      <span></span>
+                  </div>
+                  <div class="main__option--item"
+                       onclick="handleSelectStarAssess(event, 4)">
+                      <span>4 sao</span>
+                      <span>(<span th:text="${ratings.countFour}"></span>)</span>
+                      <span></span>
+                  </div>
+                  <div class="main__option--item"
+                       onclick="handleSelectStarAssess(event, 3)"
+                  >
+                      <span>3 sao</span>
+                      <span>(<span th:text="${ratings.countTrue}"></span>)</span>
+                      <span></span>
+                  </div>
+                  <div class="main__option--item"
+                       onclick="handleSelectStarAssess(event, 2)"
+                  >
+                      <span>2 sao</span>
+                      <span>(<span th:text="${ratings.countTwo}"></span>)</span>
+                      <span></span>
+                  </div>
+                  <div class="main__option--item"
+                       onclick="handleSelectStarAssess(event, 1)"
+                  >
+                      <span>1 sao</span>
+                      <span>(<span th:text="${ratings.countOne}"></span>)</span>
+                      <span></span>
+                  </div>
+              </div>
+              <div class="main__option-select">
+                  <select onchange="changeAssess(event)">
+                      <option value="all">
+                          <span>Tất cả</span>
+                          <span>(<span th:text="${ratings.countAll}"></span>)</span>
+                      </option>
+                      <option value="5">
+                          <span>5 sao</span>
+                          <span>(<span th:text="${ratings.countFive}"></span>)</span>
+                      </option>
+                      <option value="4">
+                          <span>4 sao</span>
+                          <span>(<span th:text="${ratings.countFour}"></span>)</span>
+                      </option>
+                      <option value="3">
+                          <span>3 sao</span>
+                          <span>(<span th:text="${ratings.countTrue}"></span>)</span>
+                      </option>
+                      <option value="2">
+                          <span>2 sao</span>
+                          <span>(<span th:text="${ratings.countTwo}"></span>)</span>
+                      </option>
+                      <option value="1">
+                          <span>1 sao</span>
+                          <span>(<span th:text="${ratings.countOne}"></span>)</span>
+                      </option>
+                  </select>
+              </div>
+              <div class="main__link">
+                  <label class="main__link-filter">
+                      <input type="checkbox" hidden="hidden" onchange="setChoiceAssessImg()" />
+                      <span class="main__link-filter--case">
+                          <i class="fa-solid fa-check"></i>
+                      </span>
+                      <span>Có hình ảnh</span>
+                  </label>
+                  <button th:if="${authenticated == null}" class="main__link--button" onclick="redirectLogin()">
+                      <strong><a href="/#account" style="color: #030303"> Đăng nhập</a> <span>để viết đánh giá của bạn</span> </strong>
+                  </button>
+
+                  <div class="main__link--button-auth" th:if="${authenticated != null && userAssess != null}" >
+                      <button id="viewAddRating" class="activeBtn" data-key="Viết đánh giá" onclick="optionAdd('open')">Viết đánh giá</button>
+                      <button id="viewRating" data-key="Xem đánh giá" onclick="optionAdd('close')">Xem đánh giá</button>
+<!--                      <button data-key="Sửa đánh giá" onclick="optionAdd('open')" th:if="${ratings.stateAssess == true}">Sửa đánh giá</button>-->
+                  </div>
+                  <button th:if="${authenticated != null && userAssess == null}" class="main__link--button">
+                      <span>Mua sản phẩm để đánh giá</span>
+                  </button>
+              </div>
+              <div class="main__viewOption">
+                  <div class="viewOption__all viewOption__item" id="viewOption__all">
+                      <div class="viewOption__all--empty-parent" id="viewOption__all--empty-parent">
+                          <div class="viewOption__all--list">
+                              <div class="viewOption__all--item" th:each="item : ${ratings.list}">
+                                  <strong th:text="${item.nameAuth}">Name</strong>
+                                  <div class="star">
+                                      <div class="choice-star__select-item" th:classappend="${item.count >= 1} ? 'active' : null">
+                                          <i class="fa-solid fa-star"></i>
+                                          <i class="fa-regular fa-star"></i>
+                                      </div>
+                                      <div class="choice-star__select-item" th:classappend="${item.count >= 2} ? 'active' : null">
+                                          <i class="fa-solid fa-star"></i>
+                                          <i class="fa-regular fa-star"></i>
+                                      </div>
+                                      <div class="choice-star__select-item" th:classappend="${item.count >= 3} ? 'active' : null">
+                                          <i class="fa-solid fa-star"></i>
+                                          <i class="fa-regular fa-star"></i>
+                                      </div>
+                                      <div class="choice-star__select-item" th:classappend="${item.count >=4} ? 'active' : null">
+                                          <i class="fa-solid fa-star"></i>
+                                          <i class="fa-regular fa-star"></i>
+                                      </div>
+                                      <div class="choice-star__select-item" th:classappend="${item.count >= 5} ? 'active' : null">
+                                          <i class="fa-solid fa-star"></i>
+                                          <i class="fa-regular fa-star"></i>
+                                      </div>
+                                  </div>
+                                  <span class="date" th:text="${item.Date}"></span>
+                                  <div class="content__assess">
+                                      <strong th:text="${item.title}">Leding</strong>
+                                      <span th:text="${item.content}">feifiewhfuewh</span>
+                                      <div class="assess__img" th:if="${item.imageUse != null}">
+                                          <img th:src="${item.imageUse.linkImage}">
+                                      </div>
+                                  </div>
+                                  <div></div>
+                              </div>
+                          </div>
+                          <div class="viewOption__1--empty empty" th:if="${ratings.list.size() == 0}">
+                              <span>Chưa có đánh giá của khách hàng</span>
+                          </div>
+                          <div class="pagination"
+                               th:data-idOption="${option.idOpt}">
+                              <div class="pagination__pre" th:data-index="${(ratings.thisPage + 1) - 1}"
+                                   onclick="goPageAssess(this.getAttribute('data-index'))"
+                                   th:if="${(ratings.thisPage + 1) > 1}">
+                                  <i class="fa-solid fa-chevron-left"></i>
+                              </div>
+                              <div
+                                      th:if="${ratings.list.size() != 0}"
+                                      class="pagination__count" th:data-index="${itemp}"
+                                   onclick="goPageAssess(this.getAttribute('data-index'))" th:classappend="${(ratings.thisPage + 1) == itemp} ? 'active' : null"  th:each="itemp : ${#numbers.sequence(1, ratings.countPag)}" th:text="${itemp}"></div>
+                              <div class="pagination__pre" th:data-index="${(ratings.thisPage + 1) + 1}"
+                                   onclick="goPageAssess(this.getAttribute('data-index'))"
+                                   th:if="${(ratings.thisPage + 1)  < ratings.countPag }">
+                                  <i class="fa-solid fa-chevron-right"></i>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="main__viewOption--add disable--option" th:if="${userAssess != null}">
+                      <div class="addAssess__object">
+                          <div class="addAssess__item--img">
+                              <img th:src="${option.optionImageUses[0].imageUse.linkImage}">
+                          </div>
+                          <div class="addAssess__item--content">
+                              <span th:text="${option.productUse.name} + '-' + ${option.colorUse.name}">Levents® Flowers Window Tee/ Cream</span>
+                              <span class="specific__price" th:text="${option.productUse.price}" th:data-price="${option.productUse.price }">390.000 VND</span>
+                          </div>
+                      </div>
+                      <div class="RatingSelect">
+                          <div id="RatingSelectRom">
+                              <div class="addAssess__choice-star">
+                                  <h2 th:if="${ratingResult.imageUse == null && ratingResult.title == null}">Bạn cảm thấy sản phẩm như thế nào?</h2>
+                                  <div class="addAssess__choice-star--select" >
+                                      <div class="choice-star__select-item" onclick="choiceAssess(0)"  th:classappend="${ratingResult.count > 0 ? 'active' : null}" data-index="0">
+                                          <i class="fa-solid fa-star"></i>
+                                          <i class="fa-regular fa-star"></i>
+                                      </div>
+                                      <div class="choice-star__select-item" onclick="choiceAssess(1)"  th:classappend="${ratingResult.count > 1 ? 'active' : null}" data-index="1">
+                                          <i class="fa-solid fa-star"></i>
+                                          <i class="fa-regular fa-star"></i>
+                                      </div>
+                                      <div class="choice-star__select-item" onclick="choiceAssess(2)" th:classappend="${ratingResult.count > 2 ? 'active' : null}"  data-index="2">
+                                          <i class="fa-solid fa-star"></i>
+                                          <i class="fa-regular fa-star"></i>
+                                      </div>
+                                      <div class="choice-star__select-item" onclick="choiceAssess(3)" th:classappend="${ratingResult.count > 3 ? 'active' : null}" data-index="3">
+                                          <i class="fa-solid fa-star"></i>
+                                          <i class="fa-regular fa-star"></i>
+                                      </div>
+                                      <div class="choice-star__select-item" onclick="choiceAssess(4)" th:classappend="${ratingResult.count > 4 ? 'active' : null}"  data-index="4">
+                                          <i class="fa-solid fa-star"></i>
+                                          <i class="fa-regular fa-star"></i>
+                                      </div>
+                                  </div>
+                                  <span th:if="${ratingResult.imageUse == null && ratingResult.title == null}" class="choice-star__select-title">Hãy cho chúng tôi biết trải nghiệm sản phẩm từ bạn</span>
+                              </div>
+                              <form id="RatingSelect" onsubmit="submitAssess(event, this)"  th:data-idOption="${option.idOpt}" class="addAssess__form">
+                                  <div class="addAssess__orders">
+                                      <label>Thuộc đơn hàng</label>
+                                      <select class="order_selected" th:data-option="${option.idOpt}" onchange="changeOrder(event, this.getAttribute('data-option'))" required>
+                                          <option hidden="hidden" value="">--Chọn đơn hàng--</option>
+                                          <option th:if="${ratingResult.orderRes == null} " th:each="item : ${userAssess}"
+                                                  th:value="${item.orderRes.code}"
+                                                  th:text="${item.orderRes.code}">..</option>
+
+                                          <option th:if="${ratingResult.orderRes != null}" th:each="item : ${userAssess}"
+                                                  th:value="${item.orderRes.code}"
+                                                  th:selected="${ratingResult.orderRes.code == item.orderRes.code}"
+                                                  th:text="${item.orderRes.code}">..</option>
+                                      </select>
+
+                                  </div>
+                                  <div class="addAssess__form-title">
+                                      <label >Tiêu đề nội dung đánh giá</label>
+                                      <input th:value="${ratingResult.title}" th:disabled="${ratingResult.title != null}"  required type="text" placeholder="Nhập tiêu đề tại đây" />
+                                  </div>
+                                  <div class="addAssess__form-content">
+                                      <label>Nội dung đánh giá sản phẩm</label>
+                                      <label>
+                                        <textarea th:disabled="${ratingResult.content != null}" th:content="${ratingResult.content}" required rows="5" placeholder="Nhập nội dung tại đây">
+                                        </textarea >
+                                      </label>
+                                  </div>
+                                  <div class="addAssess__form-img">
+                                      <label>Hình ảnh sản phẩm</label>
+                                      <div class="img-upload__assess" th:classappend="${ratingResult.imageUse == null ? 'none-hidden' : null }" >
+                                          <div class="img-upload__assess-item">
+                                              <i th:if="${ratingResult.imageUse == null}"  class="fa-solid fa-xmark" onclick="resetImgAssess()"></i>
+                                              <img th:if="${ratingResult.imageUse == null}" />
+                                              <img th:if="${ratingResult.imageUse != null}" th:src="${ratingResult.imageUse.linkImage}"/>
+                                          </div>
+                                      </div>
+                                      <label class="addAssess__form-img--input" th:unless="${ratingResult.content != null}">
+                                          <span>
+                                              Thêm hình ảnh đánh giá
+                                          </span>
+                                          <i class="fa-solid fa-plus"></i>
+                                          <input type="file" hidden="hidden" onchange="choiceImgAsses(event)"/>
+                                      </label>
+                                  </div>
+                                  <div class="addAssess__form-button lock" th:if="${ratingResult.imageUse == null && ratingResult.title == null}">
+                                      <button type="submit">Xác nhận đánh giá</button>
+                                      <div class="form__load">
+                                          <div class="load_assess"></div>
+                                      </div>
+                                  </div>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>

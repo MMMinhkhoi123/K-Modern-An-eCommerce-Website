@@ -1,0 +1,31 @@
+<div th:fragment="member">
+    <table class="member__sale--table">
+        <thead>
+        <tr>
+            <th  th:if="${action== 'screen' && authenticated.role == 'admin'}"></th>
+            <th>ID</th>
+            <th>Tên mô tả</th>
+            <th>Mức giảm (%)</th>
+            <th>Điểm đạt được</th>
+            <th>Mức tiêu thụ (VNĐ)</th>
+            <th th:if="${authenticated.role == 'admin'}"><i class="fa-solid fa-gear"></i></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="table__row"  th:each="item : ${members}"  th:data-id="${item.id}" ondblclick="checked(this.getAttribute('data-id'))">
+            <td  class="table__check" th:if="${action== 'screen' && authenticated.role == 'admin'}">
+                <input onchange="handleDelete()" th:disabled="${item.isUsing == true || item.price == 0 }" th:data-id="${item.id}" th:id="'input' + ${item.id}" type="checkbox">
+            </td>
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.percent} + '%'"></td>
+            <td  class="grade" th:data-grade="${item.grade}" th:text="${item.grade}"></td>
+            <td  class="price" th:data-price="${item.price}"  th:text="${item.price}"></td>
+            <td class="member__setting" th:if="${authenticated.role == 'admin'}">
+                <button th:data-id="${item.id}" onclick="openUpdate(this.getAttribute('data-id'))" >
+                    <i class="fa-solid fa-pen-to-square"></i></button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

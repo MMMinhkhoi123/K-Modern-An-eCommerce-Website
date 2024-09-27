@@ -1,0 +1,18 @@
+<a class="collect__item" th:fragment="card(item)"
+  th:data-name="${item.productUse.name}"
+  th:data-color="${item.colorUse.name}"
+   th:data-option="${item.idOpt}"
+   th:data-price="${item.productUse.price}"
+  href="*">
+ <div class="collect__item--left">
+   <img th:src="${item.optionImageUses[0].imageUse.linkImage}" />
+ </div>
+ <div class="collect__item--right">
+   <h4 th:text="${item.productUse.name}">name</h4>
+   <span class="item__price" th:text="${item.productUse.price} + 'VND'">1000 vnd</span>
+   <div class="item__colors">
+     <span class="item__colors--detail" th:style="'background:' + ${item.colorUse.name}"></span>
+   </div>
+   <span>Xem chi tiết</span>
+ </div>
+</a>

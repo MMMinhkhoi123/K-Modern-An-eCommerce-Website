@@ -1,0 +1,61 @@
+.below__item-outfit {
+    padding: 20px;
+    border-left: 1px solid rgba(215, 215, 215, 0.28);
+    border-top: 1px solid rgba(215, 215, 215, 0.28);
+    border-bottom: 1px solid rgba(215, 215, 215, 0.28);
+    box-sizing: border-box;
+    text-decoration: none;
+    color: var(--theme);
+}
+.below__item-outfit:hover {
+    text-decoration: underline;
+}
+.item {
+    height: 100%;
+}
+.below__item--content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 400px);
+}
+
+
+.content__button:hover > button:after {
+    background: var(--theme);
+    inset: -2px;
+    position: absolute;
+    content: "Xem bộ phối";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.content__button {
+    display: flex;
+    width: 100%;
+    margin-top: auto;
+}
+.content__button > button {
+    width: 100%;
+    padding: 10px;
+    background: var(--theme);
+    color: white;
+    margin-top: auto;
+    display: block;
+    position: relative;
+}
+.below__item--img {
+    width: 100%;
+    height: 400px;
+}
+.below__item--img > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.below__item-outfit > div {
+    display: flex;
+    flex-direction: column;
+}

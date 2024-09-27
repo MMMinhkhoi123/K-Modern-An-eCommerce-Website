@@ -1,0 +1,16 @@
+<div class="inventory__alert disable" th:fragment="inventory">
+    <div class="inventory__alert--from">
+        <div class="inventory__title">
+            <h2>Thông báo thiếu hụt nguồn hàng</h2>
+            <span>(Đơn hàng đã thay đổi) Bạn có muốn tiếp tục giao dịch này không ?</span>
+        </div>
+        <div class="inventory__list">
+        </div>
+        <div class="inventory__submit">
+            <a href="/">Quay về</a>
+            <div class="inventory__submit--next">
+                <a th:href="'/pages/checkout/' + ${cookie}">Tiếp tục</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="color" th:fragment="color">
+  <table class="color__table">
+    <thead>
+      <tr>
+        <th th:if="${action == 'screen'  && authenticated.role == 'admin'}"></th>
+        <th>ID</th>
+        <th>Tên màu</th>
+        <th>Mã màu</th>
+        <th>Hiển thị</th>
+        <th th:if="${authenticated.role == 'admin'}">
+          <i class="fa-solid fa-gear"></i>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="item : ${colors}" th:data-id="${item.id}" ondblclick="checked(this.getAttribute('data-id'))">
+        <td class="table__check" th:if="${action == 'screen' && authenticated.role == 'admin' }" >
+          <input
+                  th:data-id="${item.id}"
+                  th:id="'input' + ${item.id}"
+                  onchange="handleDelete()"
+                  th:disabled="${item.isUsing == true}" type="checkbox" />
+        </td>
+        <td th:text="${item.id}">Alfreds Futterkiste</td>
+        <td th:text="${item.name}">Maria Anders</td>
+        <td th:text="${item.code}">Germany</td>
+        <td class="color__display">
+          <div class="color__display-fra">
+            <div th:style="'background:' + ${item.name}"></div>
+          </div>
+        </td>
+        <td class="color__setting"  th:if="${authenticated.role == 'admin'}" >
+          <div class="color__setting-fra" >
+            <button class="color__setting--update" th:data-id="${item.id}" onclick="openFromUpdate(this.getAttribute('data-id'))">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+

@@ -1,0 +1,171 @@
+<div th:fragment="filter" class="filter">
+    <div class="filterOder">
+        <div class="option__item" th:classappend="${keys.get('state') == 'ALL'} ? 'select' : null" id="all" data-key="ALL" onclick="changeTab('all')">
+        <span>
+            <strong> Tất cả đơn hàng</strong>
+        </span>
+        </div>
+        <div class="option__item" th:classappend="${keys.get('state')== 'HANDLING'} ? 'select' : null" id="handling"  data-key="HANDLING" onclick="changeTab('handling')">
+        <span>
+            <strong>Đang giao dịch</strong>
+        </span>
+        </div>
+    </div>
+    <div class="filter__option">
+        <div class="filter__option--search">
+            <button onclick="filterSearch()">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <input type="text" placeholder="Tìm mã đơn hàng" />
+        </div>
+        <div class="filter__option--other">
+            <div class="option--state" onclick="openMenu('state')">
+                <span>Trạng thái</span> <i class="fa-solid fa-caret-down"></i>
+                <ul class="option--state--menu disable__menu menu__item" id="menu__state">
+                    <li>
+                        <label>
+                            <input data-key="THÀNH-CÔNG" type="radio" value="Hoàn thành" name="state" hidden="hidden">
+                            <span data-key="Hoàn thành">Hoàn thành</span>
+                        </label>
+                        <label>
+                            <input data-key="THẤT-BẠI" type="radio" value="Thất bại" name="state" hidden="hidden">
+                            <span data-key="Thất bại">Thất bại</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input data-key="TỪ-CHỐI" type="radio"  value="Từ chối" name="state" hidden="hidden">
+                            <span data-key="Từ chối">Từ chối</span>
+                        </label>
+                        <label>
+                            <input data-key="ĐƠN-HÀNG-GẶP-LỖI" type="radio"  value="Hàng gặp lỗi" name="state" hidden="hidden">
+                            <span data-key="Hàng gặp lỗi">Hàng gặp lỗi</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input data-key="CHỜ" type="radio" value="Chờ" name="state" hidden="hidden">
+                            <span data-key="Chờ">Chờ</span>
+                        </label>
+                        <label>
+                            <input data-key="XÁC-NHẬN-ĐƠN-HÀNG" type="radio"  value="Xác nhận đơn hàng" name="state" hidden="hidden">
+                            <span data-key="Xác nhận đơn hàng">Xác nhận đơn hàng</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input data-key="ĐANG-GIAO"  type="radio" value="Đang giao" name="state" hidden="hidden">
+                            <span data-key="Đang giao">Đang giao</span>
+                        </label>
+                        <label>
+                            <input data-key="ĐANG-CHUẨN-BỊ" type="radio" value="Đang xữ lý" name="state" hidden="hidden">
+                            <span data-key="Đang xữ lý">Đang xữ lý</span>
+                        </label>
+                    </li>
+                    <li class="option__button">
+                        <button onclick="filterState()">Lọc</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="option--date"  onclick="openMenu('date')">
+                <span>Ngày tạo</span> <i class="fa-solid fa-caret-down"></i>
+                <ul class="option--date--menu disable__menu menu__item" id="menu__date">
+                    <li>
+                        <label>
+                            <input onchange="changeDateSpe()" data-key="TODAY" value="Hôm nay" type="radio" name="pay" hidden="hidden" />
+                            <span data-key="Hôm nay">Hôm nay</span>
+                        </label>
+                        <label>
+                            <input onchange="changeDateSpe()" data-key="THIS_WEEK" value="Tuần này" type="radio" name="pay" hidden="hidden" />
+                            <span data-key="Tuần này">Tuần này</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input onchange="changeDateSpe()" data-key="YESTERDAY" value="Hôm qua" type="radio" name="pay" hidden="hidden" />
+                            <span data-key="Hôm qua">Hôm qua</span>
+                        </label>
+                        <label>
+                            <input onchange="changeDateSpe()" data-key="LAST_WEEK" value="Tuần trước" type="radio" name="pay" hidden="hidden" />
+                            <span data-key="Tuần trước">Tuần trước</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input onchange="changeDateSpe()" data-key="THIS_MONTH" value="Tháng này" type="radio" name="pay" hidden="hidden" />
+                            <span data-key="Tháng này">Tháng này</span>
+                        </label>
+                        <label>
+                            <input onchange="changeDateSpe()" data-key="LAST_MONTH" value="Tháng trước" type="radio" name="pay" hidden="hidden" />
+                            <span data-key="Tháng trước">Tháng trước</span>
+                        </label>
+                    </li>
+                    <li onclick="event.stopPropagation()">
+                           <input  class="date__input" type="date" onchange="changeDate()" />
+                    </li>
+                    <li class="option__button">
+                        <button onclick="filterDate()">Lọc</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="option--pay" onclick="openMenu('pay')">
+                <span>Thanh toán</span> <i class="fa-solid fa-caret-down"></i>
+                <ul class="option--pay--menu disable__menu menu__item" id="menu__pay">
+                    <li>
+                        <label>
+                            <input data-key="COD" value="Thanh toán khi nhận hàng" type="radio" name="pay" hidden="hidden" />
+                            <span data-key="Thanh toán khi nhận hàng">Thanh toán khi nhận hàng</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input data-key="TRAN" value="Thanh toán chuyển khoản" type="radio" name="pay" hidden="hidden" />
+                            <span data-key="Thanh toán chuyển khoản">Thanh toán chuyển khoản</span>
+                        </label>
+                    </li>
+                    <li class="option__button">
+                        <button onclick="filterPay()">Lọc</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="filter__option--selected">
+
+        <div th:if="${keys.get('search') !=  null}" class="selected__item search" id='q'>
+                   <span th:data-key="${keys.get('search')}" th:text="${keys.get('search')}">value </span>
+                   <i class="fa-solid fa-xmark"
+                      th:data-key="${keys.get('search')}"
+                      onclick="removeSelection('search', this.getAttribute('data-key'))"></i>
+        </div>
+
+        <div th:if="${keys.get('date') !=  null}" class="selected__item date" id='date'>
+            <span th:if="${keys.get('date') == 'TODAY'}" th:data-key="${keys.get('date')}">Hôm nay</span>
+            <span th:if="${keys.get('date') == 'YESTERDAY'}" th:data-key="${keys.get('date')}">Hôm qua</span>
+            <span th:if="${keys.get('date') == 'THIS_WEEK'}" th:data-key="${keys.get('date')}">Tuần này</span>
+            <span th:if="${keys.get('date') == 'LAST_WEEK'}" th:data-key="${keys.get('date')}">Tuần trước</span>
+            <span th:if="${keys.get('date') == 'THIS_MONTH'}" th:data-key="${keys.get('date')}">Tháng này</span>
+            <span th:if="${keys.get('date') == 'LAST_MONTH'}" th:data-key="${keys.get('date')}">Tháng trước</span>
+            <span th:else th:data-key="${keys.get('date')}" th:text="${keys.get('date')}"></span>
+            <i class="fa-solid fa-xmark"
+               th:data-key="${keys.get('date')}"
+               onclick="removeSelection('date', this.getAttribute('data-key'))"></i>
+        </div>
+
+        <div th:if="${keys.get('state') !=  null && keys.get('state') != 'ALL' && keys.get('state') != 'HANDLING'}" class="selected__item state" id="state">
+            <span th:if="${keys.get('state') == 'TỪ-CHỐI'}" th:data-key="${keys.get('state')}" >Từ chối</span>
+            <span th:if="${keys.get('state') == 'ĐANG-CHUẨN-BỊ'}"  th:data-key="${keys.get('state')}">Đang xữ lý</span>
+            <span th:if="${keys.get('state') == 'ĐANG-GIAO'}"  th:data-key="${keys.get('state')}">Đang giao</span>
+            <span th:if="${keys.get('state') == 'THÀNH-CÔNG'}" th:data-key="${keys.get('state')}" >Hoàn thành</span>
+            <span th:if="${keys.get('state') == 'THẤT-BẠI'}" th:data-key="${keys.get('state')}" >Thất bại</span>
+            <span th:if="${keys.get('state') == 'ĐƠN-HÀNG-GẶP-LỖI'}" th:data-key="${keys.get('state')}" >Hàng gặp lỗi</span>
+            <span th:if="${keys.get('state') == 'XÁC-NHẬN-ĐƠN-HÀNG'}" th:data-key="${keys.get('state')}" >Xác nhận đơn hàng</span>
+            <span th:if="${keys.get('state') == 'XÁC-NHẬN-KHÁCH-HÀNG'}" th:data-key="${keys.get('state')}" >Xác nhận khách hàng</span>
+            <i class="fa-solid fa-xmark"
+               th:data-key="${keys.get('state')}"
+               onclick="removeSelection('state', this.getAttribute('data-key'))"></i>
+        </div>
+
+    </div>
+</div>

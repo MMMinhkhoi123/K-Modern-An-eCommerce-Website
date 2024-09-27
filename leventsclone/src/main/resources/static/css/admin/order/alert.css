@@ -1,0 +1,134 @@
+
+.defect__product,
+.alert__confirm {
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+    position: relative;
+    z-index: 13;
+}
+.active__confirm {
+    opacity: 1 !important;
+    pointer-events: visible !important;
+}
+.defect__product > .defect__product--background,
+.alert__confirm--background {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 23;
+}
+
+.defect__product--content,
+.alert__confirm--content {
+    min-width: 500px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background: white;
+    z-index: 23;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 5px;
+}
+.confirm__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+.confirm__title > h2 {
+    margin: 0;
+}
+.confirm__title > i {
+    font-size: 30px;
+    cursor: pointer;
+}
+.defect__product--button,
+.confirm__button {
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+}
+.defect__product--button >   button:nth-child(1),
+.confirm__button > button:nth-child(1) {
+    background: #ded7d7;
+}
+.defect__product--button >   button:nth-child(2),
+.confirm__button > button:nth-child(2) {
+    background: #7373ec;
+    color: white;
+    font-weight: bold;
+}
+.defect__product--button > button,
+.confirm__button > button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.products {
+    padding: 20px 0;
+}
+.products {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    align-items: start;
+}
+.products__frame {
+    position: relative;
+}
+.products > div {
+    transition: 0.3s;
+    overflow: hidden;
+    border: 1px solid var(--colorBorders);
+}
+.product__item> input {
+    width: 20px;
+    height: 20px;
+}
+.product__item {
+    padding: 10px;
+    align-items: center;
+    display: flex;
+}
+.product__item--info {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.product__item--img {
+    width: 100px;
+    height: 100px;
+}
+.product__item--img > img {
+    width: 100%;
+    height: 100%;
+}
+.product__description {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 10px;
+}
+.product__description > select {
+    padding: 15px;
+    border: 1px solid var(--colorBorders);
+}
+.product__description > textarea {
+    display: none;
+    height: 100px;
+    padding: 10px;
+    resize: none;
+    border: 1px solid var(--colorBorders);
+}
+.active > .products__frame >  .product__description > textarea {
+    display: block !important;
+}

@@ -1,0 +1,191 @@
+<div th:fragment="info" class="checkinSet" th:if="${result == null}">
+        <div class="from__contact" th:if="${authenticated == null}">
+            <div class="from__contact--title">
+                <h2>Liên hệ</h2>
+                <a th:if="${authenticated == null}" href="/#account">Đăng nhập</a>
+            </div>
+            <div class="from__contact--phone">
+                <div class="contact__input">
+                    <label class="label__phone">Số điện thoại di động</label>
+                    <input class="input__phone" type="number"
+                           onchange="handleChange('phone')"
+                           oninput="handleInput('phone')">
+                </div>
+                <span class="err__phone active_err">
+
+                        </span>
+            </div>
+        </div>
+        <div class="from__transport">
+            <div class="from__transport--title">
+                <h2>Giao hàng</h2>
+            </div>
+            <div class="from__transport__nation">
+                <label>Quốc gia/Vùng</label>
+                <select>
+                    <option selected>Việt Nam</option>
+                </select>
+            </div>
+            <div class="from__full-name">
+                <div class="from__full-name--last">
+                    <div class="full-name__input">
+                        <label>Tên (Không bắt buộc)</label>
+                        <input class="lastname" type="text" disabled value="khoi" />
+                    </div>
+                    <span></span>
+                </div>
+                <div class="from__full-name--first">
+                    <div class="full-name__input">
+                        <label>Họ</label>
+                        <input class="firstname" type="text"  value="Minh" disabled />
+                    </div>
+                    <span></span>
+                </div>
+            </div>
+            <div class="from__address">
+                <label>Địa chi</label>
+                <input class="address" type="text" value="ddjdiwjidw" disabled/>
+            </div>
+
+            <div class="from__department">
+                         <span class="from__department--extra" onclick="openProvideInformation(this)">
+                             <i class="fa-solid fa-plus"></i>
+                             <span>Thêm căn hộ, dãy, v.v </span>
+                         </span>
+                <div class="from__department--input" style="display: none">
+                    <label class="label__department">căn hộ, phòng, v.v (không bắt buộc)</label>
+                    <input class="input__department" type="text"
+                           oninput="handleInput('department')" />
+                </div>
+            </div>
+
+            <div class="from__phone-contact">
+                <div class="from__phone-contact--input">
+                    <label class="label__phone-contact" th:classappend="${authenticated != null} ? 'active__label' : ''">Điện thoại</label>
+                    <div class="phone-contact__question">
+                        <div class="phone-contact__question--content">
+                            <p>Trong trường hợp chúng tôi cần liên
+                                lạc với bạn để trao đổi về đơn hàng</p>
+                            <div class="triangle-down"></div>
+                        </div>
+                        <i class="fa-solid fa-circle-question"></i>
+                    </div>
+                    <input th:if="${authenticated == null}" class="input__phone-contact"
+                           onchange="handleChange('phone-contact')"
+                           oninput="handleInput('phone-contact')" type="number"
+                    />
+                    <input th:if="${authenticated != null}"
+                           th:value="${authenticated.phone}"
+                           class="input__phone-contact active__input"
+                           onchange="handleChange('phone-contact')"
+                           oninput="handleInput('phone-contact')" type="number"
+                    />
+                </div>
+                <span class="err__phone-contact"></span>
+            </div>
+
+            <div class="from__save">
+                <label>
+                    <span>Lưu thông tin cho lần sau</span>
+                    <input type="checkbox" />
+                    <span class="form__save--check">
+                                <span></span>
+                                <i class="fa-solid fa-check"></i>
+                            </span>
+                </label>
+            </div>
+        </div>
+        <div class="from__shift">
+            <div class="from__shift--title">
+                <h2>Phương thức vận chuyển</h2>
+            </div>
+            <div class="from__shift--select">
+                <label class="from__shift--select--option" onclick="handleChangeMethodPay(35000)" th:if="${total_products < 1000000}">
+                    <div>
+                        <span>Giao hàng tiêu chuẩn</span>
+                        <strong>35.000 ₫</strong>
+                    </div>
+                    <input data-value="STANDARD" checked type="radio" name="transport" />
+                    <span>
+                                <span>
+                                      <span></span>
+                                </span>
+                            </span>
+                </label>
+                <label class="from__shift--select--option" onclick="handleChangeMethodPay(60000)">
+                    <div>
+                        <span>Giao hàng siêu hỏa tốc 4H-6H (Chỉ nội thành Tp Hồ Chí Mình)</span>
+                        <strong>60.000 ₫</strong>
+                    </div>
+                    <input data-value="FAST" type="radio" name="transport" />
+                    <span>
+                                <span>
+                                    <span></span>
+                                </span>
+                            </span>
+                </label>
+                <label class="from__shift--select--option" onclick="handleChangeMethodPay(0)" th:if="${total_products > 1000000}">
+                    <div>
+                        <span> Miễn phí vận chuyển với đơn hàng trên 1 triệu</span>
+                        <strong>Miễn phí</strong>
+                    </div>
+                    <input data-value="FREE" checked type="radio" name="transport" />
+                    <span>
+                                <span>
+                                    <span></span>
+                                </span>
+                            </span>
+                </label>
+            </div>
+        </div>
+        <div class="from__pay">
+            <div class="from__pay--title">
+                <h2>Thanh toán</h2>
+                <span>Toàn bộ các giao dịch được bảo mật và mã hóa.</span>
+            </div>
+            <div class="from__pay--checkbox">
+                <div class="pay__cod option__cod active-select"
+                     onclick="handleShowDetailTransport(event, 'cod')">
+                    <label class="pay__cod--choice">
+                        <div>Thanh toán khi nhận hàng (COD)</div>
+                        <input data-value="COD" checked type="radio" name="pay" />
+                        <span>
+                                     <span>
+                                        <span></span>
+                                    </span>
+                                </span>
+                        <div class="pay__cod--show show-option__cod">
+                            <p>Thanh toán khi nhận hàng</p>
+                        </div>
+                    </label>
+                </div>
+                <div class="pay__cod option__accounting"
+                     onclick="handleShowDetailTransport(event, 'accounting')">
+                    <label class="pay__accounting">
+                        <div>Phương Thức Chuyển Khoản</div>
+                        <input data-value="TRAN" type="radio" name="pay" />
+                        <span>
+                                    <span>
+                                        <span></span>
+                                    </span>
+                                </span>
+                        <div class="pay__cod--show show-option__accounting">
+                            <p>
+                                Thực hiện thanh toán của bạn trực tiếp vào tài khoản ngân hàng của chúng mình.
+                                Vui lòng sử dụng ID đơn đặt hàng của
+                                bạn làm tham chiếu thanh toán. Đơn đặt hàng của bạn sẽ không được chuyển
+                                cho đến khi tài khoản của chúng mình thông báo đã nhận.
+                            </p>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="success__pay--button">
+            <button onclick="handleSubmit()">Hoàn thành thanh toán</button>
+        </div>
+        <div class="logo__right">
+            <span>Mọi quyền được bảo lưu Levents</span>
+        </div>
+</div>

@@ -1,0 +1,11 @@
+ <div class="suggest" th:classappend="'suggest-'+ ${style}"  th:fragment="seller(array, title, style)">
+      <div class="suggest__title">
+          <h2 th:text="${title}"></h2>
+      </div>
+      <div class="suggest__list">
+          <div class="suggest__list--item" th:each="item : ${array}">
+              <div th:replace="user/fragments/common/Card :: cardtest (object = ${item}, type = ${style})">
+              </div>
+          </div>
+      </div>
+  </div>

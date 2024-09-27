@@ -1,0 +1,117 @@
+<div th:fragment="detailProduct(key)" class="checkout__from--right-ticky" th:data-code="${codeCart}">
+        <div>
+            <div class="from__apply-detail-small" th:id=" ${key == null} ? 'frame1' : 'frame' + ${key}">
+                <div class="from__apply-detail-small-frame">
+                    <div class="detail-small__sum">
+                        <span>Tổng quan đơn hàng</span>
+                        (<span th:text="${dataCartCheckout.size()}"></span>)
+                    </div>
+                    <div class="detail-small__text">
+                        <span onclick=" infoOverViewProductsMobile('open', this)">Hiển thị <i class="fa-solid fa-chevron-down"></i></span>
+                        <span onclick=" infoOverViewProductsMobile('close', this)" class="disable">Ẩn  <i class="fa-solid fa-chevron-up"></i></span>
+                    </div>
+                    <div class="from__item-buy__parent-frame">
+                        <div class="from__item-buy__parent" th:each="item : ${dataCartCheckout}">
+                            <div class="from__item-buy">
+                                <div class="from__item-buy--img">
+                                    <img th:src="${item.optionUse.optionImageUses[0].imageUse.linkImage}" />
+                                    <span>
+                                <span th:text="${item.quantity}">1</span>
+                        </span>
+                                </div>
+                                <div class="from__item-buy--content">
+                                    <h3 class="content__title" th:text="${item.optionUse.productUse.name}">Levents® Cargo ShortPants/ Dark Green</h3>
+                                    <div class="content__type" >
+                                        <span  th:text="${item.optionSizeUSe.sizeUse.name} + ' /'">Size 2 /</span>
+                                        <span  th:text="${item.optionUse.colorUse.name}">Dark Green</span>
+                                    </div>
+                                </div>
+                                <div class="from__item-buy--price">
+                                <span>
+                                    <span th:data-money="${item.optionUse.getPriceCorrect()}"
+                                          class="money__detail"
+                                          th:text="${item.optionUse.getPriceCorrect()}">410.000</span>
+                                    ₫
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <form  onsubmit="apiAddVoucher(event)" class="from__apply-voucher" th:if="${result == null && authenticated != null}">
+                <div class="from__apply-voucher--input">
+                    <div class="apply-voucher--input">
+                        <label class="label__voucher">Mã giảm giá</label>
+                        <input required class="input__voucher"  type="text"  oninput="handleInput('voucher')" />
+                    </div>
+                    <div class="err__voucher" th:if="${errorVoucher != null}" th:text="${errorVoucher}">Mã giảm giá hợp lệ</div>
+                </div>
+                <button class="button__voucher">Áp dụng</button>
+            </form>
+            <div class="from__apply-vouched" th:if="${result == null}">
+                <span class="vouched--item" th:each="item : ${voucherUses}" >
+                    <i class="fa-solid fa-xmark"
+                       th:data-code="${item.code}"
+                       onclick="deleteVoucher(this.getAttribute('data-code'))"></i>
+                    <span th:text="${item.code}"></span>
+                </span>
+            </div>
+
+
+
+            <div class="from__total">
+                <div class="from__total--extra">
+                    <span>Tổng phụ</span>
+                    <strong class="total-extra" th:data-total="${total_products}" th:text="${total_products}">860.000 </strong>
+                </div>
+                <div class="from__total--voucher" th:if="${voucherUses != null && voucherUses.size() > 0}">
+                    <span>Giảm giá đơn hàng</span>
+                    <div class="voucher__item" th:each="item : ${voucherUses}" >
+                        <div class="voucher__item--left">
+                            <img src="/image/coupon.png" />
+                            <span th:text="${item.code}"></span>
+                        </div>
+                        <div class="voucher__item--right" >
+                            <span th:data-type="${item.type}" th:data-value="${item.type == 'PRICE'} ? ${item.price} : ${item.percent} ">-50000</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="from__total--transport">
+                    <span>Vận chuyển</span>
+                    <strong th:if="${ship != null}">
+                        <span class="price__transport" th:data-price="${ship}" th:text="${ship}"></span>
+                    </strong>
+                    <strong th:if="${ship == null}">
+                        <span class="price__transport" th:data-price="${total_products > 1000000} ? 0 : 35000" th:text="${total_products > 1000000} ? '0 ₫' : '35.000 ₫'"></span>
+                    </strong>
+                </div>
+                <div class="user__member" th:if="${authenticated != null || userMember != null}">
+                    <div class="user__member--left">
+                        <i class="fa-solid fa-user-ninja"></i>
+                        <span th:if="${userMember == null}" th:text="${authenticated.memberUse.name} + ' ('  +${authenticated.memberUse.percent}   + '%)'"></span>
+                        <span th:if="${userMember != null}" th:text="${userMember.memberUse.name} + ' ('  + ${userMember.memberUse.percent}   + '%)'"></span>
+                    </div>
+                    <div class="user__member--right">
+                        <span class="total__old" th:data-value="${total_old}" th:text="${total_old}"></span>
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                        <span class="total__new" th:data-value="${total}" th:text="${total}"></span>
+                    </div>
+                </div>
+
+                <div class="from__total--fee">
+                    <strong>Tổng</strong>
+                    <strong>VND <span class="total" th:data-price="${total}" th:text="${total}"></span> ₫</strong>
+                </div>
+                <div class="from__total--savings-voucher" th:if="${voucherUses != null && voucherUses.size() > 0}">
+                    <img src="/image/coupon.png">
+                     <strong>TỔNG SỐ TIỀN TIẾT KIỆM ĐƯỢC</strong>
+                     <strong class="sumSubtract"></strong>
+                </div>
+
+            </div>
+        </div>
+</div>

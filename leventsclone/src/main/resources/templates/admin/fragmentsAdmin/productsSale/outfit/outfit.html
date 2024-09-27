@@ -1,0 +1,61 @@
+<div class="outfit"  th:fragment="outfit">
+    <table class="outfit__table">
+        <thead>
+        <tr>
+            <th th:if="${action == 'screen' && authenticated.role == 'admin'}"></th>
+            <th>ID</th>
+            <th>Hình</th>
+            <th>Mẫu</th>
+            <th>Sản phẩm chính</th>
+            <th><i class="fa-solid fa-gear"></i></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${outfits}" th:data-id="${item.id}" ondblclick="checked(this.getAttribute('data-id'))">
+            <td th:if="${action == 'screen' && authenticated.role == 'admin'}" class="table__check">
+                <input
+                        onchange="handleDelete()"
+                        th:data-id="${item.id}"
+                        th:id="'input' + ${item.id}"   type="checkbox">
+            </td>
+            <td th:text="${item.id}">
+            </td>
+            <td class="row__img">
+                <img th:src="${item.imagesUses[0].linkImage}">
+            </td>
+            <td>
+                <div class="row__sample">
+                    <span th:text="${item.height}">
+                    </span> -
+                    <span th:text="${item.weight}">
+                    </span>
+                </div>
+            </td>
+            <td>
+                <div class="row__product-size-color">
+                    <span class="row__product-size-color--name" th:text="${item.optionUse.productUse.name}"></span>
+                    <div class="row__product-size-color--color">
+                        <span th:style="'background:' + ${item.optionUse.colorUse.code}"></span>
+                    </div>
+                  <span th:text="${item.optionSizeUSe.sizeUse.name}"></span>
+                </div>
+            </td>
+            <td>
+                <div class="outfit__option">
+                    <button class="outfit__option--update" th:data-id="${item.id}"
+                            th:if="${authenticated.role == 'admin'}"
+                            onclick="openFromUpdate(this.getAttribute('data-id'))">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                    <button class="outfit__option--detail"
+                            th:data-id="${item.id}"
+                            onclick="openFromDetail(this.getAttribute('data-id'))"
+                    >
+                        <i class="fa-solid fa-circle-info"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

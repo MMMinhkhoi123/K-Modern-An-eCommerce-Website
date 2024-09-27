@@ -1,0 +1,42 @@
+<div class="product" th:fragment="product" id="product--list-fran">
+    <table class="product__table">
+        <thead>
+        <tr>
+            <th th:if="${action == 'screen' && authenticated.role == 'admin' }"></th>
+            <th>ID</th>
+            <th>Tên sản phẩm </th>
+            <th>Giá sản phẩm (VNĐ)</th>
+            <th>Loại sản phẩm</th>
+            <th><i class="fa-solid fa-gear"></i></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${products}"
+            th:data-id="${item.id}" ondblclick="checked(this.getAttribute('data-id'))">
+            <td class="table__check" th:if="${action == 'screen' && authenticated.role == 'admin' }">
+                <input
+                        th:data-id="${item.id}"
+                        th:id="'input' + ${item.id}"
+                        onchange="handleDelete()"
+                        th:disabled="${item.isUsing == true}" type="checkbox" />
+            </td>
+            <td th:text="${item.id}">Alfreds Futterkiste</td>
+            <td  th:text="${item.name}">Maria Anders</td>
+            <td class="product__price--field" th:data-price="${item.price}" th:text="${item.price}">Germany</td>
+            <td  th:text="${item.typeProductUse.name}">Maria Anders</td>
+            <td class="product__setting">
+                <div class="product__setting-fra">
+                    <button class="product__setting--update"
+                            th:if="${authenticated.role == 'admin'}"
+                            th:data-id="${item.id}" onclick="openFromUpdate(this.getAttribute('data-id'))">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+<!--                    <button class="product__setting&#45;&#45;detail" th:data-id="${item.id}" onclick=" openDetail(this.getAttribute('data-id'))">-->
+<!--                        <i class="fa-solid fa-circle-info"></i>-->
+<!--                    </button>-->
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

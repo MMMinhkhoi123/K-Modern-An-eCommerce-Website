@@ -1,0 +1,33 @@
+version: '3.3'
+networks:
+  backend:
+    driver: bridge
+
+services:
+  mysql-service:
+    image: mysql:8.0
+    container_name: mysql-container-2
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - mysql-data-config-part:/etc/mysql/conf.d
+    networks:
+      - backend
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_DATABASE: levent
+      DB_URL: BD_URL=jdbc:mysql://mysql-container-2:3306/levent
+      URL: http://localhost
+
+  springboot-service:
+    image: khoi794/levents:version_2
+    container_name: springboot-container-2
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
+
+volumes:
+  mysql-data:
+  mysql-data-config-part:

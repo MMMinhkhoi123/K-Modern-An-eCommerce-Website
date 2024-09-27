@@ -1,0 +1,40 @@
+<div class="list__customer" th:fragment="customer">
+        <table class="customer__sale--table">
+            <thead>
+            <tr>
+                <th>Tên khách hàng</th>
+                <th>Điện thoại liên hệ</th>
+                <th>Địa chỉ</th>
+                <th>Mã đơn hàng</th>
+                <th>Trạng thái</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="table__row" th:each="item : ${customers}">
+                <td th:text="${item.name}"></td>
+                <td th:text="${item.phone}"></td>
+                <td th:text="${item.address}"></td>
+<!--                <td class="price__order" th:text="${item.price}"></td>-->
+                <td th:text="${item.codeOrder}"></td>
+                <td>
+                    <span class="success" th:if="${item.state == 'THÀNH CÔNG'}">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Hoàn thành</span>
+                    </span>
+                    <span class="disagree" th:if="${item.state == 'TỪ CHỐI' || item.state == 'THẤT BẠI'}">
+                        <i class="fa-solid fa-xmark"></i>
+                        <span>Từ chối</span>
+                    </span>
+                    <span class="wait" th:if="${item.state == 'ĐANG CHUẨN BỊ'
+                    ||  item.state == 'ĐƠN HÀNG GẶP LỖI'
+                    || item.state == 'CHỜ'
+                    || item.state == 'XÁC NHẬN ĐƠN HÀNG'
+                    || item.state == 'ĐANG GIAO' } ">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <span>Đang giao dịch</span>
+                    </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+</div>

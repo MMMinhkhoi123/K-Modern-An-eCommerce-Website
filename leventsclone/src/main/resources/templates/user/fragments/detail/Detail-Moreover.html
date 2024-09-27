@@ -1,0 +1,314 @@
+ <div class="detail-product" th:fragment="detail (object)">
+     <div class="detail-product__img slide-open" th:data-index="0">
+         <div class="slide-open__slide-parent" >
+             <div class="slide-open__move-child">
+                 <div class="slide-open__move--bar-child"></div>
+             </div>
+             <div class="slide-open__slide" onmousedown="moveChildSlide(event, this)">
+                 <div class="slide-open__slide--item"
+                      th:data-index = "${imagesStat.index}";
+                      onclick="choiceImg(Number(this.getAttribute('data-index')))"
+                      th:id="'slide'+ ${imagesStat.index}"
+                      th:classappend="${imagesStat.index == 0} ? 'active' : null"
+                      th:each="images : ${object.imagesUses}">
+                     <img th:src="${images.name}"  />
+                 </div>
+             </div>
+         </div>
+         <div class="scrollbar">
+             <div class="slide-open__move">
+                 <div class="slide-open__move--bar"></div>
+             </div>
+             <div class="slide-open__move_hidden">
+                 <div class="slide-open__move--bar-hidden"></div>
+             </div>
+         </div>
+         <div class="parent-open">
+             <div class="slide-open__current">
+                 <div class="slide-open__current--item"   th:id="${imagesStat.index}" th:data-index="${imagesStat.index}" th:each="images : ${object.imagesUses}">
+                     <img th:src="${images.name}"  />
+                 </div>
+             </div>
+         </div>
+         <div class="view__extra">
+             <div class="specific__option-more--wish"
+                  th:id="'heart' + ${object.colorUse.id} + '-' + ${object.productUse.id} "
+                  th:classappend="${inWishList == true} ? 'active' : null"
+                  th:data-idSize="${object.sizeUse.id}"   th:data-idColor="${object.colorUse.id}"  th:data-idProduct="${object.productUse.id}"
+                  th:if="${authenticated != null}" onclick="choiceHeart(this)">
+                 <i class="fa-regular fa-heart"></i>
+                 <i style="color: red" class="fa-solid fa-heart"></i>
+             </div>
+             <i class="fa-solid fa-copy"  onclick=" copyLink()"></i>
+             <i class="fa-solid fa-expand" onclick="handleViewZoom()"></i>
+         </div>
+     </div>
+     <div class="detail-product__specific">
+         <div class="detail-product__specific--fullscreen">
+             <div class="specific__option-more">
+                 <div class="specific__option-more--wish"
+                      th:id="'heart' + ${object.colorUse.id} + '-' + ${object.productUse.id} "
+                      th:classappend="${inWishList == true} ? 'active' : null"
+                      th:data-idSize="${object.sizeUse.id}"   th:data-idColor="${object.colorUse.id}"  th:data-idProduct="${object.productUse.id}"
+                      th:if="${authenticated != null}" onclick="choiceHeart(this)">
+                     <i class="fa-regular fa-heart"></i>
+                     <i style="color: red" class="fa-solid fa-heart"></i>
+                 </div>
+                 <i class="fa-solid fa-copy"  onclick=" copyLink()"></i>
+                 <i class="fa-solid fa-expand" onclick="handleViewZoom()"></i>
+             </div>
+         </div>
+         <div class="detail-product__specific--describe">
+             <span class="specific__trademark">LEVENTS-ASIA</span>
+             <h2  class="specific__name" th:text="${object.productUse.name}"> Levents® Sticker Oversize Tee/ Red</h2>
+             <div class="specific__price--parent">
+                 <span class="specific__price" th:if="${object.productUse.percent > 0}" th:classappend="${object.productUse.percent > 0} ? 'rate' :  null" th:data-price="${object.productUse.priceDiscount} " th:text="${object.productUse.priceDiscount} + ' VND'">410.000 VND</span>
+                 <span class="specific__price" th:data-price="${object.productUse.price} " th:text="${object.productUse.price} + ' VND'">410.000 VND</span>
+             </div>
+             <div class="specific__voucher"  onclick="handleViewVoucher()">
+                 <span class="specific__voucher--left">
+                     <i class="fa-solid fa-ticket"></i> Voucher của Levents
+                 </span>
+                 <i class="fa-solid fa-angle-right"></i>
+
+             </div>
+             <div class="specific__color">
+                 <span>Color:</span>
+                 <div class="specific__color--option">
+                     <div class="color__item" th:classappend="${object.colorUse.name == color.name} ? 'active--color' : null"  th:each="color : ${object.colorUses}">
+                         <a class="color__item--display"
+                                href="*"
+                                th:data-name="${object.productUse.name}"
+                                th:data-color="${color.name}"
+                                th:style="'background:' + ${color.name}">
+                         </a>
+                     </div>
+                 </div>
+             </div>
+             <div class="specific__size">
+                 <div class="specific__size--above">
+                     <span>Size</span>
+                     <strong onclick="handleViewSize()">
+                         <i class="fa-solid fa-up-right-and-down-left-from-center"></i> Bảng size
+                     </strong>
+                 </div>
+                 <div class="specific__size--below">
+                     <div class="size__item"
+                          onclick="handleSize(event, this.getAttribute('id'))"
+                          th:data-size="${item}"
+                          th:id="${item.id}"
+                          th:data-quantity="${item.quantity}"
+                     th:each="item : ${object.sizeUses}"
+                          th:text="${item.name}"
+                     >
+                         Size 01
+                     </div>
+                 </div>
+             </div>
+             <div class="specific__amount">
+                 <span>Số lượng</span>
+                 <div class="specific__amount--input">
+                     <div onclick="handleDecrease()">
+                         <i class="fa-solid fa-minus disable"></i>
+                     </div>
+                     <input class="amount__input" type="number" value="1" min="1" onchange="changeData(event)" step="0.01" />
+                     <div onclick="handleIncrease()">
+                         <i class="fa-solid fa-plus"></i>
+                     </div>
+                 </div>
+             </div>
+
+             <button
+                     th:data-color="${object.colorUse.name}"
+                     th:data-idProduct="${object.productUse.id}"
+                     class="specific__add-cart" onclick="handleAddProduct()">
+                 <div class="loader__fame disable_load">
+                     <span class="loader"></span>
+                 </div>
+                 <span>Thêm vào giỏ hàng</span>
+             </button>
+             <div class="specific__buy--wrap">
+                 <a  class="specific__buy"  th:href="@{'/pages/shipping'}">Mua ngay</a>
+             </div>
+             <div class="specific__information" onclick="handleViewInfo()">
+                 <div class="specific__information--left">
+                     <strong>Thông tin sản phẩm</strong>
+                     <span></span>
+                 </div>
+                 <i class="fa-solid fa-angle-right"></i>
+             </div>
+             <div class="specific__policy-transport">
+                 <div class="specific__policy-transport--left" onclick="handleViewTransfor()">
+                     <strong>Chính sách vận chuyển</strong>
+                     <span>Miễn phí vận chuyển hoá đơn trên 1.000.000đ</span>
+                 </div>
+                 <i class="fa-solid fa-angle-right"></i>
+             </div>
+             <div class="specific__policy-change">
+                 <div  class="specific__policy-change--left" onclick="handleViewChange()">
+                     <strong>Chính sách đổi trả</strong>
+                     <span>Miễn phí đổi trả trong vòng 7 ngày</span>
+                 </div>
+                 <i class="fa-solid fa-angle-right"></i>
+             </div>
+         </div>
+     </div>
+ </div>
+
+
+
+ <div class="detail-product" th:fragment="detail2 (object)">
+     <div class="detail-product__img slide-open" th:data-index="0">
+         <div class="slide-open__slide-parent" >
+             <div class="slide-open__move-child">
+                 <div class="slide-open__move--bar-child"></div>
+             </div>
+             <div class="slide-open__slide" onmousedown="moveChildSlide(event, this)">
+                 <div class="slide-open__slide--item"
+                      th:data-index = "${imagesStat.index}";
+                      onclick="choiceImg(Number(this.getAttribute('data-index')))"
+                      th:id="'slide'+ ${imagesStat.index}"
+                      th:classappend="${imagesStat.index == 0} ? 'active' : null"
+                      th:each="images : ${object.optionImageUses}">
+                     <img th:src="${images.imageUse.linkImage}"  />
+                 </div>
+             </div>
+         </div>
+         <div class="scrollbar">
+             <div class="slide-open__move">
+                 <div class="slide-open__move--bar"></div>
+             </div>
+             <div class="slide-open__move_hidden">
+                 <div class="slide-open__move--bar-hidden"></div>
+             </div>
+         </div>
+         <div class="parent-open">
+             <div class="slide-open__current">
+                 <div class="slide-open__current--item"   th:id="${imagesStat.index}" th:data-index="${imagesStat.index}" th:each="images : ${object.optionImageUses}">
+                     <img th:src="${images.imageUse.linkImage}"  />
+                 </div>
+             </div>
+         </div>
+         <div class="view__extra">
+             <div class="specific__option-more--wish"
+                  th:id="'heart' + ${object.idOpt}"
+                  th:classappend="${inWishList == true} ? 'active' : null"
+                  th:data-idOpt="${object.idOpt}"
+                  th:if="${authenticated != null}" onclick="choiceHeart(this)">
+                 <i class="fa-regular fa-heart"></i>
+                 <i style="color: red" class="fa-solid fa-heart"></i>
+             </div>
+             <i class="fa-solid fa-copy"  onclick=" copyLink()"></i>
+             <i class="fa-solid fa-expand" onclick="handleViewZoom()"></i>
+         </div>
+     </div>
+     <div class="detail-product__specific">
+         <div class="detail-product__specific--fullscreen">
+             <div class="specific__option-more">
+                 <div class="specific__option-more--wish"
+                      th:id="'heart' + ${object.idOpt}"
+                      th:classappend="${inWishList == true} ? 'active' : null"
+                      th:data-idOpt="${object.idOpt}"
+                      th:if="${authenticated != null}" onclick="choiceHeart(this)">
+                     <i class="fa-regular fa-heart"></i>
+                     <i style="color: red" class="fa-solid fa-heart"></i>
+                 </div>
+                 <i class="fa-solid fa-copy"  onclick=" copyLink()"></i>
+                 <i class="fa-solid fa-expand" onclick="handleViewZoom()"></i>
+             </div>
+         </div>
+         <div class="detail-product__specific--describe">
+             <span class="specific__trademark">LEVENTS-ASIA</span>
+             <h2  class="specific__name" th:text="${object.productUse.name}"> Levents® Sticker Oversize Tee/ Red</h2>
+             <div class="specific__price--parent">
+                 <span class="specific__price" th:if="${object.productUse.percent > 0}" th:classappend="${object.productUse.percent > 0} ? 'rate' :  null" th:data-price="${object.getPriceDiscount()} " th:text="${object.getPriceDiscount()} + ' VND'">410.000 VND</span>
+                 <span class="specific__price" th:data-price="${object.productUse.price} " th:text="${object.getPriceNormal()} + ' VND'">410.000 VND</span>
+             </div>
+             <div class="specific__voucher"  onclick="handleViewVoucher()">
+                 <span class="specific__voucher--left">
+                     <i class="fa-solid fa-ticket"></i> Voucher của Levents
+                 </span>
+                 <i class="fa-solid fa-angle-right"></i>
+
+             </div>
+             <div class="specific__color">
+                 <span>Color:</span>
+                 <div class="specific__color--option">
+                     <div class="color__item" th:classappend="${object.colorUse.id == color.id} ? 'active--color' : null"  th:each="color : ${object.productUse.colorUses}">
+                         <a class="color__item--display"
+                            th:href="@{'/products?option=' +  ${color.idOpt} }"
+                            th:data-name="${object.productUse.name}"
+                            th:data-color="${color.name}"
+                            th:style="'background:' + ${color.name}">
+                         </a>
+                     </div>
+                 </div>
+             </div>
+             <div class="specific__size">
+                 <div class="specific__size--above">
+                     <span>Size</span>
+                     <strong onclick="handleViewSize()">
+                         <i class="fa-solid fa-up-right-and-down-left-from-center"></i> Bảng size
+                     </strong>
+                 </div>
+                 <div class="specific__size--below">
+                     <div class="size__item"
+                          onclick="handleSize(event, this.getAttribute('id'))"
+                          th:data-size="${item.sizeUse.id}"
+                          th:id="${item.id}"
+                          th:data-quantity="${item.quantity}"
+                          th:each="item : ${object.optionSizeUSes}"
+                          th:text="${item.sizeUse.name}"
+                     >
+                         Size 01
+                     </div>
+                 </div>
+             </div>
+             <div class="specific__amount">
+                 <span>Số lượng</span>
+                 <div class="specific__amount--input">
+                     <div onclick="handleDecrease()">
+                         <i class="fa-solid fa-minus disable"></i>
+                     </div>
+                     <input class="amount__input" type="number" value="1" min="1" onchange="changeData(event)" step="0.01" />
+                     <div onclick="handleIncrease()">
+                         <i class="fa-solid fa-plus"></i>
+                     </div>
+                 </div>
+             </div>
+
+             <button
+                     th:data-idOption="${object.idOpt}"
+                     class="specific__add-cart" onclick="handleAddProduct()">
+                 <div class="loader__fame disable_load">
+                     <span class="loader"></span>
+                 </div>
+                 <span>Thêm vào giỏ hàng</span>
+             </button>
+             <div class="specific__buy--wrap">
+                 <a  class="specific__buy"  th:href="@{'/pages/shipping'}">Mua ngay</a>
+             </div>
+             <div class="specific__information" onclick="handleViewInfo()">
+                 <div class="specific__information--left">
+                     <strong>Thông tin sản phẩm</strong>
+                     <span></span>
+                 </div>
+                 <i class="fa-solid fa-angle-right"></i>
+             </div>
+             <div class="specific__policy-transport">
+                 <div class="specific__policy-transport--left" onclick="handleViewTransfor()">
+                     <strong>Chính sách vận chuyển</strong>
+                     <span>Miễn phí vận chuyển hoá đơn trên 1.000.000đ</span>
+                 </div>
+                 <i class="fa-solid fa-angle-right"></i>
+             </div>
+             <div class="specific__policy-change">
+                 <div  class="specific__policy-change--left" onclick="handleViewChange()">
+                     <strong>Chính sách đổi trả</strong>
+                     <span>Miễn phí đổi trả trong vòng 7 ngày</span>
+                 </div>
+                 <i class="fa-solid fa-angle-right"></i>
+             </div>
+         </div>
+     </div>
+ </div>

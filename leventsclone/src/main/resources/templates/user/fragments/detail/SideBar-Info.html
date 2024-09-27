@@ -1,0 +1,26 @@
+<div class="info" th:fragment="info">
+    <div class="info__background" onclick="closeInfo()">
+    </div>
+    <div class="info__main">
+        <div class="info__main--above">
+            <i class="fa-solid fa-chevron-left" onclick="closeInfo()"></i>
+            <span>Thông tin sản phẩm</span>
+        </div>
+        <div class="info__main--below">
+            <strong th:text="${product.productUse.name} + '/ ' + ${product.colorUse.name}">
+            </strong>
+            <div>
+                Form hoodie oversize có độ dài phủ qua mông, phần tay áo rộng rãi, form dáng thoải mái, thoáng mát khi mặc.
+                Size: 2/3/4
+            </div>
+        </div>
+    </div>
+    <script th:inline="javascript" aria-hidden="true">
+       const content =  document.querySelector(".info__main--below > div")
+        /*<![CDATA[*/
+        if([[${product.productUse.describe}]] != null) {
+            content.innerHTML = [[${product.productUse.describe}]];
+        }
+        /*]]>*/
+    </script>
+</div>

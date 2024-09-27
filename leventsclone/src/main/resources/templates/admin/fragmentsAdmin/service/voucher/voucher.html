@@ -1,0 +1,35 @@
+<div class="voucher" th:fragment="voucher">
+    <table class="voucher__sale--table">
+        <thead>
+        <tr>
+            <th  th:if="${action == 'screen' && authenticated.role == 'admin'}"></th>
+            <th>ID</th>
+            <th>Tên mô tả</th>
+            <th>Mã phân biệt</th>
+            <th>Giá trị giảm</th>
+            <th>Mức tiền áp dụng</th>
+            <th>Loại giảm giá</th>
+            <th th:if="${authenticated.role == 'admin'}"><i class="fa-solid fa-gear"></i></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  th:each="item : ${vouchers}"  th:data-id="${item.id}" ondblclick="checked(this.getAttribute('data-id'))">
+            <td class="table__check" th:if="${action== 'screen' && authenticated.role == 'admin'}">
+                <input onchange="handleDelete()" th:disabled="${item.code == 'NEWMEMBER50K'}" th:data-id="${item.id}" th:id="'input' + ${item.id}" type="checkbox">
+            </td>
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.code}"></td>
+            <td class="voucher__value" th:data-value="${item.type == 'PRICE'} ? ${item.price} : ${item.percent}"
+                th:text="${item.type == 'PRICE'} ? ${item.price} : ${item.percent}"></td>
+
+            <td  class="voucher__condition" th:data-condition="${item.priceCondition}" th:text="${'Lớn hơn ' + item.priceCondition}"></td>
+            <td class="voucher__type" th:data-type="${item.type}" th:text="${item.type}"></td>
+            <td class="voucher__setting" th:if="${authenticated.role == 'admin'}">
+                <button th:data-id="${item.id}" onclick="openUpdate(this.getAttribute('data-id'))">
+                    <i class="fa-solid fa-pen-to-square"></i></button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

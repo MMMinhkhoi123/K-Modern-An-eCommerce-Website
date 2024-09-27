@@ -1,0 +1,43 @@
+<div class="member__detail">
+   <img src="https://levents.asia/cdn/shop/files/MEMBERCARD510x554.png?crop=center&height=411&v=1702897548&width=400">
+    <div class="member__detail--content">
+        <div class="member__lead member-detail__item">
+            <div class="member__lead--left">
+                <strong th:text="${authenticated.getMemberUse().name}">Member Name</strong>
+                <span>Điểm hiện tại
+                    <strong class="price__member"
+                                            th:data-price="${authenticated.getGrade()}" th:text="${authenticated.getGrade()}">0</strong> điểm</span>
+            </div>
+            <div class="member__lead--right">
+                <button onclick="ListMember('open')">Các hạng thành viên</button>
+            </div>
+        </div>
+        <div class="member-detail__item">
+            <span>Tổng chi tiêu</span>
+            <span>Từ <span class="price__member" th:data-price="${authenticated.memberUse.grade}" th:text="${authenticated.memberUse.grade}"></span> VNĐ đến
+                <span class="price__member" th:text="${authenticated.memberUseUp.grade}"  th:data-price="${authenticated.memberUseUp.grade}" ></span> VNĐ</span>
+        </div>
+        <div class="member-detail__item">
+            <span>Tương đương</span>
+            <span>Bắt đầu từ <span class="price__member" th:text="${authenticated.memberUse.grade}" th:data-price="${authenticated.memberUse.grade}" ></span> điểm</span>
+        </div>
+        <div class="member-detail__item">
+            <span>Quyền lợi</span>
+            <span th:if="${authenticated.memberUse.percent == 0}">không có</span>
+            <span th:if="${authenticated.memberUse.percent != 0}"
+                  th:text="'Giảm ' +  ${authenticated.memberUse.percent} + '% tổng giá trị đơn hàng'"></span>
+        </div>
+        <div class="member-detail__item">
+            <span>Hạng thành viên</span>
+            <div class="detail--needed">
+               <span th:text="${authenticated.memberUse.name}">Member</span>
+                <span>Cần thêm <span class="price__member"
+                                     th:data-price="${authenticated.memberUseUp.grade - authenticated.grade}" th:text="${authenticated.memberUseUp.grade - authenticated.grade}"></span> điểm để đạt <span th:text="${authenticated.memberUseUp.name}"></span></span>
+            </div>
+        </div>
+        <div class="member-detail__item break">
+            <span>Điểm thưởng</span>
+            <span>0 LVS</span>
+        </div>
+    </div>
+</div>

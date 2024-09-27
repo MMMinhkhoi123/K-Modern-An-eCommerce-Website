@@ -1,0 +1,100 @@
+<div class="from">
+<!--    <div class="our-collection" th:fragment="swiper1 (seller,arrival)">-->
+<!--        <div class="our-collection__above">-->
+<!--            <div class="our-collection__above&#45;&#45;option">-->
+<!--                <a class="above&#45;&#45;link new active">-->
+<!--                    NEW ARRIVAL-->
+<!--                </a>-->
+<!--                <a class="above&#45;&#45;link seller">-->
+<!--                    BEST SELLER-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <div class="our-collection__above&#45;&#45;view">-->
+<!--                <a th:href="@{/collections/new-arrival}">-->
+<!--                    <span> Xem tất cả</span>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="our-collection__below">-->
+<!--            <div class="swiper">-->
+<!--                <div class="swiper__wrapper product-arrive active&#45;&#45;choice-type-product"-->
+<!--                     id="product-arrives"-->
+<!--                     onmouseover="SetUp('.scrollbar&#45;&#45;move','.swiper__scroll&#45;&#45;frame','.product-arrive', '.item&#45;&#45;arrive')"-->
+<!--                     onmousedown="handleMouseDownSwiper(event, this)"-->
+<!--                     onmouseleave="handleMouseLeaveSwiper(this)"-->
+<!--                >-->
+<!--                        <div class="swiper__wrapper&#45;&#45;item item&#45;&#45;arrive" th:each="item : ${arrival}" >-->
+<!--                            <div th:replace="user/fragments/common/Card :: card (object = ${item}, type = 'arrive')">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                </div>-->
+<!--                <div class="swiper__wrapper product-seller"-->
+<!--                     id="product-sellers"-->
+<!--                     onmouseover="SetUp('.scrollbar&#45;&#45;move','.swiper__scroll&#45;&#45;frame','.product-seller', '.item&#45;&#45;seller')"-->
+<!--                     onmousedown="handleMouseDownSwiper(event, this)"-->
+<!--                     onmouseleave="handleMouseLeaveSwiper(this)"-->
+<!--                >-->
+<!--                    <div class="swiper__wrapper&#45;&#45;item item&#45;&#45;seller" th:each="item : ${seller}" >-->
+<!--                        <div th:replace="user/fragments/common/Card :: card (object = ${item} , type = 'seller')">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="swiper__scroll">-->
+<!--                    <div class="swiper__scroll&#45;&#45;frame">-->
+<!--                        <div class="scrollbar&#45;&#45;move"></div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+</div>
+
+
+<div class="our-collection" th:fragment="swiper1test (seller, arrival)">
+    <div class="our-collection__above">
+        <div class="our-collection__above--option">
+            <a class="above--link new active">
+                NEW ARRIVAL
+            </a>
+            <a class="above--link seller">
+                BEST SELLER
+            </a>
+        </div>
+        <div class="our-collection__above--view">
+            <a th:href="@{/collections/new-arrival}">
+                <span> Xem tất cả</span>
+            </a>
+        </div>
+    </div>
+    <div class="our-collection__below">
+        <div class="swiper">
+            <div class="swiper__wrapper product-arrive active--choice-type-product"
+                 id="product-arrive"
+                 onmouseover="SetUp('.scrollbar--move','.swiper__scroll--frame','.product-arrive', '.item--arrive')"
+                 onmousedown="handleMouseDownSwiper(event, this)"
+                 onmouseleave="handleMouseLeaveSwiper(this)"
+            >
+                <div class="swiper__wrapper--item item--arrive" th:each="item : ${arrival}" >
+                    <div th:replace="user/fragments/common/Card :: cardtest(object = ${item}, type = 'arrive')">
+                    </div>
+                </div>
+            </div>
+            <div class="swiper__wrapper product-seller"
+                 id="product-seller"
+                 onmouseover="SetUp('.scrollbar--move','.swiper__scroll--frame','.product-seller', '.item--seller')"
+                 onmousedown="handleMouseDownSwiper(event, this)"
+                 onmouseleave="handleMouseLeaveSwiper(this)"
+            >
+                <div class="swiper__wrapper--item item--seller" th:each="item : ${seller}" >
+                    <div th:replace="user/fragments/common/Card :: cardtest (object = ${item} , type = 'seller')">
+                    </div>
+                </div>
+            </div>
+            <div class="swiper__scroll">
+                <div class="swiper__scroll--frame">
+                    <div class="scrollbar--move"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

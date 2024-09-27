@@ -1,0 +1,14 @@
+<div class="information__site--district-parent" th:fragment="district" >
+    <div class="information__site--district" >
+        <label class="label__district">
+            Quận/ Huyện
+        </label>
+        <select  class="select__district" onchange="handleChangeSiteDistricts(this.value, 'district')">
+            <option selected value="null">Quận/ Huyện</option>
+            <option th:each="dataCity : ${array_district}"
+                    th:value="${dataCity.id}"
+                    th:text="${dataCity.name}"></option>
+        </select>
+    </div>
+    <span class="err__district">Bạn chưa nhập Quận Huyện</span>
+</div>

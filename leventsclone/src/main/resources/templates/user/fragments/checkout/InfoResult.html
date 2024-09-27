@@ -1,0 +1,86 @@
+<div th:fragment="result" class="result code" th:data-code="${result.code}" th:if="${result != null}" >
+    <div class="result__thank">
+        <div class="result__thank--left">
+               <span>
+                    <i class="fa-solid fa-check"></i>
+                </span>
+        </div>
+        <div class="result__thank--right">
+            <span>Mã xác nhận <span th:text="${result.code}">fheuhfuiewgh3288</span> </span>
+            <h3>Cảm ơn <span th:text="${infoOrder.firstName}" > Minh khoi</span> !</h3>
+        </div>
+    </div>
+    <div class="result__order">
+        <h4>Đơn hàng của bạn đã được xác nhận</h4>
+        <span th:if="${infoOrder.typePay == 'COD'}">Bạn sẻ nhanh chóng nhận được tin nhắn chứa mã đơn hàng cùa bạn.</span>
+        <div class="pay__trans" th:if="${infoOrder.typePay == 'TRAN'}">
+            <span>Vui loòng chuyển khoảng với nội dung chuyển khoản : SĐT + Mã đơn hàng</span>
+            <span>Gửi ảnh giao dịch của bạn qua tin nhắn cho chúng mình , nhân viên sẻ tư vấn và gọi điện xác nhận đơn hàng cho bạn. </span>
+            <span>====</span>
+            <span>Thông tin chuyển khoản ngân hàng</span>
+            <span>TÊN: LEVENT WEBSITE</span>
+            <span>NGÂN HÀNG: MSB- Ngân hàng thương mại cổ phần Hàng hải Việt Nam </span>
+            <span>SỐ TÀI KHOẢN: 3748392748326</span>
+        </div>
+    </div>
+    <div class="result__update--parent">
+        <div class="result__update" id="result__update">
+            <h4>Thông tin cập nhật đơn hàng</h4>
+            <span>Có thể chúng tôi sẻ cập nhật tình trạng vận chuyển qua tin nhắn.</span>
+            <span>Email nhận thông báo: <strong th:text="${emailNotify}"></strong></span>
+            <div class="result__update--choice" onclick="openInputEmail()">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Nhận thông tin cập nhật qua email</span>
+            </div>
+            <form class="result__update--input disable" onsubmit="updateEmailNotify()">
+                <input required type="email" placeholder="Nhập email tại đây" />
+                <button>Gửi</button>
+            </form>
+        </div>
+    </div>
+    <div class="result__order-detail">
+        <h4>Chi tiết đơn hàng</h4>
+        <div class="result__order-detail--content">
+            <div class="order-detail__left">
+                <div class="order-detail__left--phone">
+                    <strong>Thông tin liên hệ</strong>
+                    <span th:text="${infoOrder.phone}">36276372167362</span>
+                </div>
+                <div class="order-detail__left--address">
+                    <strong>Địa chỉ vận chuyển</strong>
+                    <span th:text="${infoOrder.lastName} + ' ' + ${infoOrder.firstName} ">Nguyen Minh khoii</span>
+                    <span th:text="${infoOrder.address}">fhewu , fiehjw , fewifj, fewujfwe , tphcm</span>
+                    <span th:text="${infoOrder.phone}">0329162803</span>
+                </div>
+                <div class="order-detail__left--type-trans">
+                    <strong>Phương thức vận chuyển</strong>
+                    <span th:switch="${infoOrder.typeTrans}">
+                        <span th:case="'STANDARD'">Giao hàng tiêu chuẩn</span>
+                        <span th:case="'FREE'">Giao hàng tiêu chuẩn</span>
+                        <span th:case="'FAST'">Giao hàng siêu tốc </span>
+                    </span>
+                </div>
+            </div>
+            <div class="order-detail__right">
+                <div class="order-detail__right--pay">
+                    <strong>Phương thức thanh toán</strong>
+                    <span>
+                        <span th:text="${infoOrder.typePay == 'COD'} ? 'Thanh toán khi nhận hàng' : 'Thanh toán khi chuyển khoản' "></span>
+                        - <strong class="sum__payment" style="color: #030303" th:data-price="${infoOrder.sumPay}" th:text="${infoOrder.sumPay}">338099</strong> </span>
+                </div>
+                <div class="order-detail__right--pay">
+                    <strong>Địa chỉ thanh toán</strong>
+                    <span th:text="${infoOrder.lastName} + ' ' + ${infoOrder.firstName} ">Nguyen Minh khoii</span>
+                    <span th:text="${infoOrder.address}">fhewu , fiehjw , fewifj, fewujfwe , tphcm</span>
+                    <span th:text="${infoOrder.phone}">0329162803</span>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--    <div class="result__confirm">-->
+<!--        <span>Bạn cần trợ giúp? <strong>Liên hệ với chúng tôi</strong></span>-->
+<!--        <a href="/collections/all-products">-->
+<!--            Tiếp tục mua sắm-->
+<!--        </a>-->
+<!--    </div>-->
+</div>

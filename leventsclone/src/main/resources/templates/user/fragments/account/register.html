@@ -1,0 +1,48 @@
+ <form class="account__fromRegister"
+       method="post"
+       th:action="@{/account/register-save}"
+       th:fragment="resgister">
+     <div class="account__fromRegister__frame">
+         <div class="account__fromRegister--name">
+                            <span>
+                                Họ và tên
+                            </span>
+             <input name="fullName" type="text" placeholder="Nhập họ tên tại đây"/>
+         </div>
+         <div class="account__fromRegister--phone">
+                            <span>
+                       Số điện thoại
+                            </span>
+             <input name="phone" type="text" placeholder="Nhập số điện thoại tại đây"/>
+         </div>
+         <div class="account__fromRegister--email">
+                            <span>
+                                Email
+                            </span>
+             <input name="email" type="text" placeholder="Nhập email khẩu tại đây"/>
+         </div>
+         <div class="account__fromRegister--birthday">
+                                <span>
+                           Mật khẩu
+                                </span>
+             <input name="password" type="text" placeholder="Nhập mật khẩu tại đây"/>
+         </div>
+         <div class="account__fromRegister--birthday">
+                            <span>
+                        Ngày sinh
+                            </span>
+             <input name="date" type="Date" placeholder="Nhập ngày sinh"/>
+         </div>
+         <div  class="account__fromRegister--gender">
+                            <span>
+                                Giới tính
+                            </span>
+             <select name="gender">
+                 <option value="name">Nam</option>
+                 <option value="nu">Nữ</option>
+                 <option value="other">Khac</option>
+             </select>
+         </div>
+     </div>
+        <button type="submit">Đăng ký</button>
+    </form>

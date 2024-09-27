@@ -1,0 +1,264 @@
+.products__sale--table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    overflow-y: scroll;
+}
+.model__color {
+    width: 20px ;
+    height: 20px;
+    border: 1px solid gray;
+}
+.admin__screen {
+    height: 100vh;
+    overflow-y: scroll;
+}
+.model__color--parent {
+    display: flex;
+    justify-content: center;
+}
+.products__option > button {
+    width: 35px;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.loader-background {
+    background: rgba(0, 0, 0, 0.65) !important;
+}
+.products__option--remove {
+    background: red;
+    color: white;
+}
+.products__option--update {
+    background: #0b2e59;
+    color: white;
+}
+.products__option--img {
+    background: #3e3ec0;
+    color: white;
+}
+
+.products__assemble--name {
+    text-align: start;
+}
+.add-products__form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid var(--colorBorders);
+}
+.add-products__form--product-color {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+.addSize {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+.addSize__both {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.form-price {
+    width: 50%;
+}
+.addSize__both > div,
+.form-price,
+.add-products__form--product-color > div,
+.form--color-parent > div  {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.addSize__both > div > select,
+.addSize__both > div > input,
+.form-price > input,
+.form--color-parent > div > select,
+.form--product > select {
+    padding: 15px;
+}
+
+.form--quality-parent > div  {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form--quality-parent > div > select {
+    padding: 15px;
+}
+.form__drop {
+    display: flex;
+    min-height: 300px;
+    justify-content: center;
+    margin: 10px 0;
+    border: 2px dotted #bdb7b7;
+    cursor: pointer;
+}
+.form__drop--content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.form__drop--content > i {
+    color: #3e3ec0;
+    font-size: 40px;
+}
+.screen__add {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.btn-add-size {
+    margin-top: 10px;
+}
+.btn-add-size,
+.add-products__form--button > button {
+    background: #0b2e59;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form__drop--selected  {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 10px;
+    width: 100%;
+}
+.drop__selected {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: 2s;
+}
+.drop__selected--process {
+    height: 5px;
+    width: 100%;
+    background: #cbc8c8;
+    position: relative;
+}
+.process__bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 100%;
+    background: #0b2e59;
+}
+
+.drop__selected > i {
+    position: absolute;
+    top: 5px;
+    color: white;
+    right: 5px;
+}
+.drop__selected > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+}
+.disable {
+    display: none;
+}
+.add-products__form--imagesExist {
+    position: fixed;
+    inset: 0;
+    background: rgba(14, 14, 14, 0.66);
+    z-index: 20;
+}
+.imagesExist__form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 10px;
+    width: 300px;
+    text-align: center;
+    border-radius: 5px;
+}
+.imagesExist__button {
+    display: flex;
+    padding: 20px;
+    justify-content: space-around;
+}
+.imagesExist__button > button {
+    padding: 10px 30px;
+    background: #0b2e59;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.imagesExist__button > button:nth-child(1) {
+    background: #c9c4c4;
+    color: black;
+}
+.imagesExist__content {
+    padding-top: 20px;
+}
+.add-products__form--success > span,
+.add-products__form--error > span {
+    display: block;
+    padding: 15px;
+    background: #ff9595;
+    position: relative;
+}
+.add-products__form--success > span {
+    background: #95fd95;
+}
+.add-products__form--success > span > i,
+.add-products__form--error > span  > i {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+.add-products__form--error {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.show > img {
+    opacity: 1 !important;
+}
+.show > div  {
+    display: none !important;
+}
+.add-products__form--title > h3 {
+    margin: 0;
+}
+.screen__add {
+    overflow-y: scroll;
+}
+
+.products__option--detail {
+    background: #72d072;
+}
+.table__row > td {
+    padding: 10px;
+}
+.activeUsing {
+    opacity: 0.4;
+    pointer-events: none;
+}

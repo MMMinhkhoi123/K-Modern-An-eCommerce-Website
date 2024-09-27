@@ -1,0 +1,126 @@
+<div class="add-products" th:fragment="addproduct">
+    <form
+            method="post"
+            th:data-type="${type}"
+            onsubmit="controlFromProducts(event, this.getAttribute('data-type'))"
+            class="add-products__form">
+
+        <div class="add-products__form--title">
+            <h3 th:text="${type == 'add'} ? 'Thêm sản phẩm': 'Cập nhật sản phẩm'"></h3>
+        </div>
+        <div class="add-products__form--success">
+            <span class="err__success" th:if="${success != null}">
+                <span th:text="${success}">fefjei</span>
+                <i class="fa-solid fa-xmark" onclick="hiddenError('success')"></i>
+            </span>
+        </div>
+        <div class="add-products__form--error">
+            <span class="err__assemble" th:if="${errorAssemble != null}">
+                <span th:text="${errorAssemble}">fefjei</span>
+                <i class="fa-solid fa-xmark" onclick="hiddenError('assemble')"></i>
+            </span>
+            <span class="err__img" th:if="${errorImages != null}">
+                <span th:text="${errorImages}">fefjei</span>
+                <i class="fa-solid fa-xmark" onclick="hiddenError('img')"></i>
+            </span>
+            <span class="err__size" th:if="${errorSize != null}">
+                <span th:text="${errorSize}">fefjei</span>
+                <i class="fa-solid fa-xmark" onclick="hiddenError('size')"></i>
+            </span>
+        </div>
+        <div class="add-products__form--product-color">
+            <div class="form--product">
+                <label>Sản phẩm</label>
+                <select th:disabled="${type == 'update'}" name="product" required  onchange="getColorActive(event)">
+                    <option  selected hidden="hidden" value="" >
+                        <div>--Chọn sản phẩm--</div>
+                    </option>
+                    <option th:if="${option != null}" th:selected="${option.productUse.id == item.id}"
+                            th:value="${item.id}"  th:each="item : ${products}">
+                        <div th:text="${item.name}">dd</div>
+                    </option>
+                    <option th:if="${option == null}"  th:value="${item.id}"  th:each="item : ${products}">
+                        <div th:text="${item.name}">dd</div>
+                    </option>
+                </select>
+            </div>
+            <div class="form--color-parent">
+                <div class="form--color" id="colorActive">
+                    <label>Màu sắc</label>
+                    <select required th:disabled="${type == 'update'}" name="color">
+                        <option  selected hidden="hidden" value="" >
+                            <div>--Chọn màu sắc--</div>
+                        </option>
+                        <option th:if="${option != null}" th:selected="${option.colorUse.id == item.id}" th:value="${item.id}"  th:each="item : ${colors}">
+                            <div th:text="${item.name}">dd</div>
+                        </option>
+                        <option th:if="${option == null}"  th:value="${item.id}"  th:each="item : ${colors}">
+                            <div th:text="${item.name}">dd</div>
+                        </option>
+
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="add-products__form--product-price">
+            <div class="form-price">
+                <label>Giá thêm</label>
+                <input required th:value="${option == null ? 0 : option.price}"  placeholder="Nhập giá tại đây" />
+            </div>
+        </div>
+
+        <label class="add-products__form--images">
+            <label>Hình ảnh sản phẩm</label>
+            <div class="form__drop">
+                <div class="form__drop--selected disable">
+                </div>
+                <div class="form__drop--content" >
+                    <i class="fa-solid fa-image" onclick="deleteImage(event)"></i>
+                    <span style="font-size: 20px">kéo & thả</span>
+                    <span> <span>hoặc</span> <span style="color:#3e3ec0; font-size: 20px">chọn</span></span>
+                    <span>
+                        Hổ trợ định dạng: png, jpg
+                    </span>
+                </div>
+            </div>
+            <input  name="img" type="file" onchange="changeImage(event)" hidden="hidden" multiple/>
+        </label>
+        <div class="add-products__form--imagesExist disable">
+            <div class="imagesExist__form">
+                <div class="imagesExist__content">
+                    <h4>Trùng hình ảnh, bạn có muốn ghi đè hình ảnh này không ? </h4>
+                </div>
+                <div class="imagesExist__button">
+                    <button type="button" onclick="destroyImage()">Hủy bõ</button>
+                    <button type="button" onclick="overrideImage()">Ghi đè</button>
+                </div>
+            </div>
+        </div>
+        <div class="add-products__form--button">
+            <button th:text="${type == 'add'} ? 'Tạo mới': 'Cập nhật'"></button>
+        </div>
+    </form>
+
+
+    <script th:inline="javascript">
+        var x = [[${option}]];
+        if(x != null) {
+            DataImgs  = [[${option}]];
+        }
+
+        success = [[${success}]];
+        type = [[${type}]];
+        if(type === "update") {
+            success = "success"
+        }
+        if(DataImgs.optionImageUses.length > 0) {
+            openContentUpload('open');
+            hiddenContentUpload('close');
+            DataImgs.optionImageUses.forEach((e, index) => {
+                indexGet = index;
+                img.push(e.imageUse.linkImage);
+                createImgExtra(index, e.imageUse.linkImage, success, type);
+            })
+        }
+    </script>
+</div>

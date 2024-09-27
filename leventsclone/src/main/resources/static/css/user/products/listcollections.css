@@ -1,0 +1,20 @@
+.collections-list__above {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+.collections-list__above--right > select {
+    padding: 10px;
+    outline: none;
+}
+
+.collections-list__below {
+    display: grid;
+    grid-template-columns: repeat(3, calc(100%/ 3));
+}
+.collections-list__below--item {
+    border-right: 1px solid rgba(187, 183, 183, 0.27);
+    padding: 20px;
+    border-bottom: 1px solid rgba(187, 183, 183, 0.27);
+    border-top: 1px solid rgba(187, 183, 183, 0.27);
+}

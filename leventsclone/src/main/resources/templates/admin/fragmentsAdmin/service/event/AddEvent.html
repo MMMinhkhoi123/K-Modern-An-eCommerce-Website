@@ -1,0 +1,51 @@
+<div class="addevent" th:fragment="addevent" th:data-id="${event.id}">
+    <form class="addevent__form" th:data-type="${type}" onsubmit="formControl(event, this.getAttribute('data-type'))">
+        <div class="addevent__form--title">
+            <h2 th:text="${type=='update'} ? 'Cập nhật sự kiện' : 'Thêm sự kiện'"></h2>
+        </div>
+        <div class="addevent__form--success" th:if="${success != null}">
+            <span class="err__success">
+                <span th:text="${success}">Thêm sự kiện mới thành công</span>
+                <i class="fa-solid fa-xmark" onclick="hiddenError('success')"></i>
+            </span>
+        </div>
+        <div class="addevent__form--error">
+            <span class="err__date">
+                 <span> Ngày sự kiện không hợp lệ</span>
+                <i class="fa-solid fa-xmark" onclick="hiddenError('date')"></i>
+            </span>
+            <span class="err__path" th:if="${error}">
+                 <span th:text="${error}"> Ngày sự kiện không hợp lệ</span>
+                <i class="fa-solid fa-xmark" onclick="hiddenError('path')"></i>
+            </span>
+        </div>
+        <div class="addevent__form--name-path">
+            <div class="item__name">
+                <label>Tên sự kiện</label>
+                <input th:value="${event.name}" type="text" placeholder="Nhập tên sự kiện" required />
+            </div>
+            <div class="item__path">
+                <label>Đường dẫn sự kiện</label>
+                <input th:value="${event.path}" type="text" placeholder="Nhập path sự kiện" required />
+            </div>
+        </div>
+        <div class="addevent__form--start-end">
+            <div class="item__start" th:data-date="${event.dateStart}" >
+                <label>Ngày bắt đầu</label>
+                <input type="date" required />
+            </div>
+            <div class="item__end" th:data-date="${event.dateEnd}">
+                <label>Ngày kết thúc</label>
+                <input type="date" required />
+            </div>
+        </div>
+        <div class="addevent__form--button">
+            <div class="form--button-frame">
+                <div class="loader-background">
+                    <div class="loader-form"></div>
+                </div>
+                <button th:text="${type=='update'} ? 'Cập nhật' : 'Thêm mới'"></button>
+            </div>
+        </div>
+    </form>
+</div>

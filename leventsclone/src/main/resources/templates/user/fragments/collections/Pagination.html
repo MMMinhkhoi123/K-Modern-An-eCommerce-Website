@@ -1,0 +1,20 @@
+<div class="pagination-parent" th:fragment="pagination (countPage, thisPage)">
+    <div class="pagination">
+        <div class="pagination__pre" th:if="${thisPage > 1}">
+            <i class="fa-solid fa-chevron-left"></i>
+            <span></span>
+        </div>
+        <div class="pagination__page"
+             th:data-this = "${thisPage}"
+             th:data-page = "${index}"
+             onclick="choicePage(Number(this.getAttribute('data-this')), Number(this.getAttribute('data-page')))"
+             th:classappend="${index == thisPage} ? 'active-page' : null" th:each="index : ${#numbers.sequence( 1, countPage, 1)}">
+            <strong th:text="${index}">1</strong>
+            <span></span>
+        </div>
+        <div class="pagination__next" th:if="${thisPage != countPage && countPage > 0}">
+            <i class="fa-solid fa-angle-right"></i>
+            <span></span>
+        </div>
+    </div>
+</div>

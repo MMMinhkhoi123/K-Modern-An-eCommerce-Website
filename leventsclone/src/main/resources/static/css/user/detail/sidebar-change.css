@@ -1,0 +1,54 @@
+.change__background {
+    background: rgba(0, 0, 0, 0.43);
+    position: fixed;
+    inset: 0;
+    cursor: pointer;
+    pointer-events: none;
+    transition: 0.2s;
+    opacity: 0;
+    z-index: 88;
+}
+.change__main {
+    position: fixed;
+    right: -100%;
+    bottom: 0;
+    top: 0;
+    background: white;
+    width: 560px;
+    transition: 0.2s;
+    overflow-y: scroll;
+    z-index: 89;
+}
+.change__main--above {
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-size: 19px;
+    border-bottom: 1px solid rgba(204, 202, 202, 0.38);
+}
+
+.change__main--above > i {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.change__main--below {
+    padding: 20px;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 10px;
+    font-size: 15px;
+}

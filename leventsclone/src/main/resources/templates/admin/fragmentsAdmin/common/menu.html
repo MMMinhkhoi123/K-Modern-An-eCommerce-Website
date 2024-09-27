@@ -1,0 +1,168 @@
+<div  class="sidebar" th:fragment="menu">
+    <div class="sidebar-extra" >
+        <div class="sidebar__item account">
+            <div class="sidebar__item--account">
+                <div class="account__left">
+                    <img src="https://th.bing.com/th/id/OIP.u101AE0Wim80ei0XaopcPwHaHy?rs=1&pid=ImgDetMain">
+                    <div class="account__left--above">
+                        <strong th:text="${authenticated.fullName}"></strong>
+                        <span th:text="${'Position: ' + authenticated.role}"></span>
+                    </div>
+                </div>
+                <div class="account__right">
+                     <span class="icon-direct un_change">
+                        <i class="fa-solid fa-ellipsis" onclick="activeMenuAccount()"></i>
+                    </span>
+                </div>
+                <ul class="account__menu">
+                    <div class="triangle-left"></div>
+<!--                    <li>Tùy chỉnh thông tin</li>-->
+                    <li>Cài đặt</li>
+<!--                    <li>Các báo cáo</li>-->
+                    <li> <a href="/logout"> <i class="fa-solid fa-right-from-bracket"></i> <span>Đăng xuất</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="sidebar__item parent-menu0">
+            <div class="sidebar__item--content" data-key="0">
+                <i class="fa-solid fa-table-columns"></i>
+                <a href="/admin/dashboard" style="color: black; text-decoration: none">Bảng điều khiển</a>
+            </div>
+        </div>
+        <div class="sidebar__item parent-menu0">
+            <div class="sidebar__item--content" data-key="0">
+                <i class="fa-regular fa-file"></i>
+                <a href="/admin/report" style="color: black; text-decoration: none">Báo cáo</a>
+            </div>
+        </div>
+        <div class="sidebar__item parent-menu1">
+            <div class="sidebar__item--content" data-key="1" onclick="choiceCatalog(1)">
+                <i class="fa-solid fa-box"></i>
+                <span>Danh mục</span>
+                <span class="item__icon">
+                    <i class="fa-solid fa-chevron-right direct-icon  icon1"></i>
+                </span>
+                <div class="sidebar__item--menu-child menu1">
+                    <div class="item__menu-child">
+                        <a href="/admin/product">
+                            Sản phẩm
+                        </a>
+                    </div>
+                    <div class="item__menu-child">
+                        <a href="/admin/type_product">
+                            Loại sản phẩm
+                        </a>
+                    </div>
+                    <div class="item__menu-child">
+                        <a href="/admin/size">
+                            kích thước sản phẩm
+                        </a>
+                    </div>
+                    <div class="item__menu-child">
+                        <a href="/admin/color">Màu sắc</a>
+                    </div>
+                    <div class="item__menu-child">
+                        <a href="/admin/directory">Danh mục sản phẩm</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar__item parent-menu2">
+            <div class="sidebar__item--content" data-key="2" onclick="choiceCatalog(2)">
+                <i class="fa-brands fa-product-hunt"></i>
+                <span>Sản phẩm bán</span>
+                <span class="item__icon">
+                    <i class="fa-solid fa-chevron-right direct-icon  icon2"></i>
+                </span>
+                <div class="sidebar__item--menu-child menu2">
+                    <div class="item__menu-child">
+                        <a href="/admin/collections">
+                            Bộ siêu tập
+                        </a>
+                    </div>
+                    <div class="item__menu-child">
+                        <a href="/admin/outfit">
+                            Phối đồ
+                        </a>
+                    </div>
+                    <div class="item__menu-child">
+                        <a href="/admin/products">
+                            Kho sản phẩm
+                        </a>
+                    </div>
+                    <div class="item__menu-child">
+                        <a href="/admin/feedbacks">
+                            Hình ảnh khách hàng
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar__item parent-menu3">
+            <div class="sidebar__item--content" data-key="3" onclick="choiceCatalog(3)">
+                <i class="fa-solid fa-tag"></i>
+                <span>Dịch vụ</span>
+                <span class="item__icon">
+                    <i class="fa-solid fa-chevron-right direct-icon  icon3"></i>
+                </span>
+                <div class="sidebar__item--menu-child menu3">
+                    <div class="item__menu-child">
+                        <a href="/admin/members">
+                            Hạng thành viên
+                        </a>
+                    </div>
+                    <div class="item__menu-child">
+                        <a href="/admin/vouchers">
+                            Mã giảm giá
+                        </a>
+                    </div>
+                    <div class="item__menu-child">
+                        <a href="/admin/events">
+                            Sự kiện
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar__item parent-menu4">
+            <div class="sidebar__item--content" data-key="4" onclick="choiceCatalog(4)">
+                <i class="fa-solid fa-users"></i>
+                <span>Khách hàng</span>
+                <span class="item__icon">
+                    <i class="fa-solid fa-chevron-right direct-icon  icon4"></i>
+                </span>
+                <div class="sidebar__item--menu-child menu4">
+                    <div class="item__menu-child">
+                        <a href="/admin/customer">
+                           Thông tin khách hàng
+                        </a>
+                    </div>
+                    <div class="item__menu-child">
+                        <a href="/admin/rating">
+                            Đánh giá khách hàng
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar__item parent-menu5">
+            <div class="sidebar__item--content" data-key="5" onclick="choiceCatalog(5)">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+                <span>Đơn hàng</span>
+                <span class="item__icon">
+                    <i class="fa-solid fa-chevron-right direct-icon  icon5"></i>
+                </span>
+                <div class="sidebar__item--menu-child menu5">
+                    <div class="item__menu-child">
+                        <a href="/admin/order">
+                          Thông tin  Đơn hàng
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar__item--back" onclick="offMenu()">
+        <i class="fa-solid fa-chevron-left"></i>
+    </div>
+</div>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Shipping</title>
+    <embed th:replace="user/fragments/common/link.html">
+    <link th:href="@{/css/user/shipping/shipping.css}" rel="stylesheet">
+    <script th:inline="javascript">
+        let dataAddress = [[${addressDefault}]];
+    </script>
+    <link th:href="@{/css/css/app.css}" rel="stylesheet" />
+
+</head>
+<body>
+ <div class="container">
+     <div class="container__child">
+         <div class="logo">
+             <button>K Modern</button>
+         </div>
+         <div class="shipping">
+             <div class="shipping__information">
+                 <div class="shipping__information--catalog">
+                 <span>
+                     <a href="/#cart">Cart</a>
+                     <i class="fa-solid fa-chevron-right"></i>
+                 </span>
+                     <span>
+                     <a>Information</a>
+                     <i class="fa-solid fa-chevron-right"></i>
+                 </span>
+                     <span>
+                     <a>Shipping </a>
+                     <i class="fa-solid fa-chevron-right"></i>
+                 </span>
+                     <span>
+                     <a>Payment </a>
+                 </span>
+                 </div>
+
+                 <div class="shipping__information--authentication" th:if="${authenticated != null}">
+                     <h4>Liên hệ</h4>
+                     <span>
+                     <span th:text="${authenticated.getFullName()}"></span>
+                     (<span th:text="${authenticated.getEmail()}"></span>)
+                 </span>
+                     <a href="*" onclick="logout(event)">Đăng xuất</a>
+                 </div>
+
+
+                 <div class="shipping__information--address">
+                     <h3>Địa chỉ giao hàng</h3>
+                     <div class="information__full-name">
+                         <div class="information__full-name--last--parent">
+                             <div class="information__full-name--last">
+                                 <label class="label__lastname">
+                                     Họ
+                                 </label>
+                                 <input class="input__lastname"
+                                        type="text"
+                                        onchange="handleChangeInput(this, 'lastname')"
+                                        oninput="handleActive(this, 'lastname')"
+                                 />
+
+                             </div>
+                             <span class="err__lastname">Bạn chưa nhập Họ</span>
+                         </div>
+                         <div class="information__full-name--first--parent">
+                             <div class="information__full-name--first">
+                                 <label  class="label__firstname">
+                                     Tên
+                                 </label>
+                                 <input
+                                         class="input__firstname"
+                                         onchange="handleChangeInput(this, 'firstname')"
+                                         oninput="handleActive(this, 'firstname')"
+                                         type="text" />
+                             </div>
+                             <span class="err__firstname">Bạn chưa nhập Tên</span>
+                         </div>
+                     </div>
+                     <div class="information__site">
+                         <div class="city_replace" >
+                             <div  th:replace="user/fragments/shipping/City :: city"></div>
+                         </div>
+                         <div class="district-replace">
+                             <div  th:replace="user/fragments/shipping/District :: district"></div>
+                         </div>
+                         <div class="commune-replace">
+                             <div th:replace="user/fragments/shipping/Commune :: commune"></div>
+                         </div>
+                     </div>
+                     <div class="information__specify">
+                         <div class="information__specify--frame">
+                             <label class="label__address">Địa chỉ nhà đường cụ thể</label>
+                             <input class="input__address"  type="text"
+                                    onchange="handleChangeInput(this, 'address')"
+                                    oninput="handleActive(this, 'address')"
+                             />
+                         </div>
+                         <span class="err__address">Bạn chưa nhập Địa chỉ nhà</span>
+                     </div>
+                 </div>
+
+<!--                 <div class="shipping__information&#45;&#45;packaging">-->
+<!--                     <h3>Dịch vụ gói quà</h3>-->
+<!--                     <div class="information__frame" >-->
+<!--                         <div class="information__swiper-packaging">-->
+<!--                             <div class="information__swiper-packaging&#45;&#45;parent">-->
+<!--                                 <div class="swiper-packaging__image-parent"-->
+<!--                                      onmouseout="handleMouseOut()"-->
+<!--                                      onmousedown=" handleMouseDownZoom(event, this)"-->
+<!--                                 >-->
+<!--                                     <div class="swiper-packaging__image">-->
+<!--                                         <img src="/image/packaging/Image_1d23fba1-9664-4c39-b93b-84e127b82583.webp" />-->
+<!--                                     </div>-->
+<!--                                     <div class="swiper-packaging__image">-->
+<!--                                         <img src="/image/packaging/Image_1d23fba1-9664-4c39-b93b-84e127b82583.webp" />-->
+<!--                                     </div>-->
+<!--                                 </div>-->
+<!--                                 <div class="swiper-packaging__image-parent&#45;&#45;scroll">-->
+<!--                                     <div class="swiper-packaging__image-parent&#45;&#45;scroll-thumb"></div>-->
+<!--                                 </div>-->
+<!--                             </div>-->
+<!--                             <div class="information__active">-->
+<!--                                 <span class="imag1 active&#45;&#45;package"></span>-->
+<!--                                 <span class="imag2"></span>-->
+<!--                             </div>-->
+<!--                             <div class="information__pre" onclick="handlePre()">-->
+<!--                                 <i class="fa-solid fa-chevron-left"></i>-->
+<!--                             </div>-->
+<!--                             <div class="information__next" onclick="handleNext()">-->
+<!--                                 <i class="fa-solid fa-chevron-right" ></i>-->
+<!--                             </div>-->
+<!--                         </div>-->
+<!--                         <div class="information__choice-option">-->
+<!--                             <div class="information__choice-option&#45;&#45;left">-->
+<!--                                 <label>-->
+<!--                                     <input th:checked="${packaging != null}" class="checkbox__present"-->
+<!--                                            onchange="handleChangeCheckbox(this)" type="checkbox">-->
+<!--                                     <span>-->
+<!--                                     <span></span>-->
+<!--                                     <span></span>-->
+<!--                                 </span>-->
+<!--                                 </label>-->
+<!--                             </div>-->
+<!--                             <div class="information__choice-option&#45;&#45;right">-->
+<!--                                 <p>-->
+<!--                                     Dịch vụ gói quà - Trải nghiệm mới thú vị của-->
+<!--                                     Levents® dành cho tất cả các bạn. GIFT BOX gồm:-->
+<!--                                     1 LEVENTS® GIFT BOX và 1 LEVENTS® LETTER (thiệp viết tay)-->
+<!--                                 </p>-->
+<!--                                 <ul>-->
+<!--                                     <li>-->
+<!--                                         <strong>-->
+<!--                                             199.000 VNĐ-->
+<!--                                         </strong>-->
+<!--                                     </li>-->
+<!--                                     <li>-->
+<!--                                         <strong>-->
+<!--                                             Kích cỡ:-->
+<!--                                         </strong>-->
+<!--                                         33 cm x 22 cm x 10 cm</li>-->
+<!--                                 </ul>-->
+<!--                             </div>-->
+<!--                         </div>-->
+<!--                     </div>-->
+<!--                 </div>-->
+<!--                 <div class="shipping__information&#45;&#45;packaging-content">-->
+<!--                 <textarea class="area__content"-->
+<!--                           placeholder="Nội dung của bạn" rows="5"></textarea>-->
+<!--                     <span class="content__err">Bạn chưa nhập nội dung cho quà tặng của bạn</span>-->
+<!--                 </div>-->
+                 <div class="shipping__information--button">
+                     <button>
+                         <a th:href="@{'/'}">Thoát</a>
+                     </button>
+                     <div class="shipping__information--next-info">
+                         <button class="information__pay"
+                                 onclick="handleContinuePay()">
+                             Tiếp tục đến thanh toán</button>
+                     </div>
+                 </div>
+                 <div  class="shipping__information--end">
+                     Mọi quyền được bảo lưu Levents
+                 </div>
+             </div>
+             <div class="shipping__extra">
+                 <div class="shipping__extra--voucher">
+                     <h3>Voucher</h3>
+                     <div class="voucher__use" th:if="${authenticated != null}">
+                         <!--                     th:if="${total > item.getPriceCondition()}"-->
+                         <label class="voucher__use--item" th:each="item : ${authenticated.getVoucherUses()}">
+                             <div class="use-item__left">
+                                 <input type="radio" th:data-code="${item.getCode()}" onchange="choiceVoucher(event)" />
+                             </div>
+                             <div class="use-item__right">
+                                 <div class="use-item__right--content">
+                                     <strong th:text="${item.code}">efefef</strong>
+                                     <span th:text="${item.name}">ddfeuhfweuygfyewgfyweg</span>
+                                 </div>
+                                 <div class="use-item__right--button disable" th:id="${item.code}">
+                                     <button>Đang sữ dụng</button>
+                                 </div>
+                             </div>
+                         </label>
+                     </div>
+                 </div>
+                 <div class="shipping__extra--hot-event">
+                     <h3>Chương trình nổi bật</h3>
+                 </div>
+             </div>
+         </div>
+         <div th:replace="user/fragments/shipping/Confirm :: confirm"></div>
+         <div class="loading--inventory disable">
+             <div class="loader"></div>
+         </div>
+     </div>
+     <div th:replace="user/fragments/shipping/ALertInventory :: inventory"></div>
+ </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"  type="text/javascript"></script>
+<script th:src="@{/js/user/shipping/shipping.js}"></script>
+<script th:src="@{/js/user/common/authenticated.js}"></script>
+</html>

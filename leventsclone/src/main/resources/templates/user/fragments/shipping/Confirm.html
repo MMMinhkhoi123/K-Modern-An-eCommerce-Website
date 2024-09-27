@@ -1,0 +1,24 @@
+ <div class="confirm" th:fragment="confirm">
+     <div class="confirm__background" onclick="handleConfirm('close')">
+     </div>
+     <div class="confirm__content">
+         <div class="confirm__content--title">
+             <h3>Xác nhận thông tin giao hàng của bạn</h3>
+             <span>Bạn vui lòng kiểm tra lại thông tin giao hàng đã điền</span>
+         </div>
+         <div class="confirm__content--full-name">
+             <label>Họ và tên</label>
+             <input class="content__name" type="text" disabled />
+         </div>
+         <div class="confirm__content--address">
+             <label>Địa chỉ của bạn</label>
+             <input  class="content__address"  type="text" disabled />
+         </div>
+         <div class="confirm__content--button">
+             <button onclick="handleConfirm('close')">Quay lại</button>
+             <div class="button__confirm" th:data-key="${cookie}" onclick="handleConfirmNext(this.getAttribute('data-key'))">
+                 <a>Tiếp tục</a>
+             </div>
+         </div>
+     </div>
+ </div>

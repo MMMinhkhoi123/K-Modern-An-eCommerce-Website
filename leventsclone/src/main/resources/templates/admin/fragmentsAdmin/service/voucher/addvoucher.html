@@ -1,0 +1,64 @@
+<div class="add__voucher" th:fragment="addvoucher">
+    <form
+            th:data-id="${voucher.id}"
+            th:data-type="${type}"
+            onsubmit="fromControl(event,this.getAttribute('data-type'))"
+            class="add__voucher--form">
+        <div class="voucher__title">
+            <h2 th:text="${type=='update'} ? 'Cập nhật mã khuyến mãi' : 'Thêm mã khuyến mãi'"></h2>
+        </div>
+        <div class="voucher__success" th:if="${success}">
+            <span class="err__success">
+                <span th:text="${success}"></span>
+                   <i class="fa-solid fa-xmark" onclick="hiddenError('success')"></i>
+            </span>
+        </div>
+        <div class="voucher__error" th:if="${errors}">
+            <span th:class="'err__' + ${item.getKey()}" th:each="item : ${errors}">
+                <span th:text="${item.getValue()}"></span>
+                   <i class="fa-solid fa-xmark" th:data-key="${item.getKey()}"
+                      onclick="hiddenError(this.getAttribute('data-key'))"></i>
+            </span>
+        </div>
+        <div class="voucher__content">
+            <div class="voucher__content--left">
+                <div class="voucher__describe">
+                    <label>Tên mô tả</label>
+                    <input th:value="${voucher.name}" type="text" placeholder="Nhập tên mã giảm giá tại đây" required />
+                </div>
+                <div class="voucher__code">
+                    <label>Mã phân biệt</label>
+                    <input th:value="${voucher.code}" type="text" placeholder="Nhập mã phân biệt  mã giảm giá tại đây" required />
+                </div>
+                <div class="voucher__type">
+                    <label>Giảm theo</label>
+                    <select onchange="ChangeType(event)">
+                        <option value="PRICE" selected>Số tiền</option>
+                        <option th:selected="${voucher.type == 'PERCENT'}" VALUE="PERCENT" >Số phần trăm</option>
+                    </select>
+                </div>
+            </div>
+            <div class="voucher__content--right">
+                <div class="voucher__value">
+                    <label>Giá trị giảm (<span class="text__type">VNĐ Mức tiền</span>)</label>
+                    <input oninput="inputChange(event)" th:value="${voucher.type == 'PERCENT'} ? ${voucher.percent} : ${voucher.price}" data-type="price" type="text"  placeholder="Giá trị tại đây" />
+                </div>
+                <div class="voucher__restrict">
+                    <label class="voucher__restrict--check">
+                        <input  type="checkbox" th:checked="${voucher.priceCondition != 0}" onchange="chooseCondition(event)" />
+                        <span>Mức tiền áp dụng</span>
+                    </label>
+                    <input oninput="inputChange(event)" required th:disabled="${voucher.priceCondition == 0}" th:value="${voucher.priceCondition}" type="text"   placeholder="Giá trị tại đây" value="0"/>
+                </div>
+            </div>
+        </div>
+        <div class="voucher__button">
+            <div class="voucher__button-frame">
+                <div class="loader-background">
+                    <div class="loader-form"></div>
+                </div>
+                <button th:text="${type== 'update'} ? 'Cập nhật' : 'Thêm vào'"></button>
+            </div>
+        </div>
+    </form>
+</div>

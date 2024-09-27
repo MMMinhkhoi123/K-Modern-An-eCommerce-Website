@@ -1,0 +1,19 @@
+ <div class="zoom" th:fragment="zoom(image)">
+     <div class="zoom__frame">
+         <div class="zoom__frame--list"
+              onmouseleave="handleMouseOut()"
+              onmousedown="handleMouseDownZoom(event, this)">
+             <div class="frame__item" th:each="item : ${image}">
+                 <img th:src="${item.imageUse.linkImage}"  />
+             </div>
+
+         </div>
+     </div>
+     <div class="zoom__move">
+         <div class="zoom__move--bar"></div>
+     </div>
+     <div class="zoom__out" onclick="closeViewZoom()">
+         <i class="fa-solid fa-circle-xmark"></i>
+         <span>Thoát chế độ xem toàn màng hình</span>
+     </div>
+ </div>

@@ -1,0 +1,18 @@
+<form onsubmit="submitAddSize(event)" th:data-option="${option.idOpt}" class="addSize" th:fragment="addSize">
+    <div class="addSize__both">
+        <div class="addSize__size">
+            <label>Size</label>
+            <select required>
+                <option hidden="hidden">--Chọn size--</option>
+                <option th:each="item : ${sizes}"  th:value="${item.id}" th:text="${item.name}">--Chọn size--</option>
+            </select>
+        </div>
+        <div  class="addSize__quantity">
+            <label>Số lượng</label>
+            <input required placeholder="Nhập số lượng tại đây" />
+        </div>
+    </div>
+    <button class="btn-add-size">
+        Thêm mới
+    </button>
+</form>

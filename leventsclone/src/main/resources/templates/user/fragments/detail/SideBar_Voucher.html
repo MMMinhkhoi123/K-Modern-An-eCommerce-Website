@@ -1,0 +1,22 @@
+<div class="voucher" th:fragment="voucher">
+    <div class="voucher__background"
+         onclick="closeVoucher(event)">
+    </div>
+    <div class="voucher__main">
+        <div class="voucher__main--above">
+            <i class="fa-solid fa-chevron-left"
+               onclick="closeVoucher(event)"></i>
+            <span>Voucher của Levents</span>
+        </div>
+        <div class="voucher__main--below">
+            <div class="main__empty">
+                <div class="main__empty--icon">
+                    <img th:src="@{/image/coupon.png}" alt="image" />
+                    <span>Chưa có sản phẩm nào</span>
+                </div>
+            </div>
+            <div class="main__has">
+            </div>
+        </div>
+    </div>
+</div>

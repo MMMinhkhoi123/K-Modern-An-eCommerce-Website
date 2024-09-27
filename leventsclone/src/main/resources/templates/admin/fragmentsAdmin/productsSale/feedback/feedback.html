@@ -1,0 +1,33 @@
+<div class="feedback" th:fragment="feedback">
+    <table class="feedback__table">
+        <thead>
+        <tr>
+            <th th:if="${action == 'screen' && authenticated.role == 'admin'}"></th >
+            <th>ID</th>
+            <th>Hình</th>
+            <th>Sản phẩm</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item : ${feedbacks}" th:data-id="${item.id}" ondblclick="checked(this.getAttribute('data-id'))">
+                <td class="table__check" th:if="${action == 'screen' && authenticated.role == 'admin'}">
+                    <input onchange="handleDelete()"   th:data-id="${item.id}"   th:id="'input' + ${item.id}"  type="checkbox" />
+                </td>
+                <td th:text="${item.id}">
+                </td>
+                <td class="row__img">
+                    <img th:src="${item.imageUse.linkImage}">
+                </td>
+                <td>
+                    <div class="row__card">
+                        <div class="row__card--content">
+                            <span th:text="${item.optionUse.productUse.name}">san pham 1</span>
+                            <span th:text="${item.optionUse.colorUse.name}">red</span>
+                        </div>
+                        <img th:src="${item.optionUse.optionImageUses[0].imageUse.linkImage}" />
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

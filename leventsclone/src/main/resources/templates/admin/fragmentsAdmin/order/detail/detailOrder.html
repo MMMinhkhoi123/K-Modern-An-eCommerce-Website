@@ -1,0 +1,27 @@
+<div class="detail-order" th:fragment="detailOrders" th:if="${optional == 'products'}">
+    <div class="detail-order__tab">
+        <div class="detail-order__tab--left">
+            <div class="tab-left__item" th:classappend="${target == 'product'} ? 'select' : null" th:data-key="${code}" id="detail__product" onclick="changeTabDetail('product')">
+                <span>Sản phẩm đã mua</span>
+            </div>
+            <div class="tab-left__item" th:classappend="${target == 'voucher'} ? 'select' : null" th:data-key="${code}" id="detail__voucher" onclick="changeTabDetail('voucher')">
+                <span>Voucher áp dụng</span>
+            </div>
+        </div>
+        <div class="detail-order__tab--right">
+            <label class="tab-right__item">
+                <input type="checkbox" hidden="hidden" onchange="openSum(event)" />
+                <span></span>
+                <strong>Xem tổng thanh toán</strong>
+                <i class="fa-regular fa-eye"></i>
+            </label>
+        </div>
+    </div>
+    <div class="detail-order__view-parent">
+        <div class="detail-order__view" id="child_detail">
+            <div th:replace="admin/fragmentsAdmin/order/detail/detaiorder/productsDetail :: products"></div>
+            <div th:replace="admin/fragmentsAdmin/order/detail/detaiorder/voucherDetail :: voucher"></div>
+        </div>
+        <div th:replace="admin/fragmentsAdmin/order/detail/detaiorder/sumdetail :: sumdetail"></div>
+    </div>
+</div>

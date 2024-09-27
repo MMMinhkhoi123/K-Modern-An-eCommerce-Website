@@ -1,0 +1,43 @@
+<div class="products__sale" th:fragment="products" th:data-option="${option.idOpt}">
+    <table class="products__sale--table">
+        <thead>
+        <tr>
+            <th th:if="${authenticated.role == 'admin'}"></th>
+            <th>kích thước</th>
+            <th>Tồn kho</th>
+            <th th:if="${action == 'screen'}"><i class="fa-solid fa-gear"></i></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  class="table__row" th:each="item : ${option.optionSizeUSes}"
+             th:data-id="${item.id} " ondblclick="checked(this.getAttribute('data-id'))">
+            <td class="table__check" th:if="${authenticated.role == 'admin'}">
+                <input
+                        onchange="handleDelete()"
+                        th:data-id="${item.id}"
+                        th:id="${item.id}"
+                        type="checkbox">
+            </td>
+            <td th:text="${item.sizeUse.name}"></td>
+            <td th:text="${item.quantity}"></td>
+<!--            <td th:text="${item.sold}"></td>-->
+            <td th:if="${action == 'screen'}">
+                <div class="products__option">
+                    <button class="products__option--update"
+                            th:data-sum="${item.id}"
+                            onclick="openFormUpdate(this.getAttribute('data-sum'))"
+                    >
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                    <button class="products__option--img">
+                        <i class="fa-solid fa-photo-film"></i>
+                    </button>
+                    <button class="products__option--detail">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,44 @@
+<div class="defect__product" th:fragment="defective">
+    <div class="defect__product--background"></div>
+    <div class="defect__product--content">
+        <div class="confirm__title">
+            <h2>Cập nhật đơn hàng lỗi</h2>
+            <i onclick="outConfirm2()" class="fa-solid fa-xmark"></i>
+        </div>
+        <div class="products">
+                <div th:id="'products' + ${itemStat.index}"
+                     th:data-option="${item.optionUse.idOpt}"
+                     th:data-size="${item.sizeUse.id}"
+                     th:each="item : ${productsOrder}">
+                    <div class="products__frame">
+                        <label class="product__item">
+                            <input onchange="changeDefect(event)" type="checkbox" th:data-index="${itemStat.index}" />
+                            <div class="product__item--img">
+                                <img th:src="${item.optionUse.optionImageUses[0].ImageUse.linkImage}">
+                            </div>
+                            <div class="product__item--info">
+                                <strong th:text="${item.optionUse.productUse.name}"></strong>
+                                <span th:text="${item.optionUse.colorUse.name} + '-' + ${item.sizeUse.name} "></span>
+                                <strong th:text="'SL: ' + ${item.quality}"></strong>
+                            </div>
+                        </label>
+                        <div class="product__description" th:id="'area' + ${itemStat.index}">
+                            <select>
+                                <option value="0" hidden="hidden" selected>--chọn số luợng lỗi--</option>
+                                <option th:value="${item.quality}">Tất cả</option>
+                                <option th:value="${number}" th:each="number : ${#numbers.sequence(1, item.quality)}" th:text="${number}">dwd</option>
+                            </select>
+                            <textarea onresize="false" placeholder="Nhập mô tả lỗi"></textarea>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="defect__product--button">
+            <button onclick="outConfirm2()">Hủy bỏ</button>
+            <button onclick="confirmNext2()">
+                <i class="fa-solid fa-trash"></i>
+                <span>Xác nhận</span>
+            </button>
+        </div>
+    </div>
+</div>

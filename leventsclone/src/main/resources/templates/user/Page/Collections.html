@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Our Collections</title>
+    <embed th:replace="user/fragments/common/link.html">
+    <link th:href="@{/css/user/common/header.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/common/footer.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/common/manage.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/common/sidebar.css}" rel="stylesheet" />
+    <link th:href="@{/css/css/app.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/collections/collection.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <div class="collections">
+        <div th:replace="user/fragments/common/generate :: header"></div>
+        <div th:replace="user/fragments/common/sidebar :: sidebar"></div>
+        <div th:replace="user/fragments/common/Manage :: option"></div>
+
+        <div class="collections__folder">
+            <a href="/">Home</a> / Bộ sưu tập
+        </div>
+        <div class="collections__list">
+            <div class="collections__list--item" th:classappend="${item.isDark() == true} ? 'dark' : ''" th:each="item : ${collections}">
+                <img th:src="${item.img}" />
+                <div class="item__content" >
+                    <h2 th:text="${item.name}">iewhfhweh</h2>
+                    <div class="item__content--link"  th:data-color="${item.isDark() == true} ? 'black' : 'white'" onmouseover="hoverItem(this)" >
+                        <a th:data-url="${item.name}" href="*">Xem bộ sưu tập</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div th:replace="user/fragments/common/generate :: footer"></div>
+    </div>
+    <div th:replace="user/fragments/common/backScrollTop :: scroll"></div>
+</div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"  type="text/javascript"></script>
+<script th:src="@{/js/user/common/sidebar.js}"></script>
+<script th:src="@{/js/user/common/manage.js}"></script>
+<script th:src="@{/js/user/ourcollection/ourcollection.js}"></script>
+<script th:src="@{/js/user/home/home.js}"></script>
+<script th:src="@{/js/user/common/authenticated.js}"></script>
+</html>

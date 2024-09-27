@@ -1,0 +1,35 @@
+
+<div class="styling" th:fragment="swiper3(mix)" >
+  <div class="styling__above">
+      <h3 class="styling__above--tile">STYLING</h3>
+    <div class="styling__above--view">
+      <a href="/blogs/outfit">Xem tất cả</a>
+    </div>
+  </div>
+  <div class="styling__below">
+    <div class="styling__below--swiper"
+         data-key="styling"
+         onmouseover="SetUp3()"
+         onmouseleave="handleMouseLeaveSwiper(this)"
+         onmousedown="handleMouseDownSwiper(event, this)">
+      <a class="below__item-outfit" th:href="'/blogs/outfit/khoi'"
+         th:data-id="${item.id}"
+         th:each="item : ${mix}">
+        <div th:replace="user/fragments/common/CardOutfit :: card">
+        </div>
+      </a>
+    </div>
+
+    <div th:if="${mix.size() >=4 }" class="styling__below--move">
+      <div class="below__move">
+      </div>
+    </div>
+
+    <div th:if="${mix.size() >= 4}" class="styling__pre" onclick="handlePreSwiper()">
+      <i class="fa-solid fa-chevron-left"></i>
+    </div>
+    <div th:if="${mix.size() >= 4}" class="styling__next" onclick="handleNextSwiper()">
+      <i class="fa-solid fa-chevron-right"></i>
+    </div>
+  </div>
+</div>

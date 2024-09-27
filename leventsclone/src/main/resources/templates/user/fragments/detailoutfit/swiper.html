@@ -1,0 +1,17 @@
+ <div class="swiper" th:fragment="swiper(array, obj)">
+     <div class="swiper__collect">
+         <div class="swiper__collect--slide"
+              onmouseleave="handleMouseOutOutfit()"
+              onmouseover="handleMouOverOutfit()"
+               onmousedown="handleMouseDownOutfit(event, this)"
+         >
+<!--             <div class="collect__item-parent" th:replace="user/fragments/common/cardOutfitDetail :: card(item = ${obj})"></div>-->
+             <div class="collect__item-parent" th:each="item : ${array}">
+               <div th:replace="user/fragments/common/cardOutfitDetail :: card(item = ${item})"></div>
+             </div>
+         </div>
+     </div>
+     <div class="swiper__thumb">
+         <div class="swiper__thumb--scroll"></div>
+     </div>
+ </div>

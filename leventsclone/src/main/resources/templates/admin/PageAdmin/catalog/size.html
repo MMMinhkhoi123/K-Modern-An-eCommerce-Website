@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Size</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/fontawesome/css/all.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin/common/menu.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin/common.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin/datalog/size.css}" rel="stylesheet" />
+
+    <link th:href="@{/css/admin/common/intitForm.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin/common/warningDelete.css}" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"  type="text/javascript"></script>
+</head>
+<body>
+<div class="admin">
+    <div class="admin__menu">
+        <div th:replace="admin/fragmentsAdmin/common/menu :: menu"></div>
+    </div>
+    <div class="admin__screen">
+        <div class="admin__screen-child" id="admin__screen">
+
+            <!--            section 1 title , folder -->
+            <div class="admin__screen--title  screen__tile">
+                <h2>Kích thước</h2>
+            </div>
+            <div class="admin__screen--folder screen__folder">
+                <div class="screen__root">
+                    <a href="/admin/size">Danh sách</a>
+                    <i th:if="${type != null}" class="fa-solid fa-chevron-right"></i>
+                </div>
+                <div class="screen__current" th:if="${type != null}">
+                    <span th:text="${type == 'add'} ? 'Tạo' : 'Cập nhật'" ></span>
+                </div>
+            </div>
+
+            <div class="parent__size-section screen__case" id="admin__sector">
+
+                <!--            section 2  View List Screen -->
+                <div class="size-section__screen screen__case--child" th:if="${action == 'screen'}">
+
+                    <div class="color-section__option  case__option">
+                        <div class="color-section__option--show">
+                            <span class="show__sum">Hiện có
+                                <span th:text="${sizes.size()}">7</span>
+                            </span>
+                            <div class="disable show__selected">
+                               <span>
+                                   Đã chọn
+                                    <span class="count__selected">7</span>
+                                </span>
+                                <button onclick="clearAll()">Dọn dẹp</button>
+                            </div>
+                        </div>
+                        <div class="case__option--setting">
+                            <button class="disable delete"
+                                    th:data-type="${action}"
+                                    onclick="openDelete(this.getAttribute('data-type'))"
+                            >
+                                <i class="fa-solid fa-trash"></i>
+                                <span>Xóa bỏ</span>
+                            </button >
+
+                            <button th:if="${authenticated.role == 'admin'}" onclick="openFrom()" class="create">
+                                <i class="fa-solid fa-square-plus"></i>
+                                <span>Tạo mới</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="admin__sizes" class="parent__size admin__size-List screen__list">
+                        <div th:replace="admin/fragmentsAdmin/catalog/size/size :: size"></div>
+                    </div>
+                </div>
+
+
+                <!--            section 3  View Form Screen -->
+                <div class="size-section__edit screen__case--child" id="size-section__edit" th:if="${action == 'edit'}">
+                    <div id="admin__sizeAdd" class="admin__sizeAdd">
+                        <div th:replace="admin/fragmentsAdmin/catalog/size/addsize :: addsize"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="admin/fragmentsAdmin/common/warningDelete :: warning"></div>
+</body>
+<script th:src="@{/js/common.js}"></script>
+<script th:src="@{/js/admin/common/menu.js}"></script>
+<script th:src="@{/js/admin/catalog/size/control.js}"></script>
+<script th:src="@{/js/admin/catalog/size/api.js}"></script>
+</html>

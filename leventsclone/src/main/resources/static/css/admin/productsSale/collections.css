@@ -1,0 +1,199 @@
+.disable {
+    display: none;
+}
+.collection__table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.col__img > img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.collection__option > button {
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+}
+
+
+.collection__option--update {
+    background: var(--colorUpdate);
+    color: white;
+}
+.collection__option--detail {
+    background: var(--colorDetail);
+}
+.screen__add {
+    overflow-y: scroll;
+    gap: 10px;
+}
+
+.collection__form {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid var(--colorBorders);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.collection__form--title > h3 {
+    margin: 0;
+    padding-bottom: 20px;
+}
+
+.collection__form--portion {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
+}
+.portion__right {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.collection__form--describe,
+.portion__right--choice,
+.collection__form--product-choice,
+.portion__right--product,
+.portion__right--name {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.portion__right--choice > div,
+.portion__right--product > select,
+.portion__right--name > input {
+    padding: 15px;
+}
+.portion__left {
+    position: relative;
+}
+.portion__left {
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.portion__left--avatar > img {
+    display: block;
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.portion__left--avatar {
+    width: 100%;
+    height: 200px;
+    cursor: pointer;
+    background: rgba(204, 202, 202, 0.28);
+    border-radius: 5px;
+    position: relative;
+}
+.portion__left--avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.avatar--content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.portion__right--choice > div {
+    border: 1px solid black;
+}
+.avatar__type {
+    display: flex;
+    gap: 10px;
+}
+.avatar__type-input > input:checked ~ span > span {
+    left: calc(100% - 20px);
+    background: black !important;
+}
+.avatar__type-input > span {
+    display: block;
+    position: relative;
+    width: 40px;
+    height: 20px;
+    border-radius: 20px;
+    border: 1px solid #c0bbbb;
+    background: #d2d0d0;
+}
+.avatar__type-input > span > span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    border-radius: 50%;
+    display: block;
+    background: #7373ec;
+}
+.item__list {
+    border: 1px solid var(--colorBorders);
+    padding: 10px;
+    border-radius: 5px;
+}
+.item__list > i {
+    cursor: pointer;
+}
+.product-choice__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+}
+.describe__title {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+.describe__title > button {
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    background: #7373ec;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.collection__form--button > button {
+    padding: 10px 20px;
+    background: #7373ec;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.collection__form--errors {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.collection__form--success > span,
+.collection__form--errors > span {
+    display: block;
+    background: #f38590;
+    padding: 15px;
+    position: relative;
+}
+.collection__form--success > span > i,
+.collection__form--errors > span > i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+.collection__form--success  > span{
+    background: #95fd95 !important;
+}

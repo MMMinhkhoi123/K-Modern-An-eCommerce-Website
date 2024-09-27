@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:replace="admin/fragmentsAdmin/common/link"></link>
+    <link th:href="@{/css/admin/service/voucher.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin/common/intitForm.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin/common/warningDelete.css}" rel="stylesheet" />
+    <title>Voucher</title>
+</head>
+<body>
+   <div class="admin">
+       <div class="screen__menu">
+           <div th:replace="admin/fragmentsAdmin/common/menu :: menu"></div>
+       </div>
+       <div class="admin__screen">
+           <div class="admin__screen-child" id="admin__screen">
+               <!--            section 1 title , folder -->
+               <div class="admin__screen--title  screen__tile">
+                   <h2>Mã khuyến mãi</h2>
+               </div>
+               <div class="admin__screen--folder screen__folder">
+                   <div class="screen__root">
+                       <a href="/admin/vouchers">Danh sách</a>
+                       <i th:if="${type != null}" class="fa-solid fa-chevron-right"></i>
+                   </div>
+                   <div class="screen__current" th:if="${type != null}">
+                       <span th:if="${type == 'add'}" >Tạo</span>
+                       <span th:if="${type == 'update'}" >Cập nhật</span>
+                       <span th:if="${type == 'detail'}" >Xem chi tiết</span>
+                   </div>
+               </div>
+
+               <div class="admin__screen--section screen__case" id="admin__screen--section">
+                   <!--            section 2  View List Screen -->
+                   <div class="screen__List screen__case--child" th:if="${action == 'screen'}">
+                       <div class="color-section__option  case__option">
+                           <div class="color-section__option--show">
+                            <span class="show__sum">Hiện có
+                                <span th:text="${vouchers.size()}">7</span>
+                            </span>
+                               <div class="disable show__selected">
+                               <span>
+                                   Đã chọn
+                                    <span class="count__selected">7</span>
+                                </span>
+                                   <button onclick="clearAll()">Dọn dẹp</button>
+                               </div>
+                           </div>
+                           <div class="color-section__option--setting  case__option--setting">
+                               <button class="disable delete"
+                                       th:data-type="${action}"
+                                       onclick="openDelete(this.getAttribute('data-type'),'mã khuyến mãi')"
+                               >
+                                   <i class="fa-solid fa-trash"></i>
+                                   <span>Xóa bỏ</span>
+                               </button >
+
+                               <button th:if="${authenticated.role == null}" onclick="openCreate()" class="create">
+                                   <i class="fa-solid fa-square-plus"></i>
+                                   <span>Tạo mới</span>
+                               </button>
+                           </div>
+                       </div>
+                       <div class="screen__List--content screen__list">
+                           <div th:replace="admin/fragmentsAdmin/service/voucher/voucher ::  voucher"></div>
+                       </div>
+                   </div>
+                   <!--            section 3  View Form Screen -->
+                   <div class="screen__add screen__case--child" id="screen__add" th:if="${action == 'edit'}">
+                       <div class="screen__add--form">
+                           <div th:replace="admin/fragmentsAdmin/service/voucher/addvoucher :: addvoucher"></div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+   <div th:replace="admin/fragmentsAdmin/common/warningDelete :: warning"></div>
+</body>
+<script th:src="@{/js/admin/common/handleDelete.js}"></script>
+<script th:src="@{/js/common.js}"></script>
+<script th:src="@{/js/admin/common/menu.js}"></script>
+<script th:src="@{/js/admin/service/voucher/api.js}"></script>
+<script th:src="@{/js/admin/service/voucher/control.js}"></script>
+</html>

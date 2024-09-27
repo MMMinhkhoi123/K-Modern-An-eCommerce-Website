@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:replace="admin/fragmentsAdmin/common/link"></link>
+    <link th:href="@{/css/admin/common/intitForm.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin/common/uploadimg.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin/productsSale/outfit.css}" rel="stylesheet" />
+    <title>Title</title>
+    <script th:inline="javascript">
+       let outfit = [[${outfit}]];
+       let state = [[${success}]];
+       let type =  [[${type}]];
+    </script>
+    <link th:href="@{/css/admin/common/loader.css}" rel="stylesheet">
+    <link th:href="@{/css/admin/common/warningDelete.css}" rel="stylesheet" />
+</head>
+<body>
+ <div class="admin">
+     <div class="admin__menu">
+         <div th:replace="admin/fragmentsAdmin/common/menu :: menu"></div>
+     </div>
+     <div class="admin__screen">
+         <div class="admin__screen-child" id="admin__screen">
+             <div class="admin__screen--title  screen__tile">
+                 <h2>Phối đồ</h2>
+             </div>
+             <div class="admin__screen--folder screen__folder">
+                 <div class="screen__root">
+                     <a href="/admin/outfit" class="link">Danh sách</a>
+                     <i th:if="${type != null}" class="fa-solid fa-chevron-right"></i>
+                 </div>
+                 <div class="screen__current" th:if="${type != null}">
+                     <span th:if="${type == 'add'}" >Tạo</span>
+                     <span th:if="${type == 'update'}" >Cập nhật</span>
+                     <span th:if="${type == 'detail' && action != 'mix'}" >Xem chi tiết</span>
+                     <span th:if="${type == 'detail'  && action == 'mix'}" >
+                         <a  class="link" th:href="@{'/admin/outfit?detail='+ ${outfit.getId()}}" >Xem chi tiết</a> <i th:if="${type != null}" class="fa-solid fa-chevron-right"></i>
+                     </span>
+                     <span th:if="${action == 'mix'}">Thêm bộ</span>
+                 </div>
+             </div>
+
+             <div  class="admin__screen--section screen__case" id="admin__screen--section">
+                 <!--            section 2  View List Screen -->
+                 <div class="screen__List screen__case--child" th:if="${action == 'screen'}">
+                     <div class="color-section__option  case__option">
+                         <div class="color-section__option--show">
+                            <span class="show__sum">Hiện có
+                                <span th:text="${outfits.size()}">7</span>
+                            </span>
+                             <div class="disable show__selected">
+                               <span>
+                                   Đã chọn
+                                    <span class="count__selected">7</span>
+                                </span>
+                                 <button onclick="clearAll()">Dọn dẹp</button>
+                             </div>
+                         </div>
+                         <div class="color-section__option--setting  case__option--setting">
+                             <button class="disable delete"
+                                     th:data-type="${action}"
+                                     onclick="openDelete(this.getAttribute('data-type'),'bộ phối')"
+                             >
+                                 <i class="fa-solid fa-trash"></i>
+                                 <span>Xóa bỏ</span>
+                             </button >
+
+                             <button onclick="openFromCreate()" class="create" th:if="${authenticated.role == 'admin'}">
+                                 <i class="fa-solid fa-square-plus"></i>
+                                 <span>Tạo mới</span>
+                             </button>
+                         </div>
+                     </div>
+                     <div class="screen__List--content screen__list">
+                         <div th:replace="admin/fragmentsAdmin/productsSale/outfit/outfit :: outfit"></div>
+                     </div>
+                 </div>
+
+                 <!--            section 3 Add View List Screen -->
+                 <div class="screen__add screen__case--child" id="screen__add" th:if="${action == 'edit'}">
+                     <div class="screen__add--form">
+                         <div th:replace="admin/fragmentsAdmin/productsSale/outfit/addoutfit :: addoutfit"></div>
+                     </div>
+                 </div>
+
+
+                 <div class="screen__List screen__case--child" th:if="${action == 'detail'}">
+                     <div>
+                         <img width="100" height="100" th:src="${outfit.getImagesUses()[0].linkImage}">
+                     </div>
+                     <div class="color-section__option  case__option">
+                         <div class="color-section__option--show">
+                            <span class="show__sum">Hiện có
+                                <span th:text="${options.size()}">7</span>
+                            </span>
+                             <div class="disable show__selected">
+                               <span>
+                                   Đã chọn
+                                    <span class="count__selected">7</span>
+                                </span>
+                                 <button onclick="clearAll()">Dọn dẹp</button>
+                             </div>
+                         </div>
+                         <div class="color-section__option--setting  case__option--setting">
+                             <button class="disable delete"
+                                     th:data-type="${action}"
+                                     onclick="openDelete(this.getAttribute('data-type'),'bộ phối')"
+                             >
+                                 <i class="fa-solid fa-trash"></i>
+                                 <span>Xóa bỏ</span>
+                             </button >
+
+                             <button th:if="${authenticated.role == 'admin'}" onclick="openFromAddMix(this.getAttribute('data-id'))" th:data-id="${outfit != null ? outfit.id : null}" class="create">
+                                 <i class="fa-solid fa-square-plus"></i>
+                                 <span>Thêm</span>
+                             </button>
+                         </div>
+                     </div>
+                     <div class="screen__List--content screen__list">
+                         <div th:replace="admin/fragmentsAdmin/productsSale/outfit/outfitDetail :: outfitdetail"></div>
+                     </div>
+                 </div>
+
+                 <div class="screen__List screen__case--child"  th:if="${action == 'mix'}">
+                     <div>
+                         <img width="100" height="100" th:src="${outfit.getImagesUses()[0].linkImage}">
+                     </div>
+                     <div class="color-section__option  case__option">
+                         <div class="color-section__option--show">
+                            <span class="show__sum">Hiện có
+                                <span th:text="${options.size()}">7</span>
+                            </span>
+                             <div class="disable show__selected">
+                               <span>
+                                   Đã chọn
+                                    <span class="count__selected">7</span>
+                                </span>
+                                 <button onclick="clearAll()">Dọn dẹp</button>
+                             </div>
+                         </div>
+                         <div class="color-section__option--setting  case__option--setting">
+                             <button style="background: #2ea12e; color: white" class="disable delete"
+                                    th:data-idOutfit="${outfit.getId()}"
+                                     onclick="addMix(this.getAttribute('data-idOutfit'))"
+                             >
+                                 <span>Hoàn tất</span>
+                             </button >
+                         </div>
+                     </div>
+                     <div class="screen__List--content screen__list">
+                         <div th:replace="admin/fragmentsAdmin/productsSale/outfit/addProductMix :: addProductMix"></div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+<div th:replace="admin/fragmentsAdmin/common/loader :: loader"></div>
+ <div th:replace="admin/fragmentsAdmin/common/warningDelete :: warning"></div>
+ <script th:src="@{/js/admin/common/handleDelete.js}"></script>
+</body>
+<script th:src="@{/js/admin/common/menu.js}"></script>
+<script th:src="@{/js/admin/productsSale/outfit/api.js}"></script>
+<script th:src="@{/js/admin/productsSale/outfit/control.js}"></script>
+<script th:src="@{/js/admin/common/uploadimg.js}"></script>
+</html>

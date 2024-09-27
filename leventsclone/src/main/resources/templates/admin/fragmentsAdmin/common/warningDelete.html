@@ -1,0 +1,25 @@
+<div class="warning__delete" th:fragment="warning">
+    <div class="warning__delete--background">
+    </div>
+    <div class="warning__delete--content">
+        <div class="delete__title">
+            <h2>Bạn có chắn chắn xóa không ?</h2>
+            <i onclick="outWaring()" class="fa-solid fa-xmark"></i>
+        </div>
+        <div class="delete__matter">
+            <p>2 mục Bạn có chắn chắn xóa không  Bạn có chắn chắn xóa không Bạn có chắn chắn xóa không </p>
+        </div>
+        <div class="delete__button">
+            <button onclick="outWaring()">Hủy bỏ</button>
+            <div class="delete__button-submit">
+                <div class="loader-background" style="background: red">
+                    <div class="loader-form"></div>
+                </div>
+                <button onclick="confirmDelete()">
+                    <i class="fa-solid fa-trash"></i>
+                    <span>Xóa bỏ</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

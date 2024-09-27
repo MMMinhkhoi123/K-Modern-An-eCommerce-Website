@@ -1,0 +1,10 @@
+<div class="estimate-product" th:fragment="chart">
+    <div class="simple-bar-chart">
+        <div th:each="item : ${datas}" class="item" th:style="'--clr: '+ ${item.percent < 50 ? 'orange': 'green' } +'; --val:' + ${item.percent}">
+            <div class="label" th:text="${'Tháng ' + item.month}"></div>
+            <div class="value" th:classappend="${option == 'PROFIT' ? 'setup' : null}" th:text="${item.value}">80%</div>
+        </div>
+    </div>
+</div>
+
+

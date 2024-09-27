@@ -1,0 +1,14 @@
+
+  <div class="item" th:fragment="card">
+      <div class="below__item--img">
+          <img th:src="${item.imagesUses[0].linkImage}" alt="image" />
+      </div>
+      <div class="below__item--content">
+          <div class="content__name">
+              <p th:text="${item.optionUse.productUse.name + '/ ' +  item.optionUse.colorUse.name}">Name</p>
+          </div>
+          <div class="content__button">
+              <button>Xem bộ phối</button>
+          </div>
+      </div>
+  </div>

@@ -1,0 +1,14 @@
+<div class="member">
+    <div class="member__option">
+        <div data-key="member" class="member__option--item checked__menu" onclick="selectedOptionMember(this)">
+            <span>Hạng thành viên</span>
+        </div>
+        <div data-key="changeMember" class="member__option--item" onclick="selectedOptionMember(this)">
+            <span>Đổi điểm thưởng</span>
+        </div>
+    </div>
+
+    <div class="member__screen">
+        <div th:replace="user/fragments/authenticated/member/memberDetail"></div>
+    </div>
+</div>

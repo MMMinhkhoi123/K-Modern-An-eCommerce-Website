@@ -1,0 +1,43 @@
+<div class="detail-product" th:fragment="detail">
+    <div class="detail-product__title">
+        <h3>Chi tiết sản phẩm</h3>
+    </div>
+    <div class="detail-product__farm">
+        <div class="detail-product__farm--left">
+            <div class="detail-product__name">
+                <strong>Tên sản phẩm :</strong>
+                <span th:text="${product.name}">Abc</span>
+            </div>
+            <div class="detail-product__price">
+                <strong>Giá sản phẩm :</strong>
+                <span class="detail-product__price--show" th:data-price="${product.price}" th:text="${product.price}">100.00 VNĐ</span>
+            </div>
+        </div>
+        <div class="detail-product__farm--right">
+            <div class="detail-product__type">
+                <strong>Thuộc loại sản phẩm :</strong>
+                <span th:text="${product.typeProductUse.name}">HODIES</span>
+            </div>
+            <div class="detail-product__option">
+                <span>
+                    <strong>Sản phẩm Classic :</strong>
+                    <span th:text="${product.classic == true} ? 'Có' : 'Không'">Có</span>
+                </span>
+                <span>
+                    <strong>Sản phẩm Permission :</strong>
+                    <span th:text="${product.permission == true} ? 'Có' : 'Không'">không</span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="detail-product__describe">
+        <strong>Mô tả:</strong>
+        <div id="describe__product">
+
+        </div>
+    </div>
+    <script th:inline="javascript">
+        let model = [[${product}]];
+        $("#describe__product").html(model.describe);
+    </script>
+</div>

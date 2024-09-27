@@ -1,0 +1,39 @@
+<div class="directory" th:fragment="directory">
+    <table class="directory__table">
+        <thead>
+        <tr>
+            <th th:if="${action == 'screen' && authenticated.role == 'admin'}"></th>
+            <th>ID</th>
+            <th>Tên danh mục</th>
+            <th>Đường dẫn</th>
+            <th th:if="${authenticated.role == 'admin'}">
+                <i class="fa-solid fa-gear"></i>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${directories}"
+            th:data-id="${item.id}"
+            ondblclick="checked(this.getAttribute('data-id'))">
+            <td class="table__check" th:if="${action == 'screen' && authenticated.role == 'admin'}">
+                <input
+                        th:id="'input' + ${item.id}"
+                        th:disabled="${item.isUsing}"
+                        th:data-id="${item.id}"
+                       th:data-type="${action}"
+                       class="check" onchange="handleDelete()" type="checkbox" />
+            </td>
+            <td class="table__id" th:text="${item.id}" >Alfreds Futterkiste</td>
+            <td th:text="${item.name}">Maria Anders</td>
+            <td th:text="${item.key == null} ? 'Không có': ${item.key}">Germany</td>
+            <td class="directory__setting" th:if="${authenticated.role == 'admin'}">
+                <button class="directory__update"
+                        th:data-id="${item.id}"
+                        onclick="openFromUpdate(this.getAttribute('data-id'))">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

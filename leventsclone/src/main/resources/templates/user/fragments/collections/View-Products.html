@@ -1,0 +1,39 @@
+<div class="collections-list" th:fragment="list">
+   <div class="collections-list__above">
+       <div class="collections-list__above--left">
+         <span th:text="${options.countProduct}"></span> <span>products</span>
+       </div>
+       <div class="collections-list__above--right">
+          <span>
+              Sắp xếp theo:
+          </span>
+           <label for="mySelect"></label>
+           <select id="mySelect" onchange="choiceSort()">
+           <option value="relevance">
+               Sự liên quan
+           </option>
+           <option value="best-selling" th:selected="${sortSet == 'best-selling'}">
+               Bán chạy nhất
+           </option>
+           <option value="price-ascending" th:selected="${sortSet == 'price-ascending'}">
+               Giá tăng dần
+           </option>
+           <option value="price-descending"  th:selected="${sortSet == 'price-descending'}">
+               Giá giảm dần
+           </option>
+         </select>
+     </div>
+   </div>
+   <div class="view__filter-mobile" onclick="setFilter('open')">
+       <button>BỘ LỌC NÂNG CAO</button>
+   </div>
+    <div class="collections__loading">
+    </div>
+  <div class="collections-list__below">
+    <div class="collections-list__below--item" id="test" th:each="item : ${options.optionUses}">
+      <div th:replace="user/fragments/common/Card :: cardtest (object = ${item}, type = 'arrive')">
+      </div>
+    </div>
+  </div>
+    <div th:replace="user/fragments/collections/Pagination :: pagination (countPage = ${options.countPage}, thisPage=${options.thisPage})"></div>
+</div>

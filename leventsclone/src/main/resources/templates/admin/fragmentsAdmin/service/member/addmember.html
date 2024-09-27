@@ -1,0 +1,54 @@
+<div th:fragment="addmember">
+  <form
+          th:data-type="${type}"
+          th:data-id="${member.id}"
+          onsubmit="fromControl(event,this.getAttribute('data-type'))"
+          class="form-add-member">
+      <div class="member__title">
+          <h2 th:text="${type=='update'} ? 'Cập nhật hạng thành viên' : 'Thêm hạng thành viên'"></h2>
+      </div>
+      <div class="member__success" th:if="${success}">
+            <span class="err__success">
+                <span th:text="${success}"></span>
+                   <i class="fa-solid fa-xmark" onclick="hiddenError('success')"></i>
+            </span>
+      </div>
+      <div class="member__error" th:if="${errors}">
+            <span th:class="'err__' + ${item.getKey()}" th:each="item : ${errors}">
+                <span th:text="${item.getValue()}"></span>
+                   <i class="fa-solid fa-xmark" th:data-key="${item.getKey()}"
+                      onclick="hiddenError(this.getAttribute('data-key'))"></i>
+            </span>
+      </div>
+      <div class="member__content">
+          <div class="member__content--left">
+              <div class="member__name">
+                  <label>Tên mô tả</label>
+                  <input th:value="${member.name}" required type="text" placeholder="Nhập tên mô tả tại đây"/>
+              </div>
+              <div class="member__percent">
+                  <label>Tỷ lệ giảm (0 - 100%)</label>
+                  <input required th:value="${member.percent}"  type="number" placeholder="Nhập tỷ lệ giảm tại đây"/>
+              </div>
+          </div>
+          <div class="member__content--right">
+              <div class="member__price">
+                  <label>Mức tiêu thụ (VNĐ)</label>
+                  <input th:value="${member.price}" required oninput="inputChange(event)" type="text" placeholder="Nhập mức tiêu thụ tại đây"/>
+              </div>
+              <div class="member__grade">
+                  <label>Điểm tương đương (dựa tên mức tiêu thụ )</label>
+                  <input th:value="${member.grade}" required type="text" disabled/>
+              </div>
+          </div>
+      </div>
+      <div class="member__button">
+          <div class="member__button--submit">
+              <div class="loader-background">
+                  <div class="loader-form"></div>
+              </div>
+              <button th:text="${type== 'update'} ? 'Cập nhật' : 'Thêm vào'"></button>
+          </div>
+      </div>
+  </form>
+</div>

@@ -1,0 +1,832 @@
+.logo {
+    text-align: center;
+    padding: 20px;
+}
+body {
+    margin: 0;
+}
+.container__child {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.logo > button {
+    background:  var(--theme);
+    padding: 10px 40px;
+    color: white;
+}
+.shipping {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+}
+.shipping__information {
+    padding-right: 20px;
+    border-right: 1px solid rgba(217, 212, 212, 0.59);
+}
+.shipping__information--catalog > span> i {
+    font-size: 7px !important;
+}
+.shipping__information--catalog > span:nth-child(1),
+.shipping__information--catalog > span:nth-child(2){
+    color: black;
+}
+.shipping__information--catalog > span > a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+.shipping__information--catalog {
+    padding: 20px 0;
+    font-size: 13px;
+    color: #837d7d;
+}
+.shipping__information--address {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+.information__full-name {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+.information__full-name > div > div {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.information__full-name > div > div > label,
+.information__site > div > div > div > label,
+.information__specify > div> label{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font-size: 13px;
+    color: gray;
+    pointer-events: none;
+    transition: 0.3s;
+}
+.information__full-name > div >  div > input,
+.information__site > div >div >div > select,
+.information__specify> div > input{
+    width: 100%;
+    box-sizing: border-box;
+    padding-bottom: 10px ;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 30px;
+    border-radius: 5px ;
+    border: 1px solid #d0c7c7;
+}
+
+
+
+
+
+.information__site {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+.information__specify > div,
+.information__site  > div >  div {
+    position: relative;
+}
+
+.information__frame {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+}
+
+.information__choice-option {
+    display: flex;
+    gap: 5px;
+    align-items: start;
+}
+.information__choice-option--right > p {
+    margin: 0;
+    font-size: 14px;
+}
+.information__choice-option--left > label > input {
+    display: none;
+}
+.information__choice-option--left > label > span {
+    position: relative;
+}
+.information__choice-option--left > label > input:checked ~ span > span:nth-child(2) {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background:  var(--theme);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.information__choice-option--left > label > span > span:nth-child(1) {
+    display: block;
+    width: 15px;
+    height: 15px;
+    border: 1px solid black;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.shipping__information--packaging-content > textarea {
+    width: 100%;
+    resize: none;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #cbcbcb;
+}
+.shipping__information--button {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom:  1px solid rgba(218, 214, 214, 0.53);
+}
+.information__pay {
+    cursor: pointer;
+}
+.shipping__information--button > button > a {
+    text-decoration: none;
+    color: black;
+}
+.shipping__information--button > button:nth-child(1) {
+    background: transparent;
+    border: none;
+}
+.shipping__information--next-info {
+    position: relative;
+}
+.shipping__information--next-info:hover > button:after {
+    content: " Tiếp tục đến thanh toán";
+    position: absolute;
+    inset: -1px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-radius: 10px;
+    background:  var(--theme);
+}
+.shipping__information--next-info > button {
+    padding: 15px 20px;
+    background:  var(--theme);
+    color: white;
+    border-radius: 10px;
+}
+.shipping__extra {
+    padding: 20px;
+}
+.shipping__information--end {
+    padding: 20px 0;
+    font-size: 13px;
+    color: #837d7d;
+}
+
+/*confirm*/
+.confirm {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.confirm__background {
+    position: fixed;
+    inset: 0;
+    background: rgba(42, 41, 41, 0.32);
+}
+
+.active_confirm {
+ display: flex !important;
+}
+.confirm__content {
+    z-index: 11;
+    background: white;
+    padding: 29px;
+    min-width: 500px;
+    text-align: center;
+}
+.confirm__content--title {
+    padding-bottom: 20px;
+}
+.confirm__content--title > h3 {
+    margin: 0;
+}
+
+.confirm__content--address,
+.confirm__content--full-name  {
+    display: flex;
+    position:  relative;
+    margin-bottom: 10px;
+}
+
+
+.confirm__content--address > label,
+.confirm__content--full-name > label
+{
+    position: absolute;
+    font-size: 13px;
+    color: gray;
+    top: 10px;
+    left: 10px;
+}
+
+.confirm__content--address > input,
+.confirm__content--full-name > input {
+    width: 100%;
+    border: 1px solid rgba(178, 177, 177, 0.56);
+    padding: 10px;
+    padding-top: 30px;
+
+}
+
+.confirm__content--button {
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.confirm__content--button > button {
+    cursor: pointer;
+}
+
+.confirm__content--button > button {
+    background: transparent;
+    border: none;
+}
+.button__confirm {
+    position: relative;
+}
+
+.button__confirm:hover > a:after {
+    content: "Tiếp tục";
+    position: absolute;
+    inset: -1px;
+    padding: 15px 50px;
+    background:  var(--theme);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button__confirm > a  {
+    display: block;
+    padding: 15px 50px;
+    color: white;
+    background:  var(--theme);
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.err__lastname ,
+.err__firstname,
+.err__city,
+.err__district,
+.err__commune,
+.err__address,
+.content__err{
+    display: none;
+}
+
+
+.active_err_input {
+    outline: 1px solid red !important;
+    border: 1px solid red !important;
+}
+
+.active_err {
+    display: block !important;
+    color: #ff253a;
+    margin-top: 5px;
+}
+
+
+.label_active_null {
+    top: 50% !important;
+    font-size: 15px !important;
+    transform: translateY(-50%);
+}
+
+.label_active_null_select {
+    display: none;
+}
+
+.input_active_null--select {
+    outline: 1px solid red !important;
+    padding: 20px 10px !important;
+    border: 1px solid red !important;
+}
+.input_active_null {
+    padding: 20px 10px !important;
+}
+
+
+.swiper-packaging__image-parent {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+.information__swiper-packaging {
+    overflow: hidden;
+    position: relative;
+}
+
+.information__pre,
+.information__next{
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+}
+
+.information__pre {
+    left: 10px;
+}
+.information__next {
+    right: 10px;
+}
+
+.information__active {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+.information__active > span {
+    display: block;
+    width: 30px;
+    height: 5px;
+    background: #dadada;
+}
+.active--package {
+    background:  var(--theme) !important;
+}
+
+
+.swiper-packaging__image-parent--scroll {
+    width: 100%;
+    height: 10px;
+    background: red;
+    position: relative;
+    opacity: 0;
+}
+.swiper-packaging__image-parent--scroll-thumb {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background: green;
+}
+.shipping__information--authentication {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.shipping__information--authentication > h4 {
+    margin: 10px 0;
+}
+.shipping__information--authentication > a {
+    cursor: pointer;
+}
+.voucher__use {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.voucher__use--item {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 350px;
+    font-size: 12px;
+    border: 1px solid var(--colorBorders);
+}
+
+.use-item__right--content,
+.use-item__left{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+}
+.use-item__right {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+}
+.voucher__use--item > div > input {
+    width: 20px;
+    height: 20px;
+}
+.use-item__right--button > button {
+    background:  var(--theme);
+    color: white;
+    border: none;
+    padding: 5px;
+    font-size: 12px;
+}
+.disable {
+    display: none !important;
+}
+
+
+
+.loading--inventory {
+    background: white;
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    position: relative;
+    animation: rotate 1s linear infinite
+}
+.loader::before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0px;
+    border-radius: 50%;
+    border: 5px solid #000000;
+    animation: prixClipFix 2s linear infinite ;
+}
+
+@keyframes rotate {
+    100%   {transform: rotate(360deg)}
+}
+
+@keyframes prixClipFix {
+    0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+    25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+    75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+    100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+}
+
+
+
+
+
+.inventory__alert {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(42, 41, 41, 0.07);
+}
+.inventory__title {
+    text-align: start;
+}
+.inventory__title > h2 {
+    margin-top: 0;
+}
+.inventory__list {
+    padding-top: 30px;
+}
+
+.inventory__alert--from {
+    background: white;
+    width: 700px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    padding: 20px;
+}
+
+.item__shortage--left,
+.item__shortage   {
+    display: flex;
+    height: 80px;
+    gap: 20px;
+}
+.item__shortage {
+    padding: 20px 0;
+    justify-content: space-between;
+}
+.item__shortage--right {
+    display: flex;
+    gap: 20px;
+}
+.item__shortage--left > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.item__shortage--content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.inventory__submit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.inventory__submit > a {
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+.inventory__submit--next {
+    position: relative;
+}
+.inventory__submit--next:hover > a:after {
+    position: absolute;
+    inset: -1px;
+    background: var(--theme);
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    content: "Tiếp tục";
+    border-radius: 5px;
+    border: none;
+}
+.inventory__submit--next > a {
+    border: none;
+    background:  var(--theme);
+    display: block;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+
+
+@media only screen and (max-width : 500px) {
+    /* Styles */
+    .container__child {
+        width: 100%;
+    }
+    .shipping {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 100px;
+    }
+    .shipping__information {
+        padding: 0;
+    }
+    .information__full-name {
+        display: flex;
+        flex-direction: column;
+    }
+    .information__site {
+        display: flex;
+        flex-direction: column;
+    }
+    .shipping__information {
+        padding: 15px;
+    }
+    .information__frame {
+        display: flex;
+        flex-direction: column;
+    }
+    .shipping__information--button > button,
+    .swiper-packaging__image:nth-child(2),
+    .information__next,
+    .information__pre {
+        display: none;
+    }
+  .swiper-packaging__image-parent {
+      display: flex;
+  }
+  .swiper-packaging__image {
+      width: 100%;
+      height: 120px;
+  }
+  .swiper-packaging__image > img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+  }
+  .shipping__information--button {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+  }
+  .shipping__information--next-info {
+      width: 100%;
+      display: flex;
+  }
+  .shipping__information--button {
+      padding: 15px !important;
+      background: white;
+  }
+  .shipping__information--next-info > button {
+      width: 100%;
+      border-radius: 5px;
+  }
+  .confirm__content {
+      min-width: auto;
+      width: 100%;
+      margin: 15px;
+      padding: 15px;
+  }
+  .confirm__content--title > span {
+      font-size: 12px;
+  }
+  .item__shortage--content {
+      flex-grow: 1;
+  }
+  .confirm__content--button {
+      padding-bottom: 0 !important;
+  }
+  .shipping__information--address > h3 {
+      margin: 10px 0;
+  }
+  .information__choice-option--right > p {
+      font-size: 12px !important;
+  }
+  .inventory__alert--from {
+      width: 100%;
+      margin: 15px;
+  }
+  .inventory__title > h2 {
+      font-size: 18px;
+      margin: 0;
+  }
+  .item__shortage--right > span {
+      white-space: nowrap;
+  }
+  .item__shortage--left > img {
+      width: 60px;
+  }
+
+  .item__shortage--right,
+  .item__shortage--content,
+    .inventory__title > span {
+        font-size: 14px;
+    }
+}
+
+
+/* iPads (portrait and landscape) ———– */
+@media only screen and (min-width : 500px) and (max-width : 1024px) {
+    /* Styles */
+    .shipping {
+        padding: 20px;
+        display: grid;
+        grid-template-columns: repeat(1, 100%);
+    }
+    .container {
+        display: flex;
+        inset: 0;
+    }
+    .container__child {
+     width: 100vw;
+    }
+}
+
+/* iPads (landscape) ———– */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+    /* Styles */
+}
+
+/* iPads (portrait) ———– */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+    /* Styles */
+}
+/**********
+iPad 3
+**********/
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+    /* Styles */
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+    /* Styles */
+}
+/* Desktops and laptops ———– */
+@media only screen and (min-width : 1224px) {
+    /* Styles */
+}
+
+/* Large screens ———– */
+@media only screen and (min-width : 1824px) {
+    /* Styles */
+}
+
+/* iPhone 4 ———– */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+    /* Styles */
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+    /* Styles */
+}
+
+/* iPhone 5 ———– */
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+}
+
+/* iPhone 6, 7, 8 ———– */
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+}
+
+/* iPhone 6+, 7+, 8+ ———– */
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+}
+
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+}
+
+/* iPhone X ———– */
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}
+
+/* iPhone XS Max, XR ———– */
+@media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}
+
+@media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}
+
+/* Samsung Galaxy S3 ———– */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+}
+
+/* Samsung Galaxy S4 ———– */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}
+
+/* Samsung Galaxy S5 ———– */
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}
+
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

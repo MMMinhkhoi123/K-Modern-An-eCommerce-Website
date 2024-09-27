@@ -1,0 +1,42 @@
+<div class="order__hading">
+    <div class="order__hading--item" th:each="item : ${myOrders}">
+        <div class="hading__above">
+            <div class="hading__above__info">
+                <span class="date__order--item" th:text="${item.getDate()}"></span>
+                <strong th:text="'#' + ${item.code}"></strong>
+                <div class="date__order--state">
+                       <span style="color: #2ea12e" th:if="${item.state == 'THÀNH CÔNG'}">
+                           <span>Hoàn thành</span>  <i class="fa-solid fa-check"></i>
+                        </span>
+                        <span style="color: #ffc91a" th:if="${item.state == 'XÁC NHẬN KHÁCH HÀNG'}">
+                           <span>Chờ xác nhận</span>
+                        </span>
+                        <span style="color: #ffc91a" th:if="${item.state == 'XÁC NHẬN ĐƠN HÀNG'}">
+                           <span>xử lý</span>
+                        </span>
+                         <span style="color: #ffc91a" th:if="${item.state == 'ĐANG GIAO'}">
+                           <span>Đang vận chuyển</span>
+                        </span>
+                </div>
+            </div>
+        </div>
+        <div class="hading__below">
+            <strong class="price__order--item" style="font-size: 18px" th:text="${item.sumPrice}"></strong>
+            <div class="hading__below--button">
+                    <span class="hading__above--detail">
+                         <a th:href="'/pages/checkout/rs/' + ${item.code}">
+                            <span>Chi tiết</span>
+                        </a>
+                    </span>
+                     <span th:if="${item.state == 'CHỜ'}">
+                        <button class="confuse_order" th:data-code="${item.code}" onclick="destroyOrder(this.getAttribute('data-code'))">
+                           <i class="fa-regular fa-circle-xmark"></i>  <span>Hủy đơn </span>
+                        </button>
+                    </span>
+            </div>
+        </div>
+    </div>
+    <span class="empty__order-handing" th:if="${ myOrders.size()  ==0 }">
+        <img src="/image/empty-box.png">
+    </span>
+</div>

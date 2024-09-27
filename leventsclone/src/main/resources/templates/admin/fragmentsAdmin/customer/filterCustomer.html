@@ -1,0 +1,26 @@
+<div class="filter__customer" th:fragment="filter">
+    <div class="filter__customer--option">
+        <div class="option__item select"  id="all" onclick="changeTab('all')" data-key="ALL">
+            <span><strong>Tất cả khách hàng</strong></span>
+        </div>
+        <div class="option__item" id="process" onclick="changeTab('process')" data-key="ĐANG-CHUẨN-BỊ">
+            <span>
+                <i class="fa-solid fa-truck-fast"></i>
+                <strong> Đang giao dịch</strong></span>
+        </div>
+        <div class="option__item" id="success" onclick="changeTab('success')" data-key="THÀNH-CÔNG">
+            <span>
+                <strong>Hoàn thành</strong></span>
+        </div>
+        <div class="option__item"  id="disagree" onclick="changeTab('disagree')" data-key="TỪ-CHỐI">
+            <span>
+                <strong> Đã từ chối</strong></span>
+        </div>
+    </div>
+    <div class="filter__customer--search">
+        <div class="filter__customer--search-main">
+            <button onclick="getSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <input type="text" placeholder="Tìm  theo tên , mã đơn hàng , số điện thoại" />
+        </div>
+    </div>
+</div>

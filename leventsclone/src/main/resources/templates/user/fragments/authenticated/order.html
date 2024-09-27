@@ -1,0 +1,18 @@
+<div class="my-order" th:fragment="myorder">
+    <div class="my-order__menu">
+        <div data-key="handling" class="my-order__menu--dandling active-order" onclick="changTypeOrder(this)">
+            <span> Đang xử lý</span>
+        </div>
+        <div data-key="finish" class="my-order__menu--finish" onclick="changTypeOrder(this)">
+            <span>Hoàn thành</span>
+        </div>
+        <div data-key="issue" class="my-order__menu--issue" onclick="changTypeOrder(this)">
+            <span>Issue</span>
+        </div>
+    </div>
+    <div class="my-order__screen">
+        <div th:replace="user/fragments/authenticated/order/orderHandling"></div>
+    </div>
+</div>
+
+

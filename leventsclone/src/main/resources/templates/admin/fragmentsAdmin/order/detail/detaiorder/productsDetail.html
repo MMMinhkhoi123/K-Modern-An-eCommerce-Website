@@ -1,0 +1,44 @@
+<div th:fragment="products" th:if="${target == 'product'}">
+    <table class="order__sale--table">
+        <thead>
+        <tr>
+            <th>Thông tin sản phẩm</th>
+            <th>Màu sắc</th>
+            <th>Kích thước</th>
+            <th>Số lượng</th>
+            <th>Số lượng lỗi</th>
+            <th>Thành tiền</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${productsOrder}" th:class="${item.quantityDefect == item.quality ? 'productDefect' : null}">
+            <td>
+                <div class="info__img-name">
+                    <img th:src="${item.optionUse.optionImageUses[0].imageUse.linkImage}" />
+                    <strong th:text="${item.optionUse.productUse.name}"></strong>
+                </div>
+            </td>
+            <td>
+                <div class="info__color">
+                        <span th:style="'background:' + ${item.optionUse.colorUse.code}">
+                        </span>
+                </div>
+            </td>
+            <td >
+                <span  class="info__size" th:text="${item.sizeUse.name}">
+                </span>
+            </td>
+            <td th:text="${item.quality}">
+            </td>
+            <td th:style="${item.quantityDefect > 0 ? 'color:red' : null}" th:text="${item.quantityDefect}"></td>
+
+            <td class="info__price">
+                <span>
+                    <strong th:class="${item.quantityDefect > 0}  ? 'old-price' : null" th:text="${item.price}"></strong>
+                    <strong th:if="${item.quantityDefect > 0}" th:text="${item.priceAfterDefect}"></strong>
+                </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

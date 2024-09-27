@@ -1,0 +1,35 @@
+
+  <div class="feedback" th:fragment="swiper4(feedbacks)">
+      <div class="feedback__above">
+          <h3>FEEDBACK</h3>
+          <div class="feedback__above--button">
+              <a href="/pages/levents-crew">
+                  Xem tất cả
+              </a>
+          </div>
+      </div>
+      <div class="feedback__below">
+          <div class="feedback__below--swiper"
+               data-key="feedback"
+               onclick="event.stopPropagation()"
+               onmouseleave="handleMouseLeaveSwiper(this)"
+               onmousedown="handleMouseDownSwiper(event, this)"
+               onmouseover="SetUp4()">
+              <div class="below__item-feedback"
+                   th:data-index="${itemStat.index}"
+                   onclick="openShowFeedback(event,this.getAttribute('data-index'))"
+                   th:each="item : ${feedbacks}">
+                  <img alt="image" th:src="${item.imageUse.linkImage}" />
+              </div>
+          </div>
+          <div th:if="${feedbacks.size() >= 4}" class="feedback__below--move">
+              <div class="move__feedback"></div>
+          </div>
+          <div th:if="${feedbacks.size() >= 4}" class="feedback__pre" onclick="handlePreSwiper()">
+              <i class="fa-solid fa-chevron-left"></i>
+          </div>
+          <div th:if="${feedbacks.size() >= 4}" class="feedback__next" onclick="handleNextSwiper()">
+              <i class="fa-solid fa-chevron-right"></i>
+          </div>
+      </div>
+  </div>

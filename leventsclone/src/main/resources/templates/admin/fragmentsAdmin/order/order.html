@@ -1,0 +1,60 @@
+<div th:fragment="order">
+        <table class="order__sale--table">
+            <thead>
+            <tr>
+                <th>Mã đơn hàng</th>
+                <th>Ngày tạo đơn hàng</th>
+                <th>Tên khách hàng</th>
+                <th>Trạng thái đơn hàng</th>
+                <th>Loại thanh toán</th>
+                <th>Khách hàng phải trả</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="table__row"  th:each=" item : ${orders}" th:data-code="${item.code}"  ondblclick="goDetailOrder(this.getAttribute('data-code'))">
+                <td class="code__item" th:text="${item.code}"></td>
+                <td class="date__item" th:text="${item.date}"></td>
+                <td th:text="${item.name}"></td>
+                <td>
+                    <span style="color: #2ea12e" th:if="${item.state =='THÀNH CÔNG'}">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <strong>Hoàn thành</strong>
+                    </span>
+                    <span style="color: blue" th:if="${item.state =='XÁC NHẬN ĐƠN HÀNG'}">
+                     <i class="fa-solid fa-clock-rotate-left"></i>
+                        <strong>Xác nhận đơn hàng</strong>
+                    </span>
+                    <span style="color: blue" th:if="${item.state =='CHỜ'}">
+                    <i class="fa-solid fa-hourglass-start"></i>
+                        <strong>CHỜ</strong>
+                    </span>
+                    <span style="color: red" th:if="${item.state == 'TỪ CHỐI'}">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <strong>Từ chối</strong>
+                    </span>
+                    <span style="color: red" th:if="${item.state == 'THẤT BẠI'}">
+                        <i class="fa-solid fa-xmark"></i>
+                        <strong>Thất bại</strong>
+                    </span>
+                    <span style="color: #5a0fec" th:if="${item.state == 'ĐANG GIAO'}">
+                      <i class="fa-solid fa-truck-fast"></i>
+                        <strong>Đang giao</strong>
+                    </span>
+                    <span style="color: orange" th:if="${item.state == 'ĐANG CHUẨN BỊ'}">
+                    <i class="fa-solid fa-boxes-packing"></i>
+                        <strong>Đang xữ lý</strong>
+                    </span>
+                    <span style="color: orange" th:if="${item.state == 'ĐƠN HÀNG GẶP LỖI'}">
+                    <i class="fa-solid fa-boxes-packing"></i>
+                        <strong>Hàng gặp lỗi</strong>
+                    </span>
+                </td>
+                <td>
+                    <span th:if="${item.typePay == 'COD'}">Thanh toán khi nhận hàng</span>
+                    <span th:if="${item.typePay == 'TRAN'}">Chuyển khoản</span>
+                </td>
+                <td class="price__item" th:text="${item.sumPrice}"></td>
+            </tr>
+            </tbody>
+        </table>
+</div>

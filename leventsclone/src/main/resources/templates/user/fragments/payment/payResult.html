@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" th:fragment="payresult">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/fontawesome/css/all.css}" rel="stylesheet" >
+    <link th:href="@{/css/user/common/all.css}" rel="stylesheet" />
+    <link th:href="@{/css/user/checkouts/payresult.css}" rel="stylesheet" />
+    <title>Kết quả thanh toán</title>
+</head>
+<body>
+<div class="payResult">
+    <div th:replace="user/fragments/common/sidebar :: sidebar"></div>
+    <div th:replace="user/fragments/common/Manage :: option"></div>
+    <div th:replace="user/fragments/common/Header :: header"></div>
+    <div class="payResult__Cod">
+        <div class="payResult__Cod--title">
+            <img style="width: 100px; height: 100px" src="/image/check.png"> <span>Đặt hàng thành công</span>
+        </div>
+        <h2>Mã đơn hàng: <span th:data-code="${result.code}" class="code" th:text="${result.code}"></span></h2>
+        <div class="payment__tran">
+            <span class="payment__tran--alert">
+                <span>Lưu ý</span>
+               <span>Đơn hàng của bạn sẻ được tiến hành xữ lý  sau khi bạn hoàn thành thanh toán !</span>
+               <strong>Nếu bạn không thanh toán trong 1h kễ từ lúc đặt thì đơn hàng sẻ được hủy bỏ</strong>
+            </span>
+            <span>
+                <strong>Số tài khoản :</strong> 473847387483743
+            </span>
+            <span>
+                <strong>Ngân hàng :</strong> vcb
+            </span>
+            <span>
+                <strong>Nội dung chuyển khoản:</strong> <span th:data-code="${result.code}" ></span>
+            </span>
+            <span>
+                <strong>Tổng tiền thanh toán :</strong> <span>1000000 vnd</span>
+            </span>
+        </div>
+        <span> </span>
+        <div class="payResult__Cod--content">
+            <span><strong>Levents</strong>  cảm ơn quý khách đã chọn mua sản phẩm của chúng tôi.</span>
+        </div>
+    </div>
+    <div class="payResult__Tran">
+    </div>
+
+    <div th:replace="user/fragments/common/Footer :: footer"></div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"  type="text/javascript"></script>
+<script th:src="@{/js/user/common/sidebar.js}" ></script>
+<script th:src="@{/js/user/common/manage.js}"></script>
+</body>
+</html>

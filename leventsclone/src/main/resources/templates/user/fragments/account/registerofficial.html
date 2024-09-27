@@ -1,0 +1,76 @@
+
+<form class="register"
+      method="post"
+      role="form"
+      th:action="@{/account/register-save}"
+      th:if="${account == 'signup'}"
+      th:object="${user}"
+      th:fragment="registerR">
+    <div class="register__title">
+        <h2>Đăng ký</h2>
+        <div class="register__title--error" th:if="${#fields.hasErrors()}">
+            <span>Vui lòng điều chỉnh các mục sau:</span>
+            <ul class="title__error">
+                <li th:each="text : ${#fields.allErrors()}">
+                    <span th:text="${text}"> Mật khau yếu</span>
+                    <i class="fa-solid fa-exclamation"></i>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="register__name">
+        <label>Họ và tên</label>
+        <input
+                th:field="${user.fullName}"
+                name="fullName"
+                th:value="${user.fullName}"
+                placeholder="Nhập họ và tên vào đây"
+                type="text"/>
+        <span  th:if="${#fields.errors('fullName')}" th:errors="${user.fullName}" >Error message</span>
+    </div>
+    <div class="register__phone">
+        <label>Số điện thoại</label>
+        <input name="phone"
+               required
+               th:value="${user.phone}"
+               th:errorclass="error"
+               type="number" placeholder="Nhập số điện thoại vào đây"/>
+    </div>
+    <div class="register__email">
+        <label>Email</label>
+        <input required name="email"
+               th:value="${user.email}"
+               th:errorclass="error"
+               type="email" placeholder="Nhập email vào đây"/>
+    </div>
+    <div class="register__password">
+        <label>Mật khẩu</label>
+        <input required name="password"
+               th:errorclass="error"
+               type="password" placeholder="Nhập mật khẩu tại đây"/>
+    </div>
+    <div class="register__birthday">
+        <label>Ngày sinh</label>
+        <input
+                pattern="\\d{2}/\\d{2}/\\d{4}"
+                required
+                name="date"
+                th:value="${user.date}"
+                th:errorclass="error"
+               type="date" placeholder="dd-NM-yyyy"/>
+    </div>
+    <div class="register__birthday">
+        <label>Giới tính</label>
+        <select name="gender">
+            <option th:selected="${user.gender == 'nam'}" value="nam">Nam</option>
+            <option th:selected="${user.gender == 'nu'}" value="nu">Nữ</option>
+            <option th:selected="${user.gender == 'khac'}" value="khac">Khác</option>
+        </select>
+    </div>
+    <div class="register__submit">
+        <button>Đăng ký</button>
+    </div>
+    <div class="login__extra">
+        <a href="/account/login">Đã có tài khoản</a>
+    </div>
+</form>

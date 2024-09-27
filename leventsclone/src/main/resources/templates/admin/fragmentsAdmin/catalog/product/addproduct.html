@@ -1,0 +1,113 @@
+<div class="add-product" th:fragment="addProduct"  >
+    <form
+            class="add-product__from"
+            th:data-id="${product.id}"
+            th:data-type="${type}"
+            onsubmit="controlForm(event, this.getAttribute('data-type'))"
+            th:object="${product}"
+          >
+        <div class="add-product__from--title">
+            <h3 th:text="${type == 'add'} ? 'Tạo sản phẩm' : 'Cập nhật sản phẩm'"></h3>
+        </div>
+        <div class="add-product__from__success" th:if="${state != null}">
+            <span class="err__success">
+                  <span  th:text="${state}"></span>
+                  <i class="fa-solid fa-xmark" onclick="hiddenError('success')"></i>
+            </span>
+        </div>
+        <div class="add-product__from__error" th:if="${errorName != null || errorPrice!= null}">
+            <span class="err__price" th:if="${errorPrice != null}" >
+                <span th:text="${errorPrice}"></span>
+                <i class="fa-solid fa-xmark" onclick="hiddenError('price')"></i>
+            </span>
+            <span class="err__name" th:if="${errorName != null}">
+                <span th:text="${errorName}"></span>
+                <i class="fa-solid fa-xmark" onclick="hiddenError('name')"></i>
+            </span>
+        </div>
+        <div class="add-product__from--content">
+            <div class="content__left">
+                <div class="content__left--name">
+                    <label>Tên sản phẩm</label>
+                    <input th:classappend="${errorName != null} ? 'errorInput' : null"
+                           th:value="${product.name}" name="name" type="text" placeholder="Tên sản phẩm" required />
+                </div>
+                <div class="content__left--price">
+                    <label>Giá sản phẩm (VND)</label>
+                    <input oninput="inputPrice(event)" th:classappend="${errorPrice != null} ? 'errorInput' : null"
+                           th:value="${product.price}" name="price" type="text" placeholder="Giá sản phẩm" required />
+                </div>
+                <div class="content__left--type">
+                    <label>Loại sản phẩm</label>
+                    <select>
+                        <option
+                                th:selected="${product.typeProductUse != null} ? ${product.typeProductUse.id == items.id} :  null"
+                                th:each="items : ${typeProducts}"
+                                th:value="${items.id}"
+                                th:text="${items.name}"></option>
+                    </select>
+                </div>
+                <div class="content__left--option">
+                    <div class="option__basic">
+                      <label>Classic</label>
+                        <label class="option__basic--check">
+                            <input th:checked="${product.classic}" type="checkbox">
+                            <span>
+                                <span></span>
+                            </span>
+                        </label>
+                    </div>
+<!--                    <div class="option__permit-color">-->
+<!--                        <label>Permission color</label>-->
+<!--                        <label class="option__permit&#45;&#45;check">-->
+<!--                            <input th:checked="${product.permission}" type="checkbox">-->
+<!--                            <span>-->
+<!--                                        <span></span>-->
+<!--                            </span>-->
+<!--                        </label>-->
+<!--                    </div>-->
+                </div>
+                <div class="content__left--button">
+                    <div>
+                        <div class="loader-background">
+                            <div class="loader-form"></div>
+                        </div>
+                        <button
+                                th:text="${type== 'add'} ? 'Tạo mới' : 'Cập nhật'"
+                                type="submit" value="button">
+                            Tạo mới
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="content__right">
+                <label>Mô tả sản phẩm</label>
+                <textarea id="area">
+                    </textarea>
+            </div>
+        </div>
+    </form>
+    <script th:inline="javascript">
+        nameJs = [[${product}]];
+        tinymce.init({
+            selector: 'textarea',
+            // plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount  export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+            setup: function (editor) {
+                console.log(nameJs.describe);
+                editor.on('init', function (e) {
+                    if(nameJs.describe != null) {
+                        editor.setContent(nameJs.describe);
+                    }
+                });
+            }
+        });
+    </script>
+</div>

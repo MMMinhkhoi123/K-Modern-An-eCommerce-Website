@@ -1,0 +1,29 @@
+<form
+        onsubmit="resetPassword(event)"
+        class="forget" th:fragment="forgetR" th:if="${account == 'forget'}">
+    <div class="forget__title">
+        <h2>Đặt lại mật khẩu</h2>
+        <div class="forget__title__error">
+            <span th:if="${errorVerify == null}">Chúng tôi sẽ gửi email cho bạn để đặt lại mật khẩu</span>
+            <span th:if="${errorVerify != null}" th:text="${errorVerify}"></span>
+        </div>
+    </div>
+    <div class="forget__title__state">
+        <span class="forget__success">Chúng tôi đã gửi cho bạn một email đặt lại mật khẩu</span>
+        <span class="forget__error-handling">Xữ lý thất bại vui lòng thử lại</span>
+        <span class="forget__error-constant">Email không tồn tại</span>
+    </div>
+    <div class="forget__email">
+        <label>Email</label>
+        <input required type="email" placeholder="Nhập email vào đây"/>
+    </div>
+    <div class="forget__submit">
+        <button>
+             <span>Gửi</span>
+            <div class="loader-email"></div>
+        </button>
+    </div>
+    <div class="forget__extra">
+        <a href="/account/login">Quay lại</a>
+    </div>
+</form>

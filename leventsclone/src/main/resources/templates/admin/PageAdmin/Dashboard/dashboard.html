@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link th:replace="admin/fragmentsAdmin/common/link"></link>
+    <link th:href="@{/css/admin/dashboard/dashboard.css}" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="admin">
+    <div class="admin__menu">
+        <div th:replace="admin/fragmentsAdmin/common/menu :: menu"></div>
+    </div>
+    <div class="admin__screen">
+        <div class="admin__screen-full">
+            <div class="admin__screen-frame">
+                <div th:replace="admin/fragmentsAdmin/dashboard/overview :: overview"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"  type="text/javascript"></script>
+<script th:src="@{/js/common.js}"></script>
+<script th:src="@{/js/admin/common/menu.js}"></script>
+<script th:src="@{/js/admin/dashboard/api.js}"></script>
+<script th:src="@{/js/admin/dashboard/control.js}"></script>
+</html>

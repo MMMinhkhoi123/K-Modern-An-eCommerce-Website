@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Outfits</title>
+    <embed th:replace="user/fragments/common/link.html">
+    <link th:href="@{/css/user/outfit/outfit.css}" rel="stylesheet">
+    <link th:href="@{/css/user/common/cardoutfit.css}" rel="stylesheet">
+    <link th:href="@{/css/css/app.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <div th:replace="user/fragments/common/generate :: header"></div>
+    <div th:replace="user/fragments/common/Manage :: option"></div>
+    <div class="outfit">
+        <div class="outfit__folder">
+            <a href="/">Home</a> / <a href="/blogs/outfit">Outfit</a> / <span th:text="${active}"></span>
+        </div>
+        <div class="outfit__filter">
+            <div class="outfit__filter--all"   th:classappend="${active == 'all'} ? 'active' : null">
+                <a th:href="@{'/blogs/outfit'}">Tất cả</a>
+            </div>
+            <div class="outfit__filter--option">
+                <div class="filter--seller"
+                     th:classappend="${active == 'best-seller'} ? 'active' : null"
+                     th:if="${active != 'classic'}"
+                >
+                    <a th:href="@{'/blogs/outfit/tagged/best-seller'}">Best Seller</a>
+                </div>
+                <div class="filter--classic"
+                     th:classappend="${active == 'classic'} ? 'active' : null"
+                     th:if="${active != 'best-seller'}"
+                >
+                    <a th:href="@{'/blogs/outfit/tagged/classic'}">Classic</a>
+                </div>
+            </div>
+        </div>
+        <div class="outfit__list">
+            <a th:data-id="${item.getId()}" class="below__item" th:href="'/blogs/outfit/khoi'" th:each="item : ${mix}">
+                <div th:replace="user/fragments/common/CardOutfit.html"></div>
+            </a>
+        </div>
+    </div>
+    <div th:replace="user/fragments/common/sidebar :: sidebar"></div>
+    <div th:replace="user/fragments/common/generate :: footer"></div>
+    <div th:replace="user/fragments/common/backScrollTop :: scroll"></div>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"  type="text/javascript"></script>
+<script th:src="@{/js/user/outfit/outfit.js}"></script>
+<script th:src="@{/js/user/common/sidebar.js}"></script>
+<script th:src="@{/js/user/common/manage.js}"></script>
+<script th:src="@{/js/user/home/home.js}"></script>
+<script th:src="@{/js/user/common/authenticated.js}"></script>
+</html>

@@ -1,0 +1,681 @@
+body {
+    margin: 0;
+}
+.slide-open {
+    gap: 10px;
+    background: white;
+    display: flex;
+    overflow: hidden;
+    height: 600px;
+}
+.slide-open__current {
+    background: var(--theme);
+    width: 100%;
+    height: 100%;
+}
+.parent-open > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.slide-open__current--item  {
+    width: 100%;
+    height: 100%;
+}
+.slide-open__current--item > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.slide-open__slide--item {
+    width: 100%;
+    height: 100px;
+    opacity: 0.5;
+    padding-bottom: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+
+}
+.slide-open__slide--item > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+.slide-open__slide {
+    width: 100%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+}
+.slide-open__move_hidden ,
+.slide-open__move {
+    position: absolute;
+    inset: 0;
+    background: rgba(110, 110, 126, 0.44);
+}
+.slide-open__move_hidden {
+    opacity:  0;
+    transform: translateX(5px);
+}
+
+.slide-open__move-child {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    background: red;
+    opacity: 0;
+}
+.slide-open__move--bar-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: blue;
+}
+.slide-open__slide-parent {
+    /*overflow: hidden;*/
+    position: relative;
+}
+.slide-open__move--bar-hidden,
+.slide-open__move--bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--theme);
+    transition: 0.2s;
+}
+.detail-product {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 1200px;
+    margin-right:auto;
+    margin-left: auto;
+}
+.detail__main {
+    display: flex;
+}
+/*detail*/
+.detail-product__specific--describe {
+    padding: 10px;
+ }
+.detail-product__specific {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    background: #fbfbfb ;
+}
+.specific__option-more {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    gap: 30px;
+    margin-top: 140px;
+}
+.active > .fa-solid {
+    display: block !important;
+}
+.active > .fa-regular {
+    display: none !important;
+}
+.specific__option-more--wish {
+    cursor: pointer;
+}
+.specific__option-more--wish > .fa-solid {
+    display: none;
+}
+.specific__option-more > i {
+    cursor: pointer;
+}
+.specific__trademark {
+    font-size: 10px;
+}
+.specific__name {
+    margin: 0;
+    padding: 0;
+}
+.specific__price--parent {
+    display: flex;
+    gap: 10px;
+}
+.specific__price--parent > span:nth-child(2) {
+    color: #afabab;
+    text-decoration: line-through;
+}
+.specific__price {
+    padding: 10px 0;
+    display: block;
+    font-size: 19px;
+}
+.specific__color,
+.specific__amount {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+.specific__color--option,
+.specific__amount--input {
+    margin-left: auto;
+}
+.specific__assess,
+.specific__voucher,
+.specific__size--above,
+.specific__information,
+.specific__policy-transport,
+.specific__policy-change{
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    cursor: pointer;
+}
+.specific__voucher--left {
+    display: flex;
+    gap: 10px;
+}
+.specific__size--above > span:nth-child(2) {
+    display: flex;
+    gap: 5px;
+}
+.specific__size--below {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.specific__size--below > div {
+ font-size: 14px;
+    padding: 10px 20px;
+    border: 1px solid #837d7d;
+    cursor: pointer;
+}
+.specific__amount--input {
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.specific__amount--input > input {
+    width: 50px;
+    height: 40px;
+    outline: none;
+    border: none;
+    text-align: center;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+.specific__add-cart {
+    background: #f3f3f3;
+    width: 100%;
+    padding: 25px;
+    border: none;
+    font-size: 15px;
+    margin-bottom: 10px;
+    position: relative;
+}
+.specific__buy--wrap {
+    position: relative;
+}
+.specific__buy--wrap:hover > a:after {
+    position: absolute;
+    inset: -1px;
+    content: "Mua ngay";
+    background: var(--theme);
+    display: flex;
+    padding: 25px;
+    font-size: 15px;
+    justify-content: center;
+    align-items: center;
+}
+.specific__buy {
+    text-decoration: none;
+    display:flex;
+    background: var(--theme);
+    padding: 25px;
+    border: none;
+    font-size: 15px;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.specific__policy-transport > div,
+.specific__policy-change > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.specific__policy-transport > div  > span:nth-child(2),
+.specific__policy-change > div > span:nth-child(2)  {
+    color: gray;
+    font-size: 12px;
+}
+
+.size__item {
+    opacity: 0.3;
+}
+
+.active-size {
+    opacity: 1;
+}
+
+.specific__add-cart,
+.specific__buy{
+    cursor: pointer;
+}
+
+/*erro*/
+
+.error {
+    position: fixed;
+    right: 50px;
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+    align-items: end;
+    bottom: 50px;
+    gap: 10px;
+    z-index: 88;
+    opacity: 0;
+    pointer-events: none;
+}
+.error__close {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+}
+.error__close > i {
+    font-size: 25px;
+}
+
+.error__close {
+    font-size: 15px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.error__close,
+.error__content{
+    background: ghostwhite;
+    padding: 10px 20px;
+}
+.error__content > span {
+    color: red;
+}
+
+.error__content {
+    width: 500px;
+    font-size: 15px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.active_error {
+    opacity: 1 !important;
+    pointer-events: visible !important;
+}
+
+.disable {
+    cursor: not-allowed !important;
+    opacity: 0.5 !important;
+}
+.specific__color--option {
+    display: flex;
+    gap: 20px;
+}
+.specific__color--option > div {
+    padding: 10px 5px;
+}
+.specific__color--option > div > a {
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+.active--color {
+    border: 2px solid var(--theme) !important;
+}
+.detail__folder {
+    padding: 20px;
+}
+
+.active {
+    opacity: 1;
+}
+.detail__folder > a {
+    text-decoration:  none;
+    color: var(--theme);
+    cursor: pointer;
+}
+.detail__folder > a:nth-child(1),
+.detail__folder > a:nth-child(2){
+    color: gray;
+}
+.scrollbar {
+    position: relative;
+    width: 2px;
+}
+.specific__information  {
+    margin-top: 20px;
+}
+
+/*copy card*/
+.card__copy {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    grid-template-rows: 150px;
+    gap: 20px;
+}
+.card__copy > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.card__copy--content {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+.content__success {
+    font-size: 12px;
+    color: green;
+}
+
+/*loading*/
+.disable_load  {
+    pointer-events: none;
+    opacity: 0;
+}
+.loader__fame {
+    display: flex;
+    background: #f3f3f3;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    inset: 0;
+}
+.loader {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    animation: rotate 1s linear infinite
+}
+.loader::before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0px;
+    border-radius: 50%;
+    border: 2px solid var(--theme);
+    animation: prixClipFix 2s linear infinite ;
+}
+
+@keyframes rotate {
+    100%   {transform: rotate(360deg)}
+}
+
+@keyframes prixClipFix {
+    0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+    25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+    75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+    100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+}
+
+
+.view__extra {
+    display: none;
+}
+
+
+.change__main--above {
+    position: sticky !important;
+    top: 0 !important;
+    background: white;
+}
+@media only screen and (max-width : 500px) {
+    .slide-open__move--bar-hidden {
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        background: #1ac457;
+    }
+    .view__extra {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 24;
+    }
+    .slide-open__move_hidden {
+        top: 0;
+        height: 5px;
+        bottom: auto;
+        left: 0;
+        transform: none;
+        background: blue;
+        right: 0;
+    }
+    .voucher__main,
+    .view-size__main,
+    .info__main,
+    .transfer__main,
+    .change__main {
+        right: -200% !important;
+    }
+    .detail-product {
+        display: flex;
+        flex-direction: column;
+    }
+    .scrollbar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 2px;
+    }
+    .detail__main {
+        max-width: 100vw;
+    }
+    .slide-open__slide-parent {
+        display: none;
+    }
+    .scrollbar {
+        width: 100vw;
+        z-index: 11;
+    }
+    .detail__folder {
+        font-size: 14px;
+        padding: 15px;
+    }
+    .parent-open {
+        flex-grow: 1;
+        width: 100%;
+    }
+    .detail-product__specific--fullscreen {
+        display: none;
+    }
+    .detail-product__specific {
+        grid-template-columns: 1fr;
+        padding: 15px;
+    }
+    .detail-product__img {
+        height: 500px;
+        position: relative;
+        overflow: hidden;
+    }
+    .slide-open__current {
+        display: grid;
+    }
+    .slide-open__move--bar  {
+        right: auto;
+        bottom: 0;
+    }
+    .detail-product {
+        width: 100%;
+    }
+
+
+    .error{
+        right: 10px;
+        bottom: 10px;
+        left: 10px;
+    }
+
+    .error__content {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .detail-product__specific--describe {
+        padding: 0;
+    }
+    .specific__buy--wrap > a {
+        padding: 15px;
+    }
+    .change__main,
+    .transfer__main,
+    .info__main,
+    .view-size__main,
+    .voucher__main {
+        width: 100% !important;
+    }
+
+}
+
+
+/* iPads (portrait and landscape) ———– */
+@media only screen and (min-width : 500px) and (max-width : 1024px) {
+    /* Styles */
+    .slide-open {
+        width: 500px !important;
+        padding: 30px;
+    }
+}
+
+/* iPads (landscape) ———– */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+    /* Styles */
+}
+
+/* iPads (portrait) ———– */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+    /* Styles */
+}
+/**********
+iPad 3
+**********/
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+    /* Styles */
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+    /* Styles */
+}
+/* Desktops and laptops ———– */
+@media only screen and (min-width : 1224px) {
+    /* Styles */
+}
+
+/* Large screens ———– */
+@media only screen and (min-width : 1824px) {
+    /* Styles */
+}
+
+/* iPhone 4 ———– */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+    /* Styles */
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+    /* Styles */
+}
+
+/* iPhone 5 ———– */
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+}
+
+/* iPhone 6, 7, 8 ———– */
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+}
+
+/* iPhone 6+, 7+, 8+ ———– */
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+}
+
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+}
+
+/* iPhone X ———– */
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}
+
+/* iPhone XS Max, XR ———– */
+@media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}
+
+@media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}
+
+/* Samsung Galaxy S3 ———– */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+    /* Styles */
+}
+
+/* Samsung Galaxy S4 ———– */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}
+
+/* Samsung Galaxy S5 ———– */
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}
+
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+    /* Styles */
+}

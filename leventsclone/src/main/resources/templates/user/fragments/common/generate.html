@@ -1,0 +1,134 @@
+<!--header -->
+
+<div class="header" th:fragment="header">
+    <link th:href="@{/css/user/common/header.css}" rel="stylesheet" />
+    <div class="header__top">
+        <a>Welcome to K Modern</a>
+    </div>
+    <div class="header__bottom">
+        <div th:replace="user/fragments/common/Option-header/Header_search :: search" ></div>
+        <div class="header__bottom--menu-search">
+            <div class="header__bottom--menu">
+                <i class="fa fa-solid fa-bars"></i>
+            </div>
+            <div class="bottom__search-hidden" onclick="openSearch()">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+        <a href="/" class="header__bottom--logo">
+            K Modern
+        </a>
+
+        <div class="header__bottom--account">
+            <a class="bottom__search" onclick="openSearch()">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
+            <a class="bottom__cart" onclick="OpenManagerCart()">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="bottom__cart--count">
+                     <strong class="cart__count">0</strong>
+                 </span>
+            </a>
+            <a class="bottom__user" onclick="OpenManagerAccount()">
+                <i class="fa-solid fa-user"></i>
+            </a>
+        </div>
+    </div>
+    <script th:src="@{/js/user/common/header.js}"></script>
+</div>
+
+
+
+
+
+
+<!--footer-->
+<div class="footer" th:fragment="footer">
+    <link th:href="@{/css/user/common/footer.css}" rel="stylesheet" />
+    <div class="footer__logo">
+        <button>KMODERN</button>
+        <span>KMODERN® - Share your Color</span>
+        <button>Xem ngay</button>
+    </div>
+    <div class="footer__menu">
+        <div class="contact">
+            <h3>Liên hệ</h3>
+            <ul class="footer__menu--contact" >
+                <li>Hotline <br> 9999 999 999
+                </li>
+                <li>
+                    Email for customer <br>
+                    khoi@gmail.com
+                </li>
+                <li>
+                    Email for business <br>
+                    khoi@gmail.com
+                </li>
+                <li>
+                    Email for recruitment <br>
+                    khoi@gmail.com
+                </li>
+            </ul>
+        </div>
+        <div class="store">
+            <h3>Cửa hàng</h3>
+            <ul class="footer__menu--store" >
+                <li>
+                    139E Nguyễn Trãi, Phường Bến Thành, Quận 1, HCM
+                </li>
+                <li>
+                    842 Sư Vạn Hạnh, phường 12, quận 10, HCM
+                </li>
+                <li>
+                    54 Mậu Thân, Xuân Khánh, quận Ninh Kiều, Cần Thơ
+                </li>
+            </ul>
+        </div>
+        <div class="support">
+            <h3>hỗ trợ</h3>
+            <ul class="footer__menu--support" >
+                <li>
+                    Tài khoản
+                </li>
+                <li>
+                    Hướng dẫn size
+                </li>
+                <li>
+                    Chính sách đổi trả
+                </li>
+                <li>
+                    Chính sách vận chuyển
+                </li>
+                <li>
+                    Chính sách membership
+                </li>
+                <li>
+                    Chính sách bảo hành
+                </li>
+            </ul>
+        </div>
+        <div class="expand">
+            <h3>Mở rộng</h3>
+            <ul class="footer__menu--expand" >
+                <li>
+                    CSR
+                </li>
+                <li>
+                   Tuyển dụng
+                </li>
+                <li>
+                    Outflit
+                </li>
+                <li>
+                    Blog
+                </li>
+                <li>
+                    Crew
+                </li>
+                <li>
+                    Unbox- Clip
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

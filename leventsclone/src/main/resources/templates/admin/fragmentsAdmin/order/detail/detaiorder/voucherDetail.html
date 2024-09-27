@@ -1,0 +1,24 @@
+<div th:fragment="voucher" th:if="${target == 'voucher'}">
+    <table class="order__sale--table">
+        <thead>
+        <tr>
+            <th>Tên voucher</th>
+            <th>Số tiền giảm</th>
+            <th>Trạng thái</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:class="${item.state == 'Không sử dụng'} ? 'notUse' : null" th:each="item : ${vouchersOrder}">
+                <td th:text="${item.name}"></td>
+                <td class="info__price">
+                    <span>
+                        <strong th:text="${item.priceSubtract}"></strong>
+                    </span>
+                </td>
+                <td>
+                    <span th:text="${item.state}"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

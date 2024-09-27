@@ -1,0 +1,260 @@
+<div th:fragment="transaction" th:if="${optional == 'transaction'}">
+    <div th:replace="admin/fragmentsAdmin/order/alert/updateProductDefect :: defective"></div>
+    <div class="transaction_step" th:if="${orderSpecific.typePay == 'COD'}">
+        <span class="active__color-process" th:data-step="${orderSpecific.countState}"></span>
+<!--        finish-->
+
+        <div class="transaction_step__item process1" th:if="${orderSpecific.state != 'TỪ CHỐI'}"
+             th:classappend="${orderSpecific.countState > 1} ? 'finish' : null"
+             th:id="${orderSpecific.countState == 1} ? 'process' : null"
+        >
+            <span>
+                <span>1</span>
+                <i class="fa-solid fa-hourglass-start"></i>
+                <i class="fa-solid fa-check"></i>
+            </span>
+            <strong>Chờ</strong>
+        </div>
+        <div class="transaction_step__item process1 refuse" th:if="${orderSpecific.state == 'TỪ CHỐI'}"
+             th:classappend="${orderSpecific.countState > 1} ? 'finish' : null">
+            <span>
+                <span>1</span>
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+            <strong>khách hàng từ chối</strong>
+        </div>
+
+        <div class="transaction_step__item process2"  th:if="${orderSpecific.state != 'ĐƠN HÀNG GẶP LỖI'}"
+             th:classappend="${orderSpecific.countState > 2} ? 'finish' : null"
+             th:id="${orderSpecific.countState == 2} ? 'process' : null">
+            <span>
+                <span>2</span>
+                <i class="fa-solid fa-check"></i>
+                 <i class="fa-solid fa-hourglass-start"></i>
+            </span>
+            <strong>Xác nhận kho</strong>
+        </div>
+        <div class="transaction_step__item process2 refuse"  th:if="${orderSpecific.state == 'ĐƠN HÀNG GẶP LỖI'}">
+            <span>
+                <span>2</span>
+               <i class="fa-solid fa-circle-exclamation"></i>
+            </span>
+            <strong>Đơn hàng gặp lỗi</strong>
+        </div>
+
+        <div class="transaction_step__item process3"
+             th:classappend="${orderSpecific.countState > 3} ? 'finish' : null"
+             th:id="${orderSpecific.countState == 3} ? 'process' : null"
+        >
+            <span>
+                  <span>3</span>
+                  <i class="fa-solid fa-check"></i>
+                <i class="fa-solid fa-hourglass-start"></i>
+            </span>
+            <strong>Chuẩn bị đơn hàng</strong>
+        </div>
+        <div class="transaction_step__item process4"
+             th:classappend="${orderSpecific.countState > 4} ? 'finish' : null"
+             th:id="${orderSpecific.countState == 4} ? 'process' : null"
+        >
+            <span>
+                  <span>4</span>
+                  <i class="fa-solid fa-check"></i>
+                <i class="fa-solid fa-hourglass-start"></i>
+            </span>
+            <strong>Giao hàng</strong>
+        </div>
+        <div class="transaction_step__item process5" th:if="${orderSpecific.state != 'THẤT BẠI'}"
+             th:classappend="${orderSpecific.countState == 5} ? 'finish' : null"
+        >
+            <span>
+                 <span>5</span>
+                  <i class="fa-solid fa-check"></i>
+            </span>
+            <strong>Hoàn thành</strong>
+        </div>
+        <div class="transaction_step__item process5 refuse" th:if="${orderSpecific.state == 'THẤT BẠI'}">
+            <span>
+                 <span>5</span>
+           <i class="fa-solid fa-xmark"></i>
+            </span>
+            <strong>Thất bại</strong>
+        </div>
+    </div>
+
+    <div class="transaction_step" th:if="${orderSpecific.typePay == 'TRAN'}">
+        <span class="active__color-process" th:data-step="${orderSpecific.countState}"></span>
+
+        <div class="transaction_step__item process1" th:if="${orderSpecific.state != 'TỪ CHỐI'}"
+             th:classappend="${orderSpecific.countState > 1} ? 'finish' : null"
+             th:id="${orderSpecific.countState == 1} ? 'process' : null"
+        >
+            <span>
+                <span>1</span>
+                <i class="fa-solid fa-check"></i>
+                <i class="fa-solid fa-hourglass-start"></i>
+            </span>
+                <strong>khác hàng thanh toán</strong>
+        </div>
+        <div class="transaction_step__item process1 refuse" th:if="${orderSpecific.state == 'TỪ CHỐI'}"
+             th:classappend="${orderSpecific.countState > 1} ? 'finish' : null"
+        >
+            <span>
+                <span>1</span>
+               <i class="fa-solid fa-circle-exclamation"></i>
+            </span>
+            <strong>khác hàng từ chối</strong>
+        </div>
+
+        <!--        finish-->
+        <div class="transaction_step__item process2" th:if="${orderSpecific.state != 'ĐƠN HÀNG GẶP LỖI'}"
+             th:classappend="${orderSpecific.countState > 2} ? 'finish' : null"
+             th:id="${orderSpecific.countState == 2} ? 'process' : null"
+        >
+            <span>
+                <span>2</span>
+                <i class="fa-solid fa-check"></i>
+                <i class="fa-solid fa-hourglass-start"></i>
+            </span>
+            <strong>Xác nhận kho</strong>
+        </div>
+        <div class="transaction_step__item process2 refuse" th:if="${orderSpecific.state == 'ĐƠN HÀNG GẶP LỖI'}"
+        >
+            <span>
+                <span>2</span>
+               <i class="fa-solid fa-circle-exclamation"></i>
+            </span>
+            <strong>Đơn hàng gặp lỗi</strong>
+        </div>
+
+        <div class="transaction_step__item process3"
+             th:classappend="${orderSpecific.countState > 3} ? 'finish' : null"
+             th:id="${orderSpecific.countState == 3} ? 'process' : null"
+        >
+            <span>
+                  <span>3</span>
+                  <i class="fa-solid fa-check"></i>
+                <i class="fa-solid fa-hourglass-start"></i>
+            </span>
+            <strong>Chuẩn bị đơn hàng</strong>
+        </div>
+
+        <div class="transaction_step__item process4"
+             th:classappend="${orderSpecific.countState > 4} ? 'finish' : null"
+             th:id="${orderSpecific.countState == 4} ? 'process' : null"
+        >
+            <span>
+                  <span>4</span>
+                  <i class="fa-solid fa-check"></i>
+                <i class="fa-solid fa-hourglass-start"></i>
+            </span>
+            <strong>Giao hàng</strong>
+        </div>
+
+        <div class="transaction_step__item process5" th:if="${orderSpecific.state != 'THẤT BẠI'}"
+             th:classappend="${orderSpecific.countState == 5 } ? 'finish' : null"
+        >
+            <span>
+                 <span>5</span>
+                  <i class="fa-solid fa-check"></i>
+            </span>
+            <strong>Hoàn thành</strong>
+        </div>
+
+        <div class="transaction_step__item process5 refuse" th:if="${orderSpecific.state == 'THẤT BẠI'}"
+        >
+            <span>
+                 <span>5</span>
+                    <i class="fa-solid fa-circle-exclamation"></i>
+            </span>
+            <strong>Thất bại</strong>
+        </div>
+    </div>
+
+
+
+    <div class="list__needed">
+        <div class="list__needed--item">
+            <span>
+                   <strong>Email Thông báo </strong>
+                <i class="fa-solid fa-envelope"></i>
+            </span>
+            <label>
+                <span th:if="${orderSpecific.emailNotify == null}">Không có</span>
+                <span th:if="${orderSpecific.emailNotify != null}" th:text="${orderSpecific.emailNotify}">Không có</span>
+<!--                <span>Chọn email</span>-->
+            </label>
+        </div>
+        <div class="list__needed--item" th:if="${orderSpecific.typePay == 'TRAN'}">
+            <span>
+                 <strong>Ảnh thanh toán (1)</strong>
+                 <span class="loader hidden" id="loader1"></span>
+                 <i class="fa-solid fa-cloud-arrow-up" onclick="uploadImg(this)"></i>
+                 <i class="fa-solid fa-check hidden fa-check--img"></i>
+            </span>
+            <label>
+                <img th:if="${orderSpecific.imgPay == null}" class="imgUpload"/>
+                <img th:if="${orderSpecific.imgPay != null}" th:src="${orderSpecific.imgPay}" class="imgUpload"/>
+                <input type="file" hidden="hidden" onchange="renderImg(event)">
+                <span>Chọn hình ảnh</span>
+            </label>
+        </div>
+        <div class="list__needed--item" th:if="${orderSpecific.state == 'ĐƠN HÀNG GẶP LỖI' && orderSpecific.typePay == 'TRAN'}">
+            <span>
+                 <strong>Ảnh hoàn tiền (2)</strong>
+                 <span class="loader hidden" id="loader2"></span>
+                 <i class="fa-solid fa-cloud-arrow-up" onclick="uploadImgRefund(this)"></i>
+                 <i class="fa-solid fa-check hidden fa-check--img"></i>
+            </span>
+            <label>
+                <img th:if="${orderSpecific.imgRefund == null}" class="imgUpload2"/>
+                <img th:if="${orderSpecific.imgRefund != null }" th:src="${orderSpecific.imgRefund}" class="imgUpload2"/>
+                <input type="file" hidden="hidden" onchange="renderImgRefund(event)">
+                <span>Chọn hình ảnh</span>
+            </label>
+        </div>
+    </div>
+    <div class="transaction__submit" th:if="${orderSpecific.countState == 1 && orderSpecific.state != 'TỪ CHỐI'}">
+        <button class="transaction__submit--destroy" onclick="openConfirm('TỪ CHỐI')">
+            <strong>Khách từ chối</strong>
+            <i class="fa-solid fa-circle-exclamation"></i>
+        </button>
+        <button class="transaction__submit--next" onclick="openConfirm('XÁC NHẬN ĐƠN HÀNG')">
+            <strong>Xác thực</strong>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </div>
+    <div class="transaction__submit" th:if="${orderSpecific.countState == 2}">
+        <button class="transaction__submit--destroy" onclick="openConfirm2('ĐƠN HÀNG GẶP LỖI')" th:if="${orderSpecific.state != 'ĐƠN HÀNG GẶP LỖI'}">
+            <strong>Sản phẩm lỗi</strong>
+            <i class="fa-solid fa-circle-exclamation"></i>
+        </button>
+        <button class="transaction__submit--next" onclick="openConfirm('ĐANG CHUẨN BỊ')"
+                th:if="${orderSpecific.state != 'ĐƠN HÀNG GẶP LỖI'}">
+            <strong th:if="${orderSpecific.state != 'ĐƠN HÀNG GẶP LỖI'}">Xác nhận đơn hàng</strong>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+        <button class="transaction__submit--next" onclick="openConfirmDefect('ĐANG CHUẨN BỊ')"
+                th:if="${situation == true && orderSpecific.state == 'ĐƠN HÀNG GẶP LỖI'}">
+            <strong th:if="${orderSpecific.state == 'ĐƠN HÀNG GẶP LỖI'}">
+                Tiếp tục đơn hàng</strong>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </div>
+    <div class="transaction__submit" th:if="${orderSpecific.countState == 3}">
+        <button class="transaction__submit--next" onclick="openConfirm('ĐANG GIAO')" th:if="${situation == true}">
+            <strong >Giao hàng</strong>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </div>
+    <div class="transaction__submit" th:if="${orderSpecific.countState == 4}">
+        <button class="transaction__submit--destroy" onclick="openConfirm('THẤT BẠI')" th:if="${situation == true}">
+            <strong >Giao thất bại</strong>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+        <button class="transaction__submit--next" onclick="openConfirm('THÀNH CÔNG')" th:if="${situation == true}">
+            <strong >Giao thành công</strong>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </div>
+</div>

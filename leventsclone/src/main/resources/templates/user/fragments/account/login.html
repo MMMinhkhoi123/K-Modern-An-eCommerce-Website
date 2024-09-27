@@ -1,0 +1,24 @@
+<div class="account__fromLogin active-from" th:fragment="login">
+    <div class="account__fromLogin-child">
+        <img src="https://static.vecteezy.com/system/resources/previews/001/410/750/original/cyber-monday-happy-shopping-background-free-vector.jpg" height="200" />
+        <div class="account__fromLogin--email">
+            <span>Email</span>
+            <input name="gmail" type="email" required placeholder="Email"/>
+        </div>
+        <div class="account__fromLogin--password">
+            <span>Mật khẩu</span>
+            <input  name="password" type="password" required placeholder="Mật khẩu"/>
+        </div>
+        <label class="account__fromLogin--remember">
+            <input name="remember_me" type="checkbox" />
+            <span>Nhớ tài khoản</span>
+        </label>
+        <a href="/account/login">Quên thông tin tài khoản?</a>
+    </div>
+    <div class="account__fromLogin-button">
+        <button class="button__login" onclick="handleLogin2(this)">
+            <span>Đăng nhập</span>
+            <div class="loader-common disable"></div>
+        </button>
+    </div>
+</div>

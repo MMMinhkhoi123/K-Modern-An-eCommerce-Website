@@ -1,0 +1,81 @@
+<div class="productAdd">
+    <div class="productAdd__select">
+        <div data-type="notUse" class="productAdd__filter--option" th:classappend="${state == 'notUse'} ? 'active__option' : null" onclick="changeTab(this)">
+            <span> Sản phẩm khả dụng</span>
+        </div>
+        <div data-type="use" class="productAdd__filter--option" th:classappend="${state == 'use'} ? 'active__option' : null" onclick="changeTab(this)">
+            <span> Sản phẩm đang áp dụng</span>
+        </div>
+    </div>
+    <div class="productAdd__view">
+        <div class="productAdd__view-child">
+            <div th:if="${state == 'notUse'}"  class="productAdd__search-option">
+                <div class="productAdd__search">
+                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <input placeholder="Nhập tên sản phẩm" />
+                </div>
+                <div class="productAdd__option" onclick="menuOption(this)">
+                    <span>Giảm cho tất cả</span> <i class="fa-solid fa-caret-down"></i>
+                    <div class="productAdd__option--menu">
+                        <input class="input__item-menu menu--list__itemSet" data-key="input" oninput="setValue(this)" type="number"  placeholder="Nhập phần trăm cụ thể"  onclick="selectedMenu(event)" />
+                        <div class="menu--list">
+                            <div class="menu--list__item menu--list__itemSet" data-key="item" data-value="10" onclick="selectedMenu(event)">
+                                <span>10 %</span>
+                            </div>
+                            <div class="menu--list__item menu--list__itemSet" data-key="item" data-value="20" onclick="selectedMenu(event)">
+                                <span>20 %</span>
+                            </div>
+                            <div class="menu--list__item menu--list__itemSet" data-key="item" data-value="30" onclick="selectedMenu(event)">
+                                <span> 30 %</span>
+                            </div>
+                            <div class="menu--list__item menu--list__itemSet" data-key="item" data-value="40" onclick="selectedMenu(event)">
+                                <span>40 %</span>
+                            </div>
+                        </div>
+                        <button class="disable-button" onclick="submitSelect(event)">Áp dụng</button>
+                    </div>
+                </div>
+            </div>
+            <div class="productAdd__submit">
+                <button th:if="${state == 'notUse'}"  th:data-id="${event.id}" onclick="submitAddData(event)">
+                    Thêm vào (<span class="count_submit">0</span>) </button>
+                <button style="background: red" th:if="${state == 'use'}"  th:data-id="${event.id}" onclick="removeProductEvent(event)">
+                    <i class="fa-solid fa-minus"></i>
+                    Xóa khỏi (<span class="count_submit">0</span>) </button>
+                <button style="background: orange" th:if="${state == 'use'}"  th:data-id="${event.id}" onclick="updateProductEvent(event)">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    Cập nhật (<span class="count_submit">0</span>) </button>
+                <span onclick="clearChoiceAll()">Bỏ chọn</span>
+            </div>
+            <div class="productAdd__view-table">
+                <table class="event__sale--table">
+                    <thead>
+                    <tr>
+                        <th>
+                            <label>
+                                <input class="input__choice_all" onchange="chooseAllItem(this)" type="checkbox"  />
+                                <span>Chọn tất cả</span>
+                            </label>
+                        </th>
+                        <th>Thông tin sản phẩm</th>
+                        <th>Mức giảm (%)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="table__row"  th:each="item : ${productAdd}" >
+                        <td>
+                            <label>
+                                <input onchange="chooseAlone(this)" th:data-id="${item.id}" class="input__item" type="checkbox" />
+                            </label>
+                        </td>
+                        <td th:text="${item.name}">a</td>
+                        <td class="input_get_value">
+                            <input th:value="${item.percent}"  th:class="'input' + ${item.id}" disabled value="0" onclick="event.stopPropagation()" oninput="setValue2(this)" type="number" />
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

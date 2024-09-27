@@ -1,0 +1,96 @@
+<div class="overview" th:fragment="overview">
+    <div class="overview-list">
+        <div class="filter-overview">
+            <h2>Tồng quan</h2>
+            <select onchange="selectFilter(event)">
+                <option th:selected="${key == 'WEEK'}" value="WEEK">Tuần trước</option>
+                <option th:selected="${key == 'MONTH'}" value="MONTH">Tháng trước</option>
+                <option th:selected="${key == 'YEAR'}" value="YEAR">Năm trước</option>
+                <option th:selected="${key == 'DAY'}" value="DAY">Hôm qua</option>
+            </select>
+        </div>
+        <div class="list-overview">
+            <div class="list-overview__order">
+                <div class="connect">
+                    <span th:text="${'+' + product.value}"></span>
+                    <span style="background: #e7dac5">
+                        <i style="color: orange" class="fa-brands fa-product-hunt"></i>
+                    </span>
+                </div>
+                <strong>Sản phẩm bán được</strong>
+                <span>
+                    <span th:text="${product.increase == true ? 'Tăng' : 'Giảm'}"></span>
+                    <span th:style="'color:' + ${product.increase == true ? 'green' : 'red'}"
+                          th:text="${product.percent + '%'}">10%</span>
+                    so với
+                    <span th:if="${key == 'WEEK'}">tuần</span>
+                    <span th:if="${key == 'DAY'}">ngày</span>
+                    <span th:if="${key == 'MONTH'}">tháng</span>
+                     <span th:if="${key == 'YEAR'}">năm</span>
+                    trước
+                </span>
+            </div>
+            <div class="list-overview__user">
+                <div class="connect">
+                    <span th:text="${'+' + user.value}"></span>
+                    <span style="background: rgba(158,158,215,0.53)">
+                        <i style="color: blue" class="fa-solid fa-user"></i>
+                    </span>
+                </div>
+                <strong>Đăng ký tài khoản</strong>
+                <span>
+                    <span th:text="${user.increase == true ? 'Tăng' : 'Giảm'}"></span>
+                    <span th:style="'color:' + ${user.increase == true ? 'green' : 'red'}"
+                          th:text="${user.percent + '%'}">10%</span>
+                    so với
+                    <span th:if="${key == 'WEEK'}">tuần</span>
+                    <span th:if="${key == 'DAY'}">ngày</span>
+                    <span th:if="${key == 'MONTH'}">tháng</span>
+                     <span th:if="${key == 'YEAR'}">năm</span>
+                    trước
+                </span>
+            </div>
+            <div class="list-overview__profit">
+                <div class="connect">
+                    <span th:text="${'+' + order.value}"></span>
+                    <span style="background: #b4efb4">
+                        <i style="color: green" class="fa-regular fa-file-lines"></i>
+                    </span>
+                </div>
+
+                <strong>Đơn hàng</strong>
+                <span>
+                    <span th:text="${order.increase == true ? 'Tăng' : 'Giảm'}"></span>
+                    <span th:style="'color:' + ${order.increase == true ? 'green' : 'red'}"
+                          th:text="${order.percent + '%'}">10%</span>
+                    so với
+                    <span th:if="${key == 'WEEK'}">tuần</span>
+                    <span th:if="${key == 'DAY'}">ngày</span>
+                    <span th:if="${key == 'MONTH'}">tháng</span>
+                     <span th:if="${key == 'YEAR'}">năm</span>
+                    trước
+                </span>
+            </div>
+            <div class="list-overview__profit" th:style="'background:' + ${money.increase == true ? '#b4efb4' : ' rgba(239,162,162,0.81)' }">
+            <div class="connect">
+                <span class="price"  th:text="${money.value}"></span>
+                <span style="background: #05ff05">
+                   <i style="color: white" class="fa-solid fa-dollar-sign"></i>
+                </span>
+            </div>
+                <strong>Lợi nhuận</strong>
+                <span>
+                    <span th:text="${money.increase == true ? 'Tăng' : 'Giảm'}"></span>
+                    <span th:style="'color:' + ${money.increase == true ? 'green' : 'red'}"
+                          th:text="${money.percent + '%'}">10%</span>
+                    so với
+                    <span th:if="${key == 'WEEK'}">tuần</span>
+                    <span th:if="${key == 'DAY'}">ngày</span>
+                    <span th:if="${key == 'MONTH'}">tháng</span>
+                     <span th:if="${key == 'YEAR'}">năm</span>
+                    trước
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
